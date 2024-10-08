@@ -22,16 +22,6 @@
 
 console.clear();
 
-if($("[tippy]").length > 0){
-  tippy('[tippy]', {
-    duration: 0,
-    content: (reference) => reference.getAttribute('aria-label'),
-    allowHTML: true,
-    arrow: false,
-  });
-}
-
-
 
 
 const href = url = window.location.href;
