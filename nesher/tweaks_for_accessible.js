@@ -1,13 +1,36 @@
+/* added under webflow as CDN */
+/* added under webflow as CDN */
+/* added under webflow as CDN */
+/* added under webflow as CDN */
+/* added under webflow as CDN */
+/* added under webflow as CDN */
+/* added under webflow as CDN */
+/* added under webflow as CDN */
+/* added under webflow as CDN */
+/* added under webflow as CDN */
+/* added under webflow as CDN */
+/* added under webflow as CDN */
+/* added under webflow as CDN */
+/* added under webflow as CDN */
+/* added under webflow as CDN */
+/* added under webflow as CDN */
+/* added under webflow as CDN */
+/* added under webflow as CDN */
+/* added under webflow as CDN */
+/* added under webflow as CDN */
+
+
 console.clear();
 
+if($("[tippy]").length > 0){
+  tippy('[tippy]', {
+    duration: 0,
+    content: (reference) => reference.getAttribute('aria-label'),
+    allowHTML: true,
+    arrow: false,
+  });
+}
 
-tippy('[tippy]', {
-  duration: 0,
-  content: (reference) => reference.getAttribute('aria-label'),
-  allowHTML: true,
-  arrow: false,
-
-});
 
 
 
@@ -181,6 +204,7 @@ clickable_cards.each(function( index ) {
 
 })
 
+
 /* 6 - add aria label for navbar sticky sub navbar (with anchors) */
 const anchor_btn_txt = isEnglish ? "Anchor link to: " : "קישור באותו העמוד לאזור: ";
 const anchor_nav_items = $("[anchor_nav_item]");
@@ -234,3 +258,8 @@ new_pdf_window_links.each(function( index ) {
   $(this).attr("title", open_pdf_in_new_window_txt);
   $(this).attr("target", "_blank");
 });
+
+
+
+
+
