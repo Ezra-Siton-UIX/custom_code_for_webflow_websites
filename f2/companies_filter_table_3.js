@@ -178,13 +178,13 @@ Fancybox.bind('[data-fancybox]', {
   on: {
     reveal: (fancybox, slide) => {
       // The content of this slide is loaded and ready to be revealed
-      lenis.stop()     
+      //lenis.stop()     
       console.log("fancybox reveal");
     },
     close: (fancybox, slide) => {
       // The content of this slide is loaded and ready to be revealed
       console.log("fancybox close");
-      lenis.start()
+      //lenis.start()
       //stop_all_videos();
     }
   }
