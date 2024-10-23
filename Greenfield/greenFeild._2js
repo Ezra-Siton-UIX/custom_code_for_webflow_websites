@@ -1,4 +1,26 @@
+/* added under webflow as CDN */
+/* added under webflow as CDN */
+/* added under webflow as CDN */
+/* added under webflow as CDN */
+/* added under webflow as CDN */
+/* added under webflow as CDN */
+/* added under webflow as CDN */
+/* added under webflow as CDN */
+/* added under webflow as CDN */
+/* added under webflow as CDN */
+/* added under webflow as CDN */
+/* added under webflow as CDN */
+/* added under webflow as CDN */
+/* added under webflow as CDN */
+/* added under webflow as CDN */
+/* added under webflow as CDN */
+/* added under webflow as CDN */
+/* added under webflow as CDN */
+/* added under webflow as CDN */
+/* added under webflow as CDN */
+
 /* ### change url to url category param of all footer category links */
+
 
 $("[category_footer_link]" ).each(function( index ) {
   let this_url = $( this ).attr("href");
@@ -107,12 +129,16 @@ if($("[data-src][data-fancybox]").length > 0){
         // The content of this slide is loaded and ready to be revealed
         console.log("reveal companies");
         //lenis.stop()
+        const company_popup_image_overlay = slide.el.querySelector("[company_popup_image_overlay]");
+
+        setTimeout(() => {
+          company_popup_image_overlay.style.opacity = "0.4";
+        }, 200);
+
+
         lenis.destroy();
 
-        window.lazySizesConfig = window.lazySizesConfig || {};
 
-
-        lazySizes.loader.checkElems()
       },
       close: (fancybox, slide) => {
         // The content of this slide is loaded and ready to be revealed
