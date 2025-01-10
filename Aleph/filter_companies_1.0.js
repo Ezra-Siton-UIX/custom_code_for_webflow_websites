@@ -63,14 +63,14 @@ $("[result_count]").css("opacity", 1);
 
 companies_List.on('filterComplete', function ({matchingItems }) {
 
-  console.log("filterComplete");
+  //console.log("filterComplete");
 
 });
 
 
 
 $("[clear_filters]").on( "click", function() {
-  console.log( "Handler for `click` called." );
+  //console.log( "Handler for `click` called." );
   $("input[search]").val("")
   companies_List.search(); // Show all items in list
   companies_List.filter(); // Remove all filters]
@@ -346,7 +346,7 @@ companies_List.on('updated', function ({matchingItems, filtered, items  }) {
     $("[empty_list_message]").hide();
     $("[result_count_wrapper]").show();
   }
-  console.log(matchingItems.length, how_many_items_to_show_on_load)
+  //console.log(matchingItems.length, how_many_items_to_show_on_load)
   // LOAD MORE //
   if(matchingItems.length > how_many_items_to_show_on_load){
     $("[show_more]").show();
@@ -364,7 +364,7 @@ function uptade_the_number_of_active_filters(clear){
   let num_of_filters = 0;
 
   Object.entries(filter_query).forEach(([key, value]) => {
-    console.log(key, value);
+    //console.log(key, value);
     if(value.filter_isActive == true){
       num_of_filters ++;
     }
@@ -374,7 +374,7 @@ function uptade_the_number_of_active_filters(clear){
   const $filter_btn_text_node = $("[filter_btn_text]");
   let filter_btn_text = num_of_filters > 0 ? `${button_that_open_the_modal_text} (${num_of_filters})` : button_that_open_the_modal_text;
 
-  console.log(filter_btn_text, "filter_btn_text");
+  //console.log(filter_btn_text, "filter_btn_text");
 
   num_of_filters > 0 ? $filter_btn_text_node.text(`Filter (${num_of_filters})`) : $filter_btn_text_node.text(`${button_that_open_the_modal_text}`);
 
@@ -427,7 +427,7 @@ $(`[show_more]`).on('click', function() {
 
 companies_List.show(0, how_many_items_to_show_on_load); // Display item 4,5,6 
 
-console.log(companies_List)
+//console.log(companies_List)
 
 function show_only_n_elemnts(nun_of_items_to_show){
   companies_List.show(0, nun_of_items_to_show); // Display item 4,5,6 
@@ -522,7 +522,7 @@ $( "[filter_type]" ).each(function( index ) {
 
 function load_gsap_batch_animations_2(){
 
-  console.log("load_gsap_batch_animations count");
+  //console.log("load_gsap_batch_animations count");
 
   ScrollTrigger.batch("[list_card]", {
     //interval: 0.1, // time window (in seconds) for batching to occur. 
@@ -545,7 +545,7 @@ function revealItem(batch, direction) {
   const reveal_duration = 2;
   const easing_type = "power4.out";
 
-  console.log("revealItemrevealItemrevealItemrevealItem");
+  //console.log("revealItemrevealItemrevealItemrevealItem");
 
 
 
