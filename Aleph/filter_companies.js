@@ -1,4 +1,3 @@
-console.log("1");
 /* 
       -----Attributes list:
       [toggleclass] 
