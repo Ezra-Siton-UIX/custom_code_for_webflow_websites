@@ -107,7 +107,7 @@ Fancybox.bind("[cta][data-fancybox]", {
 
 if($("[data-src][data-fancybox]").length > 0){
 
-  $( "[data-src][data-fancybox]" ).each(function( index ) {
+  $( "[data-src][data-fancybox][company_card]" ).each(function( index ) {
     const this_data_src =  $( this ).attr("data-src");
     const new_data_src = "#"+this_data_src;
     $( this ).attr("data-src", new_data_src);
