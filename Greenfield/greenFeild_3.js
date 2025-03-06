@@ -103,18 +103,15 @@ Fancybox.bind("[cta][data-fancybox]", {
 
 
 /**>>>>>>>>>> 7 of 13 <<<<<<<<<<**/
-/*### Fancybox Companies Modal ###*/
+/*### Fancybox Companies & team Modal ###*/
 
 if($("[data-src][data-fancybox]").length > 0){
 
-  $( "[data-src][data-fancybox][company_card]" ).each(function( index ) {
+  /* pre step for both fancybox modals */
+  $( "[data-src][data-fancybox]" ).each(function( index ) {
     const this_data_src =  $( this ).attr("data-src");
     const new_data_src = "#"+this_data_src;
     $( this ).attr("data-src", new_data_src);
-
-    /* set thumbnail */
-    const img_url = $("[team_image]").eq(index).attr("src");
-    $( this ).attr("data-thumb", img_url);
   });
 
   Fancybox.bind("[companies] [data-fancybox]", {
@@ -146,9 +143,15 @@ if($("[data-src][data-fancybox]").length > 0){
     },
   });
 
-
   /**>>>>>>>>>> 8 of 13 <<<<<<<<<<**/
   /*### Fancybox Team Modal ###*/
+
+  /* pre step for both fancybox modals */
+  $( "[data-src][data-fancybox][team_card]" ).each(function( index ) {
+    /* set thumbnail */
+    const img_url = $("[team_image]").eq(index).attr("src");
+    $( this ).attr("data-thumb", img_url);
+  });
 
   Fancybox.bind("[team] [data-fancybox]", {
     // Your custom options
@@ -178,31 +181,31 @@ if($("[data-src][data-fancybox]").length > 0){
 
 
 /*#### add active class to card on scroll - 0 of 5
-      if(window.location.pathname == "/"){
-        $( "[company_card]" ).each(function( index ) {
-          var inview = new Waypoint.Inview({
-            element: $("[company_card]")[index],
-            enter: function(direction) {
+        if(window.location.pathname == "/"){
+          $( "[company_card]" ).each(function( index ) {
+            var inview = new Waypoint.Inview({
+              element: $("[company_card]")[index],
+              enter: function(direction) {
 
 
-            },
-            entered: function(direction) {
-              $("[company_card]").removeClass("is_active");
-              $(this.element).addClass("is_active");
-            },
-            exit: function(direction) {
+              },
+              entered: function(direction) {
+                $("[company_card]").removeClass("is_active");
+                $(this.element).addClass("is_active");
+              },
+              exit: function(direction) {
 
-            },
-            exited: function(direction) {
-              $(this.element).removeClass("is_active");
+              },
+              exited: function(direction) {
+                $(this.element).removeClass("is_active");
 
-            },
-            offset: '60%'
-          })
+              },
+              offset: '60%'
+            })
 
-          });
-      }
-       ####*/
+            });
+        }
+         ####*/
 
 /**>>>>>>>>>> 9 of 10 <<<<<<<<<<**/
 /*### Navbar Animation on srcoll ###*/
@@ -462,12 +465,12 @@ const feature_bagde_wrapper = $("[feature_bagde_wrapper]"); /* item under webflo
 const marquee__group_parent = $("[marquee__group_parent]");
 
 /* 
-                    marquee__group_parent
-                      marquee__group
-                       feature_bagde_wrapper
-                         feature_badge
-                          feature_badge_logo
-                    */      
+                      marquee__group_parent
+                        marquee__group
+                         feature_bagde_wrapper
+                           feature_badge
+                            feature_badge_logo
+                      */      
 
 marquee_cms_items.each(function( index ) {
   const this_marquee_cms_item_img_src = $( this ).attr("company_image_src");
@@ -487,4 +490,3 @@ marquee__group_parent.append(clone);
 
 $(".marquee__group").css("animation", "scroll-x 100s linear infinite");
 $(".marquee__group").css("margin-left", "16px");
-
