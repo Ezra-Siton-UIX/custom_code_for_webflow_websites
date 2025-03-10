@@ -9,6 +9,7 @@ import  { event_when_wb_menu_is_open } from './general/event_when_wb_menu_is_ope
 import  { navbar_add_active_on_scroll } from './general/navbar_add_active_on_scroll.js';
 
 //load_barba();
+// hello world 
 
 init_rss_slider();
 navbar_add_active_on_scroll();
