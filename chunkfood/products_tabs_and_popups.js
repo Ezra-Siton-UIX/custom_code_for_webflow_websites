@@ -1,3 +1,4 @@
+/** as embed code under webflow page setting // home/our-products */
 /*** recipes Slider ***/
 
 const recipes_swiper = new Swiper(".swiper[recipes]", {
