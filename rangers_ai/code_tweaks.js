@@ -243,8 +243,9 @@ document.addEventListener("DOMContentLoaded", (event) => {
 
   /* ################## SWIPER ################## */
   const $swiper_solution_node = document.querySelector("[solution_swiper]");
+  const $swiper_testimonials_node = document.querySelector("[testimonials]");
 
-  if($swiper_solution_node !== null){
+  if($swiper_solution_node !== null || $swiper_testimonials_node !== null){
 
     function load_swiper_libary(){
       $.ajax({ 
@@ -320,7 +321,19 @@ document.addEventListener("DOMContentLoaded", (event) => {
         swiper_text_boxes[i].style.minHeight = `${the_tallest_slide}px`;
       }
 
-
+      /* swiper testomonials */
+      const swiper_testimonials = new Swiper('.swiper[testimonials]', {
+        loop: true,
+        pagination: {
+          el: '[swiper_testimonials_pagination]',
+          clickable: true
+        },
+        navigation: {
+          nextEl: '[custom_testimonials_next]',
+          prevEl: '[custom_testimonials_prev]',
+        },
+      });
+      
     }/* end load swiper function */
   }
 
