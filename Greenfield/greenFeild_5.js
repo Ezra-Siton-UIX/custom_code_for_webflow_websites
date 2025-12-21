@@ -298,7 +298,7 @@ const diagram_content_slider_options = {
 
   // If we need pagination
   pagination: {
-    el: '.swiper-pagination',
+    el: contentEl.querySelector('.swiper-pagination'),
     clickable: true
   },
 };
