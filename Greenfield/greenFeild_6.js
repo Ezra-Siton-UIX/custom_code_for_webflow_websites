@@ -274,6 +274,8 @@ const is_swiper_diagram_stages_slider = $(".swiper[diagram_stages_slider]").leng
 
 /* Part 10.2 - Diagram Mobile Slider */
 
+const contentEl = document.querySelector('.swiper[diagram_stages_slider="content"]');
+
 const diagram_content_slider_options = {
   // Optional parameters
   centeredSlides: true,
