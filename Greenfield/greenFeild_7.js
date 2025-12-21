@@ -300,7 +300,7 @@ const diagram_content_slider_options = {
 
   // If we need pagination
   pagination: {
-    el: contentEl.querySelector('.swiper-pagination'),
+    el: ".swiper[diagram_stages_slider='content'] .swiper-pagination",
     clickable: true
   },
 };
