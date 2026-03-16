@@ -15,8 +15,12 @@ export function button_enter_animation(){
           opacity: 1,
           clipPath: "inset(0% 0% round 20px)",
           delay: 0,
-          //start: "top center",
-          //end: "bottom center",
+					onComplete: () => {
+            gsap.set(section, { 
+              clipPath: "initial",  
+              opacity: 1,
+            });
+          }
         });
 
         gsap.from(q("div"), {
@@ -30,12 +34,5 @@ export function button_enter_animation(){
     once: true,
   });
 
-
-  ScrollTrigger.batch("[uk_button]", {
-    interval: 0.1, // time window (in seconds) for batching to occur.
-    onEnter: batch => {
-
-    },
-  });
 
 }
