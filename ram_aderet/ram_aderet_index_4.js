@@ -2,7 +2,7 @@
 gsap.registerPlugin(ScrollTrigger, SplitText);
 
 import  { countUp } from './GSAP/countup_gsap.js';
-import  { button_enter_animation } from './GSAP/button_enter_animation.js';
+import  { button_enter_animation } from './GSAP/button_enter_animation_v1.js';
 import  { toogle_navbar_active } from './NAVBAR/toogle_navbar_active.js';
 import  { scale_image_mask } from './GSAP/scale_image_mask.js';
 import  { split_text } from './GSAP/split_text.js';
