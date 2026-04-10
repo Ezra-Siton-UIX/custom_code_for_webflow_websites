@@ -2,7 +2,7 @@
 gsap.registerPlugin(ScrollTrigger, SplitText);
 
 import  { countUp } from './GSAP/countup_gsap.js';
-import  { button_enter_animation } from './GSAP/button_enter_animation_v1.js';
+import  { button_enter_animation } from './GSAP/button_enter_animation.js';
 import  { toogle_navbar_active } from './NAVBAR/toogle_navbar_active.js';
 import  { scale_image_mask } from './GSAP/scale_image_mask.js';
 import  { split_text } from './GSAP/split_text.js';
@@ -39,11 +39,30 @@ lightbox_images.forEach(lightbox_image => {
 });
 
 
+const enableLenis = false; // תשנה ל־true כשמוכנים להפעיל
+
+if (enableLenis) {
+  const lenis = new Lenis();
+
+  lenis.on('scroll', ScrollTrigger.update);
+
+  gsap.ticker.add((time) => {
+    lenis.raf(time * 1000); 
+  });
+
+  const currentScrollPosition = lenis.scroll;
+  lenis.scrollTo(currentScrollPosition + 1, {
+    duration: 0.1, 
+    easing: (t) => t, 
+  });
+}
+
+//lenis.stop();
+//lenis.start()
+
+
 
 // projects / project page (show/hide marketing footer form symbol placeholder logo)
-
-
-
 const page_with_PlaceholderImage = document.querySelector('img[src*="placeholder"][project_page_real_logo_footer_form]') !== null;
 const real_logo_if_logo_feild_is_set = document.querySelector('[project_page_real_logo_footer_form]');
 const place_holder_logo_if_logo_feild_is_not_set = document.querySelector("[project_page_placeholder_logo_footer_form]");       // הלוגו האמיתי
@@ -124,38 +143,10 @@ if(is_en || project_lang !== null){
   if (pageTitle) {
     document.title = pageTitle + " | Ram Aderet";
   }
-
-
 }
 
 
 
-
-
-
-// Initialize a new Lenis instance for smooth scrolling
-const lenis = new Lenis();
-
-// Synchronize Lenis scrolling with GSAP's ScrollTrigger plugin
-lenis.on('scroll', ScrollTrigger.update);
-
-
-// Add Lenis's requestAnimationFrame (raf) method to GSAP's ticker
-// This ensures Lenis's smooth scroll animation updates on each GSAP tick
-gsap.ticker.add((time) => {
-  lenis.raf(time * 1000); // Convert time from seconds to milliseconds
-});
-
-// Disable lag smoothing in GSAP to prevent any delay in scroll animations
-gsap.ticker.lagSmoothing(0);
-
-// Scroll by 1px from the current position
-const currentScrollPosition = lenis.scroll;
-
-lenis.scrollTo(currentScrollPosition + 1, {
-  duration: 0.1, // Optional: adjust duration for a quicker scroll
-  easing: (t) => t, // Optional: use a linear easing for a direct 1px movement
-});
 
 
 
@@ -214,9 +205,23 @@ mm.add("not (prefers-reduced-motion: reduce)", () => {
 
 
 // general 
-toogle_navbar_active(lenis);
+if (typeof lenis !== 'undefined') {
+  toogle_navbar_active(lenis);
+} else {
+  toogle_navbar_active();
+}
+
 initialize_sliders();
 fit_zigzag_height();
+
+// fancybox_modals
+if (typeof lenis !== 'undefined') {
+  fancybox_modals(lenis);} 
+else {
+  fancybox_modals();
+}
+
+
 
 
 window.Webflow ||= [];
@@ -226,13 +231,8 @@ window.Webflow.push(function () {
   marquee__items();
 });
 
-
-
 // accessibility
 accessibility();
-
-// fancybox_modals
-fancybox_modals(lenis);
 
 
 document.addEventListener("DOMContentLoaded", (event) => {
@@ -386,8 +386,3 @@ function vegas(){
 
   }, 2000);
 }
-
-
-
-
-
