@@ -39,26 +39,53 @@ lightbox_images.forEach(lightbox_image => {
 });
 
 
-const enableLenis = false; // תשנה ל־true כשמוכנים להפעיל
+
+/* ════════════════════════════════════════════════════════════
+   LENIS
+   ════════════════════════════════════════════════════════════ */
+
+const enableLenis = true;
 
 if (enableLenis) {
-  const lenis = new Lenis();
+  const lenis = new Lenis({
+    duration: 0.7, // default 1.2
+    lerp: 0.1, // default 0.1
+    wheelMultiplier: 1, // default 1
+  });
+
+
+  //event_when_wb_menu_is_open(lenis);
+
 
   lenis.on('scroll', ScrollTrigger.update);
 
-  gsap.ticker.add((time) => {
-    lenis.raf(time * 1000); 
-  });
+  // שומרים reference כדי שנוכל להסיר את ה-ticker
+  const lenisTickerFn = (time) => { lenis.raf(time * 1000); };
+  gsap.ticker.add(lenisTickerFn);
 
   const currentScrollPosition = lenis.scroll;
   lenis.scrollTo(currentScrollPosition + 1, {
-    duration: 0.1, 
-    easing: (t) => t, 
+    duration: 0.1,
+    easing: (t) => t,
   });
-}
 
-//lenis.stop();
-//lenis.start()
+  // ANDI — הריגה מלאה של Lenis בקליק
+  setTimeout(() => {
+    const host = document.getElementById('andimenu');
+    if (!host) {
+      console.warn('andimenu host not found');
+      return;
+    }
+
+    host.addEventListener('click', () => {
+      console.log('Killing Lenis');
+      gsap.ticker.remove(lenisTickerFn);  // ← זה היה חסר!
+      lenis.destroy();
+    }, { once: true });
+  }, 2000);
+}{
+  //event_when_wb_menu_is_open();
+}
 
 
 
