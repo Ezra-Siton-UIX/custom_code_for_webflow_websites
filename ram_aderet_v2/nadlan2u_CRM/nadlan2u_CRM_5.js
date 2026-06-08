@@ -59,7 +59,7 @@ Tips:
     apiBaseUrl: "https://www.n2u.co.il/leadsbanner.asmx/getleadsbanner",
     note: "", // ← note קבוע לכל הקריאות
     DEBUG: false,
-    console_log: false
+    console_log: true
   };
 
   // ------------------- פונקציה לניקוי תווים מיוחדים -------------------
