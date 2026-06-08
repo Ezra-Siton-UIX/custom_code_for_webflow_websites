@@ -112,13 +112,17 @@ export function toogle_navbar_active(lenis){
         if (nowScrollTop > lastScrollTop){
           // ACTION ON
           // SCROLLING DOWN 
-          $("[navbar]").css("transform", "translate3d(0px, -110%, 0px");
+          if (!window.location.hostname.includes("tnufa")) {
+            $("[navbar]").css("transform", "translate3d(0px, -110%, 0px");
+          }
 
 
         } else {
           // ACTION ON
           // SCROLLING UP 
-          $("[navbar]").css("transform", "translate3d(0px, 0%, 0px");
+          if (!window.location.hostname.includes("tnufa")) {
+            $("[navbar]").css("transform", "translate3d(0px, 0%, 0px");
+          }
         }
         lastScrollTop = nowScrollTop;
       }
