@@ -116,45 +116,61 @@ Tips:
   };
 
   // ------------------- שמירת ההתנהגות הקיימת של submit -------------------
-  document.addEventListener('submit', function (e) {
+document.addEventListener('submit', function (e) {
     const form = e.target;
 
-    // ⛔ לא טופס CRM → יוצאים
     if (!form.hasAttribute(CONFIG.crmFormAttribute)) {
+      console.warn("[CRM] ⛔ Form has no", CONFIG.crmFormAttribute, "attribute – not a CRM form. Skipping.", form);
       return;
     }
+
+    console.log("[CRM] ✔ CRM form detected, processing...", form);
 
     const select = form.querySelector('select[data-custom-select]');
     const bodyProjectId = document.body.getAttribute('projectid')?.trim();
     const projectid = bodyProjectId || select?.value?.trim();
 
+    console.log("[CRM] projectid resolved →", projectid, "| from body:", bodyProjectId, "| from select:", select?.value?.trim());
+
     if (projectid === 'general') {
-      console.warn("General info selected – skipping CRM, submitting only to Webflow");
-      return; // לא שולחים ל-CRM
+      console.warn("[CRM] General info selected – skipping CRM, submitting only to Webflow");
+      return;
     }
 
     const finalUrl = getLeadUrlFromForm(form);
 
     if (!finalUrl) {
+      console.warn("[CRM] ❌ No final URL generated (missing projectid?) – skipping submit");
       e.preventDefault();
       e.stopImmediatePropagation();
       return;
     }
 
-    console.log("Generated Lead URL:", finalUrl);
+    console.log("[CRM] Generated Lead URL:", finalUrl);
 
     if (!CONFIG.DEBUG) {
+      console.log("[CRM] Sending request to CRM...", finalUrl);
       fetch(finalUrl)
-        .then(res => res.text())
-        .then(data => console.log("CRM response:", data))
-        .catch(err => console.error("CRM error:", err));
+        .then(res => {
+          console.log("[CRM] Response status:", res.status, res.statusText, "| ok:", res.ok, "| type:", res.type);
+          return res.text().then(body => ({ status: res.status, ok: res.ok, body }));
+        })
+        .then(({ status, ok, body }) => {
+          if (ok) {
+            console.log("[CRM] ✅ Success | body:", body);
+          } else {
+            console.error("[CRM] ⚠️ Server error status", status, "| body:", body);
+          }
+        })
+        .catch(err => {
+          console.error("[CRM] ❌ Fetch failed (network / CORS):", err.message, err);
+        });
     } else {
+      console.log("[CRM] DEBUG mode ON – request NOT sent. Would have sent:", finalUrl);
       e.preventDefault();
       e.stopImmediatePropagation();
     }
-    
-    // GA events
-    
+
   });
 
   // ------------------- הפונקציה המקורית שלך לשדות select -------------------
