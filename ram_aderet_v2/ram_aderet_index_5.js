@@ -3,7 +3,7 @@ gsap.registerPlugin(ScrollTrigger, SplitText);
 
 import  { countUp } from './GSAP/countup_gsap.js';
 import  { button_enter_animation } from './GSAP/button_enter_animation.js';
-import  { toogle_navbar_active } from './NAVBAR/toogle_navbar_active.js';
+import  { toogle_navbar_active } from './NAVBAR/toogle_navbar_active_1.js';
 import  { scale_image_mask } from './GSAP/scale_image_mask.js';
 import  { split_text } from './GSAP/split_text.js';
 import  { trigger_box_animation } from './GSAP/trigger_box_animation.js';
