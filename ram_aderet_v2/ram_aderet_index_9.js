@@ -16,7 +16,7 @@ import  { fancybox_modals } from './fancybox_modals/fancybox_modals_1.js';
 import  { mask_animation_on_scroll } from './GSAP/mask_animation_on_scroll.js';
 import  { basic_parralax_image } from './GSAP/basic_parralax_image.js';
 // CRM
-import  { nadlan2u_CRM } from './nadlan2u_CRM/nadlan2u_CRM_3.js';
+import  { nadlan2u_CRM } from './nadlan2u_CRM/nadlan2u_CRM_4.js';
 // Forms CRM
 nadlan2u_CRM();
 
