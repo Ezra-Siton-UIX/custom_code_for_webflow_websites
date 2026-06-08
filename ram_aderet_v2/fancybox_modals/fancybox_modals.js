@@ -2,14 +2,17 @@ export function fancybox_modals(lenis){
 
   // EN version (Open projects in popups)
 
+  // אם Fancybox לא נטען באתר הזה (קוד משותף לכמה אתרים) — יוצאים בלי לעשות כלום
+  if (typeof Fancybox === "undefined") return;
+
   // בוחר את כל האלמנטים עם הסלקטור 'project_card_fancybox'
   const project_card_fancyboxes = document.querySelectorAll('[project_card_fancybox]');
 
   project_card_fancyboxes.forEach(project_card_fancybox => {
     // מוצא את התמונה שבתוך ה-element עם הסלקטור 'project_image'
     const project_image = project_card_fancybox.querySelector('[card_bg_image]');
-    const project_name = project_card_fancybox.querySelector('[project_name]').textContent.trim();
-    const project_location = project_card_fancybox.querySelector('[project_location]').textContent.trim();
+    const project_name = project_card_fancybox.querySelector('[project_name]')?.textContent.trim() || '';
+    const project_location = project_card_fancybox.querySelector('[project_location]')?.textContent.trim() || '';
     const project_logo = project_card_fancybox.querySelector('[project_logo]');
 
 
