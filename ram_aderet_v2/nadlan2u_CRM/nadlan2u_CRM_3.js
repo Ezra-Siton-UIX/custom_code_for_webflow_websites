@@ -48,12 +48,14 @@ Tips:
 - If new fields are added to the form, getFinalUrlObject will automatically decode them.
 */
 
-
+  // ------------------- זיהוי אתר תנופה (לפי דומיין) -------------------
+  const isTnufa = window.location.hostname.includes("tnufa");
+  
   const CONFIG = {
     crmFormAttribute: "data_nadlan_crm",
     publisher: "8825", // old value 11528
     globalpass: "ram33ad4",
-    banner: "website",
+    banner: isTnufa ? "website-tnufa" : "website",
     apiBaseUrl: "https://www.n2u.co.il/leadsbanner.asmx/getleadsbanner",
     note: "", // ← note קבוע לכל הקריאות
     DEBUG: false
