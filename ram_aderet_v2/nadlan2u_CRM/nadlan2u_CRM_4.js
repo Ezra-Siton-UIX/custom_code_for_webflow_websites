@@ -58,7 +58,8 @@ Tips:
     banner: isTnufa ? "website-tnufa" : "website",
     apiBaseUrl: "https://www.n2u.co.il/leadsbanner.asmx/getleadsbanner",
     note: "", // ← note קבוע לכל הקריאות
-    DEBUG: false
+    DEBUG: false,
+    console_log: false
   };
 
   // ------------------- פונקציה לניקוי תווים מיוחדים -------------------
@@ -122,33 +123,33 @@ document.addEventListener('submit', function (e) {
     const form = e.target;
 
     if (!form.hasAttribute(CONFIG.crmFormAttribute)) {
-      if (CONFIG.DEBUG) console.warn("[CRM] ⛔ Form has no", CONFIG.crmFormAttribute, "attribute – not a CRM form. Skipping.", form);
+      if (CONFIG.console_log) console.warn("[CRM] ⛔ Form has no", CONFIG.crmFormAttribute, "attribute – not a CRM form. Skipping.", form);
       return;
     }
 
-    if (CONFIG.DEBUG) console.log("[CRM] ✔ CRM form detected, processing...", form);
+    if (CONFIG.console_log) console.log("[CRM] ✔ CRM form detected, processing...", form);
 
     const select = form.querySelector('select[data-custom-select]');
     const bodyProjectId = document.body.getAttribute('projectid')?.trim();
     const projectid = bodyProjectId || select?.value?.trim();
 
-    if (CONFIG.DEBUG) console.log("[CRM] projectid resolved →", projectid, "| from body:", bodyProjectId, "| from select:", select?.value?.trim());
+    if (CONFIG.console_log) console.log("[CRM] projectid resolved →", projectid, "| from body:", bodyProjectId, "| from select:", select?.value?.trim());
 
     if (projectid === 'general') {
-      if (CONFIG.DEBUG) console.warn("[CRM] General info selected – skipping CRM, submitting only to Webflow");
+      if (CONFIG.console_log) console.warn("[CRM] General info selected – skipping CRM, submitting only to Webflow");
       return;
     }
 
     const finalUrl = getLeadUrlFromForm(form);
 
     if (!finalUrl) {
-      if (CONFIG.DEBUG) console.warn("[CRM] ❌ No final URL generated (missing projectid?) – skipping submit");
+      if (CONFIG.console_log) console.warn("[CRM] ❌ No final URL generated (missing projectid?) – skipping submit");
       e.preventDefault();
       e.stopImmediatePropagation();
       return;
     }
 
-    if (CONFIG.DEBUG) console.log("[CRM] Generated Lead URL:", finalUrl);
+    if (CONFIG.console_log) console.log("[CRM] Generated Lead URL:", finalUrl);
 
     if (!CONFIG.DEBUG) {
       fetch(finalUrl)
@@ -156,13 +157,14 @@ document.addEventListener('submit', function (e) {
           return res.text().then(body => ({ status: res.status, ok: res.ok, body }));
         })
         .then(({ status, ok, body }) => {
-          // אופציונלי: אם תרצה לדעת על כשל גם בפרודקשן, אפשר להשאיר רק את ה-error
           if (!ok || /False/i.test(body)) {
-            console.error("[CRM] Lead submission failed | status:", status, "| body:", body);
+            console.error("[CRM] ❌ Lead NOT accepted by CRM | status:", status, "| body:", body);
+          } else {
+            console.log("[CRM] ✅ Lead sent successfully to CRM | status:", status, "| body:", body);
           }
         })
         .catch(err => {
-          console.error("[CRM] Fetch failed (network / CORS):", err.message);
+          console.error("[CRM] ❌ Lead NOT sent (network / CORS):", err.message);
         });
     } else {
       console.log("[CRM] DEBUG mode ON – request NOT sent. Would have sent:", finalUrl);
