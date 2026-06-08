@@ -53,7 +53,7 @@ Tips:
   
   const CONFIG = {
     crmFormAttribute: "data_nadlan_crm",
-    publisher: "8825", // old value 11528
+    publisher: isTnufa ? "12221" : "8825",
     globalpass: "ram33ad4",
     banner: isTnufa ? "website-tnufa" : "website",
     apiBaseUrl: "https://www.n2u.co.il/leadsbanner.asmx/getleadsbanner",
