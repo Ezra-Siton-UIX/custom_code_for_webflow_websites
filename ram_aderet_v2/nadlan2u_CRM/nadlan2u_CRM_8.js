@@ -2,7 +2,7 @@ export function nadlan2u_CRM() {
 
 
   /*
-nadlan2u_CRM – Console / Debug Usage Documentation
+nadlan2u_CRM – Console / Debug Usage Documentation ---
 
 After the script loads, two global functions are available for testing:
 
