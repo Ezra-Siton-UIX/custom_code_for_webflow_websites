@@ -68,6 +68,13 @@ export function select_menu_nadlan2u_crm() {
     generalOption.textContent = lang == "he" ? "כללי" : "General";
     select.appendChild(generalOption);
 
+    // הוספת אופציית "לפרויקט בבניין שלי" 
+    if (window.location.hostname.includes("tnufa")) {
+      const renovationOption = document.createElement(""option"");
+      renovationOption.value = ""לפרויקט בבניין שלי"";
+      select.appendChild(renovationOption);
+    }
+    
     // preselect לפי body
     function preselectProjectFromBody(select) {
       const projectid = document.body.getAttribute('projectid');
