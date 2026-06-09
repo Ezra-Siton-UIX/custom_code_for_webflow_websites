@@ -171,7 +171,11 @@ Tips:
 
     items.forEach(item => {
       const project_name = item.querySelector(`[project_form_dropdown_wrapper=${lang}] [project_title]`).textContent.trim();
-      const project_location = " – " + item.querySelector(`[project_form_dropdown_wrapper=${lang}] [project_location]`).textContent.trim();
+      const project_location_raw = item.querySelector(`[project_form_dropdown_wrapper=${lang}] [project_location]`).textContent.trim();
+      // אם המיקום ריק או זהה לשם הפרויקט (למשל "יבנה" – "יבנה") → לא מרנדרים מיקום
+      const project_location = (project_location_raw && project_location_raw !== project_name)
+        ? " – " + project_location_raw
+        : "";
       const tnufaElement = item.querySelector(`[project_form_dropdown_wrapper=${lang}] [tnufa_bair]:not(.w-condition-invisible)`);
       const tnufa_bair = tnufaElement ? " • " + tnufaElement.textContent.trim(): "";
       const nadlan_2u_project_id = item.querySelector("[nadlan_2u_project_id]").getAttribute('nadlan_2u_project_id');
