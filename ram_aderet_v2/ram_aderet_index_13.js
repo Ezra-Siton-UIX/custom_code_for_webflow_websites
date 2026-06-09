@@ -28,7 +28,7 @@ import  { event_when_wb_menu_is_open } from './NAVBAR/event_when_wb_menu_is_open
 
 
 // CRM
-import  { nadlan2u_CRM } from './nadlan2u_CRM/nadlan2u_CRM.js';
+import  { nadlan2u_CRM } from './nadlan2u_CRM/nadlan2u_CRM_8.js';
 // Forms CRM
 nadlan2u_CRM();
 
