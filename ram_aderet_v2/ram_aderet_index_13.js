@@ -1,9 +1,9 @@
 // Develope by Ezra Siton, Israel //
 gsap.registerPlugin(ScrollTrigger, SplitText);
 
+// GSAP 
 import  { countUp } from './GSAP/countup_gsap.js';
 import  { button_enter_animation } from './GSAP/button_enter_animation.js';
-import  { toogle_navbar_active } from './NAVBAR/toogle_navbar_active_1.js';
 import  { scale_image_mask } from './GSAP/scale_image_mask.js';
 import  { split_text } from './GSAP/split_text.js';
 import  { trigger_box_animation } from './GSAP/trigger_box_animation.js';
@@ -11,12 +11,24 @@ import  { card_bg_image_animation } from './GSAP/card_bg_image_animation.js';
 import  { initialize_sliders } from './GSAP/initialize_sliders.js';
 import  { fit_zigzag_height } from './GSAP/fit_zigzag_height.js';
 import  { marquee__items } from './GSAP/marquee__items.js';
-import  { accessibility } from './accessibility/accessibility.js';
-import  { fancybox_modals } from './fancybox_modals/fancybox_modals_1.js';
-import  { mask_animation_on_scroll } from './GSAP/mask_animation_on_scroll.js';
 import  { basic_parralax_image } from './GSAP/basic_parralax_image.js';
+import  { section_transition } from './GSAP/section_transition.js'; // scroll effect like google store effect
+import  { mask_animation_on_scroll } from './GSAP/mask_animation_on_scroll.js';
+
+
+// GENERAL
+import  { accessibility } from './accessibility/accessibility.js';
+import  { fancybox_modals } from './fancybox_modals/fancybox_modals.js';
+import  { toogle_navbar_active } from './NAVBAR/toogle_navbar_active.js';
+
+// new 
+import  { event_when_wb_menu_is_open } from './NAVBAR/event_when_wb_menu_is_open.js';
+
+
+
+
 // CRM
-import  { nadlan2u_CRM } from './nadlan2u_CRM/nadlan2u_CRM_8.js';
+import  { nadlan2u_CRM } from './nadlan2u_CRM/nadlan2u_CRM.js';
 // Forms CRM
 nadlan2u_CRM();
 
@@ -40,11 +52,12 @@ lightbox_images.forEach(lightbox_image => {
 
 
 
+
 /* ════════════════════════════════════════════════════════════
    LENIS
    ════════════════════════════════════════════════════════════ */
 
-const enableLenis = true;
+const enableLenis = false;
 
 if (enableLenis) {
   const lenis = new Lenis({
@@ -54,7 +67,6 @@ if (enableLenis) {
   });
 
 
-  //event_when_wb_menu_is_open(lenis);
 
 
   lenis.on('scroll', ScrollTrigger.update);
@@ -68,6 +80,8 @@ if (enableLenis) {
     duration: 0.1,
     easing: (t) => t,
   });
+
+
 
   // ANDI — הריגה מלאה של Lenis בקליק
   setTimeout(() => {
@@ -84,9 +98,8 @@ if (enableLenis) {
     }, { once: true });
   }, 2000);
 }{
-  //event_when_wb_menu_is_open();
+  event_when_wb_menu_is_open();
 }
-
 
 
 // projects / project page (show/hide marketing footer form symbol placeholder logo)
@@ -109,7 +122,7 @@ window.addEventListener('load', () => {
   const image = document.querySelector('[power_numbers_animation_image]');
 
   if (!col || !image) {
-    console.warn('power_numbers_animation_col או power_numbers_animation_image לא נמצאו בדף');
+    //console.warn('power_numbers_animation_col או power_numbers_animation_image לא נמצאו בדף');
     return;
   }
 
@@ -222,8 +235,11 @@ mm.add("not (prefers-reduced-motion: reduce)", () => {
   button_enter_animation();
   trigger_box_animation();
   card_bg_image_animation();
+  section_transition();
 
+  // tnufa bair 
   countUp();
+  
   // Return a cleanup function (optional)
   return () => {
     console.log("Cleanup for reduced motion");
@@ -285,16 +301,17 @@ document.addEventListener("DOMContentLoaded", (event) => {
       markers: false,
       toggleActions: "play pause resume play", // onEnter, onLeave, onEnterBack, onLeaveBack
       onEnter: function () {
-        gsap.to(project_sticky_cta, { y: 0, opacity: 1, duration: 0.3 });
+
+        gsap.to(project_sticky_cta, { y: 0, opacity: 1, duration: 0.5 });
       },
       onEnterBack: function () {
-        gsap.to(project_sticky_cta, { y: 0, opacity: 1, duration: 0.3 });
+        gsap.to(project_sticky_cta, { y: 0, opacity: 1, duration: 0.5 });
       },
       onLeave: function () {
-        gsap.to(project_sticky_cta, { y: 100, opacity: 0, duration: 0.3 });
+        gsap.to(project_sticky_cta, { y: 100, opacity: 0, duration: 0.5 });
       }, // assure that the element is hidden when scrolled into view
       onLeaveBack: function () {
-        gsap.to(project_sticky_cta, { y: 100, opacity: 0, duration: 0.3 });
+        gsap.to(project_sticky_cta, { y: 100, opacity: 0, duration: 0.5 });
       } // assure that the element is hidden when scrolled into view
     });
   }
