@@ -1,5 +1,6 @@
 export function nadlan2u_CRM() {
 
+
   /*
 nadlan2u_CRM – Console / Debug Usage Documentation
 
@@ -48,18 +49,15 @@ Tips:
 - If new fields are added to the form, getFinalUrlObject will automatically decode them.
 */
 
-  // ------------------- זיהוי אתר תנופה (לפי דומיין) -------------------
-  const isTnufa = window.location.hostname.includes("tnufa");
-  
+
   const CONFIG = {
     crmFormAttribute: "data_nadlan_crm",
-    publisher: isTnufa ? "12221" : "8825",
+    publisher: "8825", // old value 11528
     globalpass: "ram33ad4",
-    banner: isTnufa ? "website-tnufa" : "website",
+    banner: "website",
     apiBaseUrl: "https://www.n2u.co.il/leadsbanner.asmx/getleadsbanner",
     note: "", // ← note קבוע לכל הקריאות
-    DEBUG: false,
-    console_log: true
+    DEBUG: false
   };
 
   // ------------------- פונקציה לניקוי תווים מיוחדים -------------------
@@ -119,58 +117,44 @@ Tips:
   };
 
   // ------------------- שמירת ההתנהגות הקיימת של submit -------------------
-document.addEventListener('submit', function (e) {
+  document.addEventListener('submit', function (e) {
     const form = e.target;
 
+    // ⛔ לא טופס CRM → יוצאים
     if (!form.hasAttribute(CONFIG.crmFormAttribute)) {
-      if (CONFIG.console_log) console.warn("[CRM] ⛔ Form has no", CONFIG.crmFormAttribute, "attribute – not a CRM form. Skipping.", form);
       return;
     }
-
-    if (CONFIG.console_log) console.log("[CRM] ✔ CRM form detected, processing...", form);
 
     const select = form.querySelector('select[data-custom-select]');
     const bodyProjectId = document.body.getAttribute('projectid')?.trim();
     const projectid = bodyProjectId || select?.value?.trim();
 
-    if (CONFIG.console_log) console.log("[CRM] projectid resolved →", projectid, "| from body:", bodyProjectId, "| from select:", select?.value?.trim());
-
     if (projectid === 'general') {
-      if (CONFIG.console_log) console.warn("[CRM] General info selected – skipping CRM, submitting only to Webflow");
-      return;
+      console.warn("General info selected – skipping CRM, submitting only to Webflow");
+      return; // לא שולחים ל-CRM
     }
 
     const finalUrl = getLeadUrlFromForm(form);
 
     if (!finalUrl) {
-      if (CONFIG.console_log) console.warn("[CRM] ❌ No final URL generated (missing projectid?) – skipping submit");
       e.preventDefault();
       e.stopImmediatePropagation();
       return;
     }
 
-    if (CONFIG.console_log) console.log("[CRM] Generated Lead URL:", finalUrl);
+    console.log("Generated Lead URL:", finalUrl);
 
     if (!CONFIG.DEBUG) {
       fetch(finalUrl)
-        .then(res => {
-          return res.text().then(body => ({ status: res.status, ok: res.ok, body }));
-        })
-        .then(({ status, ok, body }) => {
-          if (!ok || /False/i.test(body)) {
-            console.error("[CRM] ❌ Lead NOT accepted by CRM | status:", status, "| body:", body);
-          } else {
-            console.log("[CRM] ✅ Lead sent successfully to CRM | status:", status, "| body:", body);
-          }
-        })
-        .catch(err => {
-          console.error("[CRM] ❌ Lead NOT sent (network / CORS):", err.message);
-        });
+        .then(res => res.text())
+        .then(data => console.log("CRM response:", data))
+        .catch(err => console.error("CRM error:", err));
     } else {
-      console.log("[CRM] DEBUG mode ON – request NOT sent. Would have sent:", finalUrl);
       e.preventDefault();
       e.stopImmediatePropagation();
     }
+
+    // GA events
 
   });
 
@@ -213,7 +197,7 @@ document.addEventListener('submit', function (e) {
       placeholderOption.value = '';
       placeholderOption.textContent = lang == "he" ? "בחר פרויקט..." : "Select Project...";
       placeholderOption.disabled = true;
-      placeholderOption.selected = true;
+      placeholderOption.setAttribute('selected', 'selected');
       select.appendChild(placeholderOption);
 
       values.forEach(item => {
@@ -229,11 +213,28 @@ document.addEventListener('submit', function (e) {
       generalOption.value = 'general';
       generalOption.textContent = lang == "he" ? "מידע כללי" : "General Info";
 
+
+      const want_to_renovate_Option = document.createElement('option');
+      want_to_renovate_Option.value = 'want_to_renovate';
+      want_to_renovate_Option.textContent = "לפרויקט בבניין שלי";
+
+
+
       if (addToStart) {
+
+        if (window.location.hostname.includes('tnufa')) {
+          // הדומיין מכיל "tnufa"
+          select.insertBefore(want_to_renovate_Option, select.children[1]);
+        }
         select.insertBefore(generalOption, select.children[1]);
+        
       } else {
         select.appendChild(generalOption);
       }
+
+      // ודא שהפלייסהולדר נבחר אחרי בניית כל האופציות
+      select.selectedIndex = 0;
+      select.dispatchEvent(new Event('change', { bubbles: true }));
 
       function preselectProjectFromBody(select) {
         const projectid = document.body.getAttribute('projectid');
@@ -242,7 +243,7 @@ document.addEventListener('submit', function (e) {
         const option = select.querySelector(`option[value="${projectid}"]`);
         if (!option) return;
         select.value = projectid;
-        hiddenField_project_name.value = option.text;
+        if (hiddenField_project_name) hiddenField_project_name.value = option.text;
         select.dispatchEvent(new Event('change', { bubbles: true }));
         console.log('Preselected project:', {
           value: projectid,
