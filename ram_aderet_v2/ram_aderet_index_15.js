@@ -32,6 +32,10 @@ import  { nadlan2u_CRM } from './nadlan2u_CRM/nadlan2u_CRM_8.js';
 // Forms CRM
 nadlan2u_CRM();
 
+// Swiper
+import  { swiper_and_fancybox_videos } from './swiper/swiper_and_fancybox_videos/swiper_and_fancybox_videos.js';
+swiper_and_fancybox_videos();
+
 // en Scripts 
 const is_en = window.location.pathname.toLowerCase().includes('/en/');
 const project_lang = document.querySelector('[project_lang="EN"]');
