@@ -635,3 +635,13 @@ button.st-lecture:active .st-lecture-ttl, .st-slot-head:active .st-slot-ttl { te
 }
 /* the open phone menu: the page under it dims (the layer catches a tap outside, which closes the menu: st-site.js) */
 body.st-menu-open::before { content: ""; position: fixed; inset: 0; z-index: 40; background: color-mix(in srgb, var(--st-deep) 55%, transparent); }
+/* the registration's rhythm: one gap between its groups (the table, the dates, the audience, the fields, the total, the payment, the invoice, the end),
+   always the upper group's bottom margin; inside a group the small gaps stay (a label to its field 6px, field rows 16px) */
+.st-register { --st-form-gap: 32px; }
+@media (max-width: 767px) { .st-register { --st-form-gap: 24px; } }
+.st-register .act-item.act-item-reg h1 { margin: 0 0 var(--st-head-gap); }   /* theirs pulls it up 60px, under the breadcrumbs */
+.st-register #reg1-price > br { display: none; }
+.st-register #reg1-price, .st-register .date-sel, .st-register #groupr-b, .st-register .add_reg-p, .st-register .f2, .st-register .f3, .st-register #reg3 { margin-top: 0; margin-bottom: var(--st-form-gap); }
+.st-register #reg-done { margin-top: 0; }
+.st-register #sec2 { cursor: auto !important; }   /* their script sets a pointer on the whole section (inline, a leftover link); the hand is only on what picks */
+.st-register .act-item.act-item-reg > br { display: none; }   /* their line break under the title, on top of its gap */
