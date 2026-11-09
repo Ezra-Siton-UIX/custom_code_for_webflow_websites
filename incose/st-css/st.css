@@ -276,10 +276,13 @@ a:focus-visible, button:focus-visible { outline: 3px solid var(--st-mint); outli
 .st-prog td { height: 1px; padding: 0; border: 1px solid var(--st-neutral-line); border-radius: var(--st-radius); vertical-align: top; background: var(--st-neutral-bg); }
 .st-prog td.st-t1 { background: var(--st-t1-bg); border-color: var(--st-t1-line); }
 .st-prog td.st-t2 { background: var(--st-t2-bg); border-color: var(--st-t2-line); }
-.st-prog td.st-plenary { background: #fff; border: 2px solid var(--st-accent); }
+/* a plenary is for everyone: white, a frame in the dark ink, not a track's colour (the mint read as track 1) */
+.st-prog td.st-plenary { --st-accent: var(--st-ink); --st-accent-ink: var(--st-ink); background: #fff; border: 2px solid var(--st-ink); }
 .st-prog td.st-break { border-style: dashed; }
 .st-slot { display: grid; align-content: center; justify-items: center; gap: 6px; width: 100%; height: 100%; box-sizing: border-box; padding: 16px 20px; border: 0; border-radius: calc(var(--st-radius) - 1px); background: none; color: inherit; font: inherit; text-align: center; }
 .st-break .st-slot { padding-block: 12px; }
+/* two sessions side by side start at the top, so their numbers, titles and chairs share a line (a cube alone stays centred) */
+.st-prog td:is(.st-t1, .st-t2) .st-slot { align-content: start; }
 /* a cube that opens (the build adds .is-pop and the button): its "+ לפרטים" button stretches over the whole cube; a mint frame on hover */
 .st-slot.is-pop { position: relative; transition: box-shadow .2s, background-color .2s; }
 .st-slot.is-pop:hover { background: rgb(255 255 255 / .6); box-shadow: inset 0 0 0 2px var(--st-accent); }
@@ -301,7 +304,7 @@ a:focus-visible, button:focus-visible { outline: 3px solid var(--st-mint); outli
 /* a list in a cube: a block in the middle, its lines from the right with mint dots; the topic bold, the speaker light */
 .st-slot-list { margin: 6px 0 0; padding: 0; list-style: none; display: grid; gap: 6px; font-size: 16px; line-height: 1.5; color: var(--st-muted); text-align: start; }
 .st-slot-list li { position: relative; padding-inline-start: 18px; }
-.st-slot-list li::before { content: ""; position: absolute; inset-inline-start: 2px; top: .6em; width: 7px; height: 7px; border-radius: 50%; background: var(--st-mint); }
+.st-slot-list li::before { content: ""; position: absolute; inset-inline-start: 2px; top: .6em; width: 7px; height: 7px; border-radius: 50%; background: var(--st-accent); }
 .st-slot-list strong { font-weight: 700; color: var(--st-ink); }
 .st-slot-more { display: inline-flex; align-items: center; gap: 6px; margin-top: 4px; padding: 0; border: 0; background: none; font: inherit; font-size: 14px; font-weight: 700; color: var(--st-teal); cursor: pointer; }
 .st-slot-more::after { content: ""; position: absolute; inset: 0; border-radius: inherit; }
@@ -663,3 +666,16 @@ body.st-menu-open::before { content: ""; position: fixed; inset: 0; z-index: 40;
 /* a popup's day badge ("יום הסדנאות"): a bold pill above its title, in the popup's strong colour */
 .st-pop-badge { display: inline-block; margin: 0 0 10px; padding: 4px 14px; border-radius: var(--st-pill); background: var(--st-pop-badge, var(--st-pop-strong)); color: #fff; font-size: 14px; font-weight: 700; line-height: 1.5; }
 .st-pop-badge[hidden] { display: none; }
+/* ---------- a try (10.11): the session cubes in negative, the track's strong colour and white text; their lectures stay white cards on it.
+   To drop it, delete this block (git tag before-negative-cubes is the state before it) ---------- */
+.st-prog td.st-t1 { --st-strong: var(--st-teal); }
+.st-prog td.st-t2 { --st-strong: var(--st-blue); }
+.st-prog td.st-t3 { --st-strong: var(--st-purple); }
+.st-prog thead .st-t1 { background: var(--st-teal); }   /* the track 1 head in the cubes' green */
+.st-prog td:is(.st-t1, .st-t2, .st-t3) { --st-accent: #fff; --st-accent-ink: #fff; background: var(--st-strong); border-color: var(--st-strong); color: #fff; }
+.st-prog td:is(.st-t1, .st-t2, .st-t3) :is(.st-slot-ttl, .st-slot-chair, .st-slot-text) { color: #fff; }
+.st-prog td:is(.st-t1, .st-t2, .st-t3)[data-track]::before { color: #fff; }
+.st-prog td:is(.st-t1, .st-t2, .st-t3) .st-lectures { border-top-color: rgb(255 255 255 / .3); }
+.st-prog td:is(.st-t1, .st-t2, .st-t3) .st-lecture { --st-accent: var(--st-strong); --st-accent-ink: var(--st-strong); background: #fff; color: var(--st-text); }
+.st-prog td:is(.st-t1, .st-t2, .st-t3) .st-slot.is-pop:is(:hover, :active) { background: rgb(255 255 255 / .12); box-shadow: inset 0 0 0 2px #fff; }
+@media (hover: none) { .st-prog td:is(.st-t1, .st-t2, .st-t3) .st-slot.is-pop:hover:not(:active) { background: none; box-shadow: none; } }
