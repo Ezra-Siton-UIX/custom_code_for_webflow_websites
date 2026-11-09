@@ -211,7 +211,7 @@ a:focus-visible, button:focus-visible { outline: 3px solid var(--st-mint); outli
 .st-nav .nav-link span { color: var(--st-mint-light); font-size: 14px; }
 .st-nav .nav-link:hover, .st-nav .nav-link:focus, .st-nav .nav-link[aria-current="page"] { color: #fff; }
 /* the mint line: always under the current page; on hover (or keyboard focus) it grows out from the middle under any link */
-.st-nav .nav-link::after { content: ""; position: absolute; inset-inline: 0; bottom: 4px; height: 3px; border-radius: 2px; background: var(--st-mint); transform: scaleX(0); transition: transform .25s ease; }
+.st-nav .nav-link::after { content: ""; position: absolute; inset-inline: 0; bottom: 4px; height: 2px; border-radius: 2px; background: var(--st-mint); transform: scaleX(0); transition: transform .25s ease; }
 .st-nav .nav-link:hover::after, .st-nav .nav-link:focus-visible::after, .st-nav .nav-link[aria-current="page"]::after { transform: scaleX(1); }
 @media (prefers-reduced-motion: reduce) { .st-nav .nav-link::after { transition: none; } }
 .st-nav .st-nav-lang { font-size: 15px; }
