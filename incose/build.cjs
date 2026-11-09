@@ -216,7 +216,9 @@ for (const file of fs.readdirSync(path.join(SRC, 'pages')).filter((f) => f.endsW
   const meta = JSON.parse(html.match(/^<!--(\{.*?\})-->/)[1]);
   html = html.replace(/^<!--\{.*?\}-->\r?\n/, '')
     // the preview and the GitHub demo are not for search engines (only their server's .php pages are): noindex on those
-    .replace('<!-- @head -->', () => part('head').replace('{{title}}', meta.title).replace('{{title-attr}}', attr(meta.title)).replace(/{{description}}/g, attr(meta.description || '')).replace('<title>', php ? '<title>' : '<meta name="robots" content="noindex, nofollow">\n<title>'))
+    .replace('<!-- @head -->', () => part('head').replace('{{title}}', meta.title).replace('{{title-attr}}', attr(meta.title)).replace(/{{description}}/g, attr(meta.description || '')).replace('<title>', php ? '<title>' : '<meta name="robots" content="noindex, nofollow">\n<title>')
+      // a page's own first-screen pictures drawn by CSS ("preload" in its first line: [file, media]), fetched at once like an eager <img>
+      .replace('<!-- @preload -->', (meta.preload || []).map(([href, media]) => `<link rel="preload" as="image" href="${href}" type="image/avif"${media ? ` media="${media}"` : ''}>`).join('\n')))
     .replace('<!-- @nav -->', () => part('nav').split(`data-nav="${meta.nav}"`).join(`data-nav="${meta.nav}" aria-current="page"`))
     .replace('<!-- @banner -->', () => `${banner(meta)}\n${crumbs(meta, file.replace(/\.html$/, ''))}`)
     .replace('<!-- @footer -->', () => part('footer'))

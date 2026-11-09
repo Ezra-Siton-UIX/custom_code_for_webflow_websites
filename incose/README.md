@@ -42,7 +42,7 @@ day2.html  (4 popups)  | no content yet: d2-h1, d2-h2, d2-h3, d2-h4, d2-h5
 |---|---|
 | **Every person:** name, organisation, photo, bio (and `name_en` / `org_en` for the English places) | **`_src/people.json`** |
 | **Both days' programs:** rows, sessions, chairs, lectures, the panel, and their popups | **`_src/program.json`** |
-| Each page's frame and its texts | `_src/pages/*.html`. Its first line is `{"title", "description", "nav", "crumb"}`: the SEO title and description, the menu item it marks, and its name in the breadcrumbs |
+| Each page's frame and its texts | `_src/pages/*.html`. Its first line is `{"title", "description", "nav", "crumb"}`: the SEO title and description, the menu item it marks, and its name in the breadcrumbs. Optional: `"when"` (its banner's date and place) and `"preload"` (its first screen's pictures drawn by CSS, `[file, media]`, fetched at once like an eager `<img>`; the home's wave) |
 | The menu | `_src/partials/nav.html` |
 | The inner pages' banner | `_src/partials/banner.html` |
 | The logos and the calendar section (every page) | `_src/partials/footer.html` |
