@@ -114,11 +114,10 @@ body { min-height: 100vh; margin: 0; font-family: var(--st-font); color: var(--s
 /* .st-prose: text to read, on any page (the home's about, the tutorials day): its h1 or h2, paragraphs, lists with mint dots, the signature */
 .st-prose h1, .st-prose .st-prose-title { margin: 0 0 24px; font-size: clamp(26px, 2.4vw, 34px); font-weight: 700; line-height: 1.25; color: var(--st-ink); }
 .st-prose h1::after, .st-prose .st-prose-title::after { content: ""; display: block; width: 64px; height: 4px; margin-top: 16px; border-radius: 2px; background: var(--st-mint); }
-.st-prose h1 span { color: var(--st-teal); }
 /* .st-prose-title: an article's title that is an h2 on its page (the tutorials day's text): the look of the prose h1 */
-/* its three levels: the event small in our green above, the name, then when and where lighter under it */
+/* a title in three levels (the home's h1, the tutorials day's h2): the event small in our green above (teal: the mint is too light for text), the name, then when and where lighter under it */
 .st-prose-kicker { display: block; margin-bottom: 6px; font-size: 15px; font-weight: 700; letter-spacing: .02em; color: var(--st-teal); }
-.st-prose-when { display: block; margin-top: 6px; font-size: 18px; font-weight: 500; color: var(--st-muted); }   /* the name in teal (the mint itself is too light on white for text) */
+.st-prose-when { display: block; margin-top: 6px; font-size: 18px; font-weight: 500; color: var(--st-muted); }
 .st-prose h2 { margin: 36px 0 12px; font-size: 20px; font-weight: 700; line-height: 1.3; color: var(--st-ink); }
 .st-prose p { margin: 0 0 16px; font-size: 17px; line-height: 1.75; }
 .st-prose .st-lead { font-size: 18px; font-weight: 600; line-height: 1.65; color: var(--st-ink); }
