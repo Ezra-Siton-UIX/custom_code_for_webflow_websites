@@ -550,13 +550,14 @@ button.st-lecture:hover .st-lecture-ttl, button.st-lecture:focus-visible .st-lec
 .st-foot a[href^="mailto:"]::before, .st-foot a[href^="tel:"]::before { content: ""; flex: none; width: 16px; height: 16px; background: var(--st-mint-light); -webkit-mask: var(--st-icon) center / contain no-repeat; mask: var(--st-icon) center / contain no-repeat; }
 .st-foot a[href^="mailto:"] { --st-icon: url(../st-images/footer_icons/mail.svg); }
 .st-foot a[href^="tel:"] { --st-icon: url(../st-images/footer_icons/phone.svg); }
-/* the home's two day cards on a phone: lower (less padding and space, a size smaller) */
+/* the home's two day cards on a phone: compact. The badge and the date in one row, the place and the link small under them */
 @media (max-width: 767px) {
-  .st-cards-over .st-card { gap: 4px; padding: 14px 16px; }
-  .st-cards-over .st-badge { padding: 2px 12px; font-size: 15px; }
-  .st-cards-over .st-date { font-size: 22px; }
-  .st-cards-over .st-place { font-size: 14px; }
-  .st-cards-over .st-link { font-size: 16px; }
+  .st-cards-over .st-card { grid-template-columns: auto auto; justify-content: center; align-items: center; column-gap: 10px; row-gap: 2px; padding: 12px 16px; }
+  .st-cards-over .st-place, .st-cards-over .st-link { grid-column: 1 / -1; }
+  .st-cards-over .st-badge { padding: 2px 10px; font-size: 14px; }
+  .st-cards-over .st-date { font-size: 20px; }
+  .st-cards-over .st-place { margin-top: 4px; font-size: 13px; }
+  .st-cards-over .st-link { font-size: 14px; }
 }
 /* a line break for phones only (<br class="st-br-m">): it places a heading's break where it reads well */
 .st-br-m { display: none; }
