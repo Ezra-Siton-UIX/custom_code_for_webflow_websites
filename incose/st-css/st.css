@@ -4,7 +4,10 @@
 @font-face { font-family: "Google Sans"; font-style: normal; font-weight: 400 700; font-display: block; src: url(../st-fonts/google-sans-latin.woff2) format("woff2"); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
 /* a fallback with Google Sans's size (Arial at 110.6%, measured on the site's Hebrew text at 400-700; its height from Google Sans), so nothing moves when the font arrives */
 @font-face { font-family: "Google Sans Fallback"; font-display: block; src: local("Arial"); size-adjust: 110.6%; ascent-override: 87.7%; descent-override: 26.2%; line-gap-override: 0%; }
-body { margin: 0; font-family: var(--st-font); color: var(--st-text); background: #fff; }
+/* the scrollbar is always there and keeps its place: a page still loading (the register page waits on their scripts) is short for a moment, and the bar
+   would vanish and come back; an open popup locks the scroll without the page shifting */
+html { overflow-y: scroll; scrollbar-gutter: stable; }
+body { min-height: 100vh; margin: 0; font-family: var(--st-font); color: var(--st-text); background: #fff; }
 /* ---------- the frame of every page: one container, one section, one gap under a title. Change a value here and every page follows ---------- */
 :root {
   /* the frame */
