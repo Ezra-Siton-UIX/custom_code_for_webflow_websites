@@ -23,23 +23,34 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 });
 
-// 3. the price table's head: a title and a line of running text under it, for each column. Their script writes the head on load
-//    (three lines of equal weight); once it has, this writes ours in its place. The rows and the date choice stay theirs
-var PRICE_HEAD = [
-  ['יום הכנס', 'יום ג׳, 12.01.2027<br>פרונטלי, במלון'],
-  ['יום הסדנאות', 'יום ד׳, 13.01.2027<br>בזום'],
-  ['שני הימים (כנס + סדנאות)', '12-13.01.2027<br>הכנס פרונטלי, הסדנאות בזום'],
+// 3. the three choices, in one place: the price table's head and the date choice under it both read them (in their order: date1, date2, date3)
+var CHOICES = [
+  { title: 'יום הכנס', date: 'יום ג׳, 12.01.2027', how: 'פרונטלי, במלון' },
+  { title: 'יום הסדנאות', date: 'יום ד׳, 13.01.2027', how: 'בזום' },
+  { title: 'שני הימים (כנס + סדנאות)', date: '12-13.01.2027', how: 'הכנס פרונטלי, הסדנאות בזום' },
 ];
+// their script writes both on load (lines of equal weight; the date choice with a wrong weekday and an old date); once it has,
+// these write a title and a lighter line under it in their place. Their rows, radios and handlers stay
 document.addEventListener('DOMContentLoaded', function () {
-  var head = document.querySelector('#reg1-price thead');
-  if (!head) return;
-  var write = function () {
-    if (head.querySelector('.st-price-ttl')) return;
-    head.innerHTML = '<tr><th></th>' + PRICE_HEAD.map(function (col) {
-      return '<th><span class="st-price-ttl">' + col[0] + '</span><span class="st-price-sub">' + col[1] + '</span></th>';
+  var box = document.getElementById('reg1-price');
+  if (!box) return;
+  var head = box.querySelector('thead');
+  var writeHead = function () {
+    if (!head.querySelector('th') || head.querySelector('.st-price-ttl')) return;
+    head.innerHTML = '<tr><th></th>' + CHOICES.map(function (c) {
+      return '<th><span class="st-price-ttl">' + c.title + '</span><span class="st-price-sub">' + c.date + '<br>' + c.how + '</span></th>';
     }).join('') + '</tr>';
   };
-  new MutationObserver(function () { if (head.querySelector('th')) write(); }).observe(head, { childList: true });
+  var writeDates = function () {
+    var labels = document.querySelectorAll('.date-sel > div label');
+    if (labels.length !== CHOICES.length || labels[0].querySelector('.st-date-ttl')) return;
+    labels.forEach(function (label, i) {
+      label.removeAttribute('style');
+      label.innerHTML = '<span class="st-date-ttl">' + CHOICES[i].title + '</span><span class="st-date-sub">' + CHOICES[i].date + '</span>';
+    });
+  };
+  new MutationObserver(writeHead).observe(head, { childList: true });
+  new MutationObserver(writeDates).observe(box.parentNode, { childList: true });
 });
 
 // 4. the date choice: a click anywhere on an option's row picks it, not only its circle (their labels' "for" is broken: xfor=date1, for=xdate3).

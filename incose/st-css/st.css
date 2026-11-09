@@ -424,7 +424,7 @@ html:has(.st-pop[open]) { overflow: hidden; }
 .st-register h2 { margin: 36px 0 14px; font-size: 20px; font-weight: 700; color: var(--st-ink); }
 /* the prices (their script writes the table): rows on a light line, the main prices bold */
 /* the price table: their script writes its rows (/js/script_act2027.js); the table is Bootstrap's own (.table .table-striped), in the site's colours:
-   lines on every cell (.table-bordered), the head in the brand green, every other row mint. Their style scales and greys the chosen date's column (.gray) and squeezes the cells: undone here */
+   lines on every cell (.table-bordered), the head in the brand green, every other row mint. Their script marks the chosen date's column (.gray, scaled and grey) and squeezes the cells: undone here, the table stays even (a coloured column read as random: the choice is far below it) */
 .st-register #reg1-price .table { --bs-table-striped-bg: color-mix(in srgb, var(--st-mint) 10%, #fff); --bs-table-border-color: var(--st-line); margin: 0; font-size: 16px; }
 .st-register #reg1-price .table th, .st-register #reg1-price .table td { padding: 12px 16px; text-align: center; transform: none; background-color: var(--bs-table-bg); color: var(--st-text); }
 .st-register #reg1-price .table thead th { --bs-table-bg: var(--st-green); vertical-align: top; border-bottom: 0; color: #fff; font-size: 15px; font-weight: 600; line-height: 1.5; }
@@ -434,7 +434,6 @@ html:has(.st-pop[open]) { overflow: hidden; }
 .st-price-sub { display: block; margin-top: 6px; font-size: 14px; font-weight: 400; line-height: 1.5; color: color-mix(in srgb, #fff 78%, transparent); }
 @media (max-width: 767px) { .st-price-ttl { font-size: 14px; } .st-price-sub { font-size: 12px; } }
 .st-register #reg1-price .table tfoot { display: none; }   /* their script's row: it holds only the script (and held the table wide on a phone) */
-.st-register #reg1-price .table td.gray { --bs-table-bg-state: color-mix(in srgb, var(--st-mint) 18%, #fff); font-weight: 700; color: var(--st-ink); }
 .st-register #reg1-price .table tbody tr:last-child td { --bs-table-bg-type: transparent; padding-top: 12px; border-bottom: 0; text-align: start; font-size: 14px; font-weight: 400; color: var(--st-muted); }
 @media (max-width: 767px) {
   .st-register #reg1-price .table th, .st-register #reg1-price .table td { padding: 10px 6px; font-size: 14px; }
@@ -442,6 +441,8 @@ html:has(.st-pop[open]) { overflow: hidden; }
 }
 /* the fields: a label over each, a calm frame, mint when in use */
 .st-register .det-type1, .st-register .det-type2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin-bottom: 16px; }
+/* a row's fields share one line at their bottom (a field without a label, like the title "מר", does not ride higher) */
+.st-register .det-type1, .st-register .det-type2:not(.date-sel) { align-items: end; }
 .st-register label { font-size: 15px; font-weight: 600; color: var(--st-text); }
 .st-register input[type="text"], .st-register input[type="email"], .st-register select { display: block; width: 100%; height: 46px; margin-top: 6px; padding: 0 14px; border: 1px solid color-mix(in srgb, var(--st-muted) 45%, #fff);   /* a field's frame, a little stronger than the hairlines */ border-radius: var(--st-radius-sm); background: #fff; font: inherit; font-size: 16px; color: var(--st-ink); }
 .st-register input[type="text"]:focus, .st-register input[type="email"]:focus, .st-register select:focus { outline: none; border-color: var(--st-mint); box-shadow: 0 0 0 3px color-mix(in srgb, var(--st-mint) 25%, transparent); }
@@ -450,6 +451,9 @@ html:has(.st-pop[open]) { overflow: hidden; }
 .st-register .date-sel > div { display: flex; align-items: center; gap: 10px; margin-block: 8px; cursor: pointer; }
 .st-register .date-sel input[type="radio"] { flex: none; float: none !important; width: 20px; height: 20px; margin: 0 !important; transform: none; }
 .st-register .date-sel label { margin: 0; padding: 0 !important; cursor: pointer; }
+/* an option: its title bold, its date lighter under it (register.js writes them) */
+.st-date-ttl { display: block; font-size: 16px; font-weight: 700; line-height: 1.35; color: var(--st-ink); }
+.st-date-sub { display: block; font-size: 14px; font-weight: 400; line-height: 1.5; color: var(--st-muted); }
 .st-register .reqstar { margin-inline-start: 2px; color: var(--st-red); }
 .st-register .add_reg-p a { color: var(--st-teal); font-weight: 700; text-decoration: underline; text-underline-offset: 3px; cursor: pointer; }
 /* the payment: each way a framed row, its line under it */
@@ -471,7 +475,7 @@ html:has(.st-pop[open]) { overflow: hidden; }
 .st-register #sec3 a { color: var(--st-teal); }
 /* the group (their script writes these buttons, .active on the chosen one): pills, the chosen one dark green */
 /* the audience buttons: three in a row (two on a phone); their own width and margins are undone */
-.st-register #groupr-b { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; margin-top: 8px; }
+.st-register #groupr-b { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; margin-top: 8px; padding: 12px; border-radius: var(--st-radius); }
 @media (max-width: 767px) { .st-register #groupr-b { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 .st-register #groupr-b button { display: inline-flex; align-items: center; justify-content: center; gap: 10px; width: auto; margin: 0; padding: 10px 18px; border: 1px solid var(--st-line-strong); border-radius: var(--st-pill); background: #fff; color: var(--st-ink); font: 600 15px var(--st-font); cursor: pointer; }
 @media (hover: hover) { .st-register #groupr-b button:hover { border-color: var(--st-mint); } }
