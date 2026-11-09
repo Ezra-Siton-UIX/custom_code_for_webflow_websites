@@ -290,7 +290,7 @@ a:focus-visible, button:focus-visible { outline: 3px solid var(--st-mint); outli
 /* each track's accent: what is inside its cubes (numbers, underlines, frames, arrows) inherits it */
 .st-prog td.st-t2 { --st-accent: var(--st-blue); --st-accent-ink: var(--st-blue); }
 /* the tutorials day: the whole table in purple (its cubes, frames, underlines) */
-.st-prog.st-day-t3 { --st-accent: var(--st-purple); --st-accent-ink: var(--st-purple); }
+.st-prog.st-day-t3 { --st-accent: var(--st-purple); --st-accent-ink: var(--st-purple); --st-neutral-bg: color-mix(in srgb, var(--st-purple) 3%, #f5f5f7); --st-neutral-line: color-mix(in srgb, var(--st-purple) 12%, #dedde3); }   /* its breaks a cool grey (the warm yellow belongs to the green day) */
 .st-prog td.st-t3 { background: var(--st-t3-bg); border-color: var(--st-t3-line); }
 .st-slot-num { font-size: 14px; font-weight: 600; color: var(--st-accent-ink); }
 .st-slot-ttl { font-size: 18px; font-weight: 700; line-height: 1.4; color: var(--st-ink); }

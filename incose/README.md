@@ -203,7 +203,7 @@ Replace each with the real content, keeping the same shape.
 1. **The sources.** What a popup says lives in `_src/program.json` (rows, sessions, lectures, the panel) and `_src/people.json` (people and their bios). Nothing about a popup is written in a page.
 2. **The build writes one `<template>` per popup** a page needs, at the end of its `<main>` (`popupTemplate()` in `build.cjs`):
    ```html
-   <template id="pop-d2-h1" data-title="TITLE 1" data-meta="08:30-10:00|John Doe" data-back="TITLE 1" data-dir="ltr" data-badge="יום הסדנאות">
+   <template id="pop-d2-h1" data-title="TITLE 1" data-meta="08:30-10:00|John Doe" data-back="TITLE 1" data-dir="ltr" data-badge="Tutorials Day">
      …the body: paragraphs, the lecture cards, the person's card…
    </template>
    ```
@@ -212,7 +212,7 @@ Replace each with the real content, keeping the same shape.
    - `data-meta` → the label pills under it (split on `|`);
    - `data-back` → this popup's name on the "חזרה ל…" button of a popup opened from it;
    - `data-dir` → `ltr` for an English popup;
-   - `data-badge` → the day's pill above the title (a day's `"badge"` in `program.json`).
+   - `data-badge` → the day's pill above the title (a day's `"badge"` in `program.json`, "Tutorials Day").
 3. **The openers** are buttons with `data-pop="<name>"`, also written by the build: a cube's head, a lecture card, a panelist, a person's tile (`.st-slot-more`).
 4. **One `<dialog id="st-pop">` for the whole site** (`_src/partials/end.html`): the head (the back button, the badge, the `<h2>`, the pills, the X), the body, the foot ("סגירה").
 5. **`st-js/st-site.js`** (its popup part, about 60 lines) listens for a click on any `[data-pop]`. It finds `#pop-<name>`, copies its `data-*` into the head and its content into the body, sets `dir`, and opens the dialog (`showModal()`).
