@@ -49,7 +49,7 @@ body { min-height: 100vh; margin: 0; font-family: var(--st-font); color: var(--s
   --st-yellow: #dee69d;         /* the dates on the banner */
   --st-sky: #0b86c8;            /* the logo's bright blue: the program's rows for everyone (a plenary's frame; the breaks' tint) */
   --st-neutral-bg: color-mix(in srgb, var(--st-sky) 6%, #fff);     /* the program's meals and breaks: a pale tint of the sky blue */
-  --st-neutral-line: color-mix(in srgb, var(--st-sky) 28%, #fff);
+  --st-neutral-line: color-mix(in srgb, var(--st-sky) 40%, #fff);   /* every cube has a 2px frame with presence (a faint one read as a hole in the table) */
   --st-red: #c0392b;            /* a required field's star */
   --st-dark-bg: linear-gradient(to bottom, var(--st-green), var(--st-deep));   /* every dark section */
   /* the shapes */
@@ -274,7 +274,7 @@ a:focus-visible, button:focus-visible { outline: 3px solid var(--st-mint); outli
 .st-part { display: block; margin-top: 4px; font-size: 15px; font-weight: 600; color: var(--st-teal); }
 /* a cube: the cell is its frame; the slot inside fills it (a td height of 1px lets a child's 100% work) */
 /* three kinds of cube: a session (tinted, by track); the meals and breaks (one pale warm tint); a short break also has a dashed outline */
-.st-prog td { height: 1px; padding: 0; border: 1px solid var(--st-neutral-line); border-radius: var(--st-radius); vertical-align: top; background: var(--st-neutral-bg); }
+.st-prog td { height: 1px; padding: 0; border: 2px solid var(--st-neutral-line); border-radius: var(--st-radius); vertical-align: top; background: var(--st-neutral-bg); }
 .st-prog td.st-t1 { background: var(--st-t1-bg); border-color: var(--st-t1-line); }
 .st-prog td.st-t2 { background: var(--st-t2-bg); border-color: var(--st-t2-line); }
 /* a plenary is for everyone: white, framed in the sky blue (not a track's colour: the mint read as track 1) */
