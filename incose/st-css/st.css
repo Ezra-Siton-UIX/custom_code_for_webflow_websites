@@ -64,10 +64,10 @@ body { min-height: 100vh; margin: 0; font-family: var(--st-font); color: var(--s
 .st-hero::before { content: ""; position: absolute; inset: 0; z-index: -1; background: url(../st-images/st-wave-top.webp) center top / cover no-repeat; background-image: image-set(url(../st-images/st-wave-top.avif) type("image/avif"), url(../st-images/st-wave-top.webp) type("image/webp")); opacity: .2;
   /* it fades out at both sides */
   -webkit-mask-image: linear-gradient(to right, transparent, #000 18%, #000 82%, transparent); mask-image: linear-gradient(to right, transparent, #000 18%, #000 82%, transparent); }
-/* halftone dots in two corners (top left, bottom right) of the dark sections that have them */
-.st-hero::after, .st-topics::after, .st-banner::after, .st-calendar::after { content: ""; position: absolute; inset: 0; z-index: -1; background: url(../st-images/ai_dots_tl.webp) top left / min(560px, 55%) auto no-repeat, url(../st-images/ai_dots_br.webp) bottom right / min(560px, 55%) auto no-repeat; mix-blend-mode: screen; opacity: .35; }
+/* halftone dots in two corners (top left, bottom right) of the dark sections that have them (AVIF, WebP for a browser without it) */
+.st-hero::after, .st-topics::after, .st-banner::after, .st-calendar::after { content: ""; position: absolute; inset: 0; z-index: -1; background: url(../st-images/ai_dots_tl.webp) top left / min(560px, 55%) auto no-repeat, url(../st-images/ai_dots_br.webp) bottom right / min(560px, 55%) auto no-repeat; background-image: image-set(url(../st-images/ai_dots_tl.avif) type("image/avif"), url(../st-images/ai_dots_tl.webp) type("image/webp")), image-set(url(../st-images/ai_dots_br.avif) type("image/avif"), url(../st-images/ai_dots_br.webp) type("image/webp")); mix-blend-mode: screen; opacity: .35; }
 /* a phone: the hero's bottom-right dots go to its top right (the same dots flipped upside down: ai_dots_tr) */
-@media (max-width: 767px) { .st-hero::after { background-image: url(../st-images/ai_dots_tl.webp), url(../st-images/ai_dots_tr.webp); background-position: top left, top right; } }
+@media (max-width: 767px) { .st-hero::after { background-image: url(../st-images/ai_dots_tl.webp), url(../st-images/ai_dots_tr.webp); background-image: image-set(url(../st-images/ai_dots_tl.avif) type("image/avif"), url(../st-images/ai_dots_tl.webp) type("image/webp")), image-set(url(../st-images/ai_dots_tr.avif) type("image/avif"), url(../st-images/ai_dots_tr.webp) type("image/webp")); background-position: top left, top right; } }
 /* the text and the element side by side, centred; a phone: one under the other */
 .st-hero-in { display: flex; align-items: center; justify-content: center; gap: min(2vw, 40px); }
 .st-hero-in img { display: block; height: auto; max-width: 100%; }
