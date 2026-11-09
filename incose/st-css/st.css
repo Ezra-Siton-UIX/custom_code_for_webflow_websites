@@ -81,7 +81,7 @@ body { margin: 0; font-family: var(--st-font); color: var(--st-text); background
   .st-hero { padding-block: 40px 74px; background: radial-gradient(ellipse 75% 35% at 50% 76%, color-mix(in srgb, var(--st-mint) 30%, transparent), transparent 70%), var(--st-dark-bg); }
   .st-hero-in { flex-direction: column; gap: 12px; }
   .st-copy { width: 100%; max-width: 420px; align-self: center; }
-  .st-shape { width: 170px; }   /* smaller and higher on a phone, so the first card shows on the first screen */
+  .st-hero-in .st-shape { display: none; }   /* a phone: the banner without the shape (a trial), so the first card shows on the first screen */
 }
 /* the two cards under the header, rising over its bottom (the header adds that much to its own bottom space); in the banner's greens */
 .st-cards { position: relative; margin-bottom: 0; list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
@@ -193,7 +193,6 @@ a:focus-visible, button:focus-visible { outline: 3px solid var(--st-mint); outli
 .st-nav-logo img { display: block; width: 200px; height: auto; }
 @media (max-width: 767px) {
   .st-nav-logo img { width: 140px; }
-  .st-nav-btn { padding: 4px 8px; }
   .st-nav-btn .navbar-toggler-icon { width: 1.3em; height: 1.3em; }
 }
 .st-nav .nav-link { position: relative; padding: 12px 0; color: var(--st-on-dark); font-size: 16px; font-weight: 500; white-space: nowrap; }
@@ -208,7 +207,7 @@ a:focus-visible, button:focus-visible { outline: 3px solid var(--st-mint); outli
 .st-nav-cta-bar { display: none; }
 .st-nav-cta { padding: 10px 20px; border: 0; border-radius: var(--st-pill); background: var(--st-mint); color: var(--st-deep); font-size: 16px; font-weight: 700; white-space: nowrap; }
 .st-nav-cta:hover, .st-nav-cta:focus, .st-nav-cta[aria-current="page"] { background: var(--st-mint-light); color: var(--st-deep); }
-.st-nav-btn { border-color: color-mix(in srgb, var(--st-mint-light) 45%, transparent); }
+.st-nav-btn { display: grid; place-items: center; width: 42px; height: 42px; padding: 0; border-color: color-mix(in srgb, var(--st-mint-light) 45%, transparent); }   /* square */
 .st-nav-btn:focus { box-shadow: none; }
 .st-nav-btn:focus-visible { box-shadow: 0 0 0 3px color-mix(in srgb, var(--st-mint) 50%, transparent); }   /* the ring for the keyboard only, not after a tap */
 @media (min-width: 1200px) {
