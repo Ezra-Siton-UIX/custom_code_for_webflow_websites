@@ -139,7 +139,8 @@ const renderProgram = (dayKey) => {
       person: s.chair, role: 'יו״ר המושב', back: `מושב ${s.num}`, ...(ids.length ? { lectures: ids } : {}) };
     return cube(s.id, [`<span class="st-slot-num">מושב ${s.num}</span>`, `<span class="st-slot-ttl">${s.title}</span>`, s.chair && line(s.chair, 'יו״ר מושב:')]);
   };
-  const KIND = { break: 'st-break', plenary: 'st-plenary', neutral: '', session: 'st-t1' };
+  // a one-track day's sessions take its colour ("track" in program.json: 3 is the tutorials day's purple; 1 by default)
+  const KIND = { break: 'st-break', plenary: 'st-plenary', neutral: '', session: `st-t${day.track || 1}` };
   const rows = day.rows.map((r) => {
     if (r.sessions) {
       return `<tr role="row">${timeCell(r)}${r.sessions.map((s, i) => `<td class="st-t${i + 1}" data-track="${tracks[i]}" role="cell">${session(s, r.time)}</td>`).join('')}</tr>`;
@@ -169,7 +170,7 @@ const renderProgram = (dayKey) => {
     : '<colgroup><col class="st-col-time"><col></colgroup>';
   // a day's badge ("badge" in program.json): on every popup this day added, shown above the popup's title
   if (day.badge) for (const id of Object.keys(popups)) if (!before.has(id)) popups[id].badge = day.badge;
-  return `<table class="st-prog" role="table"${day.dir ? ` dir="${day.dir}"` : ''}${day.lang ? ` lang="${day.lang}"` : ''}>\n    ${head}\n    <tbody role="rowgroup">\n      ${rows}\n    </tbody>\n  </table>`;
+  return `<table class="st-prog${day.track ? ` st-day-t${day.track}` : ''}" role="table"${day.dir ? ` dir="${day.dir}"` : ''}${day.lang ? ` lang="${day.lang}"` : ''}>\n    ${head}\n    <tbody role="rowgroup">\n      ${rows}\n    </tbody>\n  </table>`;
 };
 
 // ---- people on the pages: a tile (speakers, committees) and a signature figure (the home's chairs, the tutorials day) ----
@@ -249,7 +250,9 @@ for (const file of fs.readdirSync(path.join(SRC, 'pages')).filter((f) => f.endsW
         (_, lead, parts) => `${lead}<button class="st-slot-head" type="button" data-pop="${name}" aria-haspopup="dialog">\n              ${parts.trim().replace(/\n\s*/g, '\n              ')}\n            </button>\n          `);
     }
     const list = p.lectures ? `  <ul class="st-lectures">\n              ${lectureItems(p.lectures, name, linked)}\n            </ul>\n          ` : '';
-    return `<div class="st-slot${more}">${head}${list}</div>`;
+    // a cube that opens and holds nothing else to click (no lectures): the whole cube opens it, like a person's tile (.is-pop)
+    const whole = head !== inside && !p.lectures;
+    return `<div class="st-slot${more}${whole ? ' is-pop' : ''}">${head}${list}</div>`;
   });
   if (linked.size) html = html.replace('</main>', () => `${[...linked].map(popupTemplate).join('\n')}\n</main>`);
 

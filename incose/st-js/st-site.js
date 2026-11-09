@@ -66,7 +66,7 @@
       const wasOpen = pop.open;
       if (wasOpen) trail.push(current); else trail.length = 0;
       // its colour: the track it was opened from (a track 2 cube: blue); a switch inside the popup keeps it
-      if (!wasOpen) pop.dataset.track = opener.closest('.st-t2') ? '2' : '1';
+      if (!wasOpen) pop.dataset.track = opener.closest('.st-t2') ? '2' : opener.closest('.st-day-t3') ? '3' : '1';   // 3: the tutorials day's purple
       if (!show(opener.dataset.pop)) { if (wasOpen) trail.pop(); return; }
       if (wasOpen) { glide(); back.focus(); } else pop.showModal();
       return;
