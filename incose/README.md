@@ -137,6 +137,8 @@ Each day has `rows`. A row is either one cube across the whole row, or a row of 
 
 ### The colours: one place for the table and its popups
 
+**Every colour on the site is a variable in `:root`** (`st-css/st.css`): the brand's greens and blue, the tracks, the pay button (`--st-pay`). To change a colour, change its variable, never a rule. Outside `:root` the rules hold only white, black shadows and see-through white.
+
 **Every colour of the program table and its popups is a variable in `:root`** (`st-css/st.css`, the block "the program table and its popups"). Change a value there and everything that uses it follows; no rule below holds a colour of its own.
 
 | Variable | What it colours |

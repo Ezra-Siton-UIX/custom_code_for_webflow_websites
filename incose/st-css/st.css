@@ -47,6 +47,8 @@ body { min-height: 100vh; margin: 0; font-family: var(--st-font); color: var(--s
   --st-sky: #0b86c8;            /* the rows for everyone (the logo's bright blue): a plenary's frame, the underlines of meals and breaks */
   --st-neutral-bg: color-mix(in srgb, var(--st-sky) 6%, #fff);     /* meals and breaks: a pale tint of the sky blue */
   --st-neutral-line: color-mix(in srgb, var(--st-sky) 40%, #fff);   /* their 2px frame (every cube has one with presence: a faint one read as a hole) */
+  --st-pay: #28a745;            /* the registration's pay button: the green people know from checkouts */
+  --st-pay-hover: #218838;
   --st-red: #c0392b;            /* a required field's star */
   --st-dark-bg: linear-gradient(to bottom, var(--st-green), var(--st-deep));   /* every dark section */
   /* the shapes */
@@ -498,10 +500,10 @@ html:has(.st-pop[open]) { overflow: hidden; }
 .st-register #reg-done { margin-top: 32px; text-align: center; }
 /* their button: the site's call to action (mint, round) */
 /* the pay button: the green people know from checkouts, white, an arrow forward (left, in Hebrew) */
-.st-register .btn-green { display: inline-flex; align-items: center; gap: 14px; padding: 14px 36px; border: 0; border-radius: var(--st-pill); background: #28a745; color: #fff; font: 700 18px var(--st-font); cursor: pointer; transition: background-color .2s; }
+.st-register .btn-green { display: inline-flex; align-items: center; gap: 14px; padding: 14px 36px; border: 0; border-radius: var(--st-pill); background: var(--st-pay); color: #fff; font: 700 18px var(--st-font); cursor: pointer; transition: background-color .2s; }
 .st-register .btn-green::after { content: ""; width: 8px; height: 8px; border: solid currentColor; border-width: 0 0 2px 2px; transform: rotate(45deg); }
-@media (hover: hover) { .st-register .btn-green:hover { background: #218838; } }
-.st-register .btn-green:active { background: #218838; }
+@media (hover: hover) { .st-register .btn-green:hover { background: var(--st-pay-hover); } }
+.st-register .btn-green:active { background: var(--st-pay-hover); }
 .st-register #sec3 { margin-top: 48px; text-align: center; color: var(--st-muted); }
 .st-register #sec3 strong { display: block; margin-bottom: 4px; font-size: 18px; color: var(--st-ink); }
 .st-register #sec3 a { color: var(--st-teal); }
