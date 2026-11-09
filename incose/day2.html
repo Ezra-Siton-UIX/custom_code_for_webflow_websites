@@ -17,7 +17,7 @@
 <link rel="preload" href="st-fonts/google-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
 <!-- Bootstrap 5 (its RTL build) for the menu; ours after it, so ours wins -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.rtl.min.css" integrity="sha384-dpuaG1suU0eT09tx5plTaGMLBsfDLzUCCUXOY2j/LSvXYuG6Bqs43ALlhIqAJVRb" crossorigin="anonymous">
-<link rel="stylesheet" href="st-css/st.css?v=84a4d180">
+<link rel="stylesheet" href="st-css/st.css?v=4da7999c">
 </head>
 <body data-bs-no-jquery>
 <a class="st-skip" href="#main">דילוג לתוכן</a>
@@ -27,7 +27,7 @@
     <a class="navbar-brand st-nav-logo" href="index.html"><img src="st-images/incose_il_2027_conf_logo.svg" alt="הכנס הבינלאומי INCOSE IL 2027, לדף הראשי" width="200" height="33"></a>
     <!-- under 1200px: the registration in the bar too, beside the menu button (the open menu keeps its own) -->
     <a class="btn st-nav-cta st-nav-cta-bar" href="register.html" data-nav="register">הרשמה לכנס</a>
-    <button class="navbar-toggler st-nav-btn" type="button" data-bs-toggle="collapse" data-bs-target="#st-nav-panel" aria-controls="st-nav-panel" aria-expanded="false" aria-label="תפריט"><span class="navbar-toggler-icon"></span></button>
+    <button class="navbar-toggler st-nav-btn" type="button" data-bs-toggle="collapse" data-bs-target="#st-nav-panel" aria-controls="st-nav-panel" aria-expanded="false" aria-label="תפריט"><span class="st-burger" aria-hidden="true"></span></button>
     <div class="collapse navbar-collapse st-nav-panel" id="st-nav-panel">
       <ul class="navbar-nav st-nav-links">
         <li class="nav-item"><a class="nav-link" href="index.html" data-nav="index">ראשי</a></li>
@@ -46,14 +46,14 @@
 </nav>
 <main id="main">
 <!-- the inner pages' banner (the branding strip they open with), a plain flexbox: the logo, the title box (st-banner-title.svg, cut from
-     the home banner's SVG), the line and the dates as text, the shape -->
+     the home banner's SVG), the line and the dates as text (a page's own date and place: "when" in its first line), the shape -->
 <header class="st-banner">
   <div class="st-wrap st-banner-in">
     <img class="st-banner-logo" src="st-images/incose_logo_heb_WHITE.svg" alt="INCOSE IL, האיגוד הישראלי להנדסת מערכות" width="151" height="60" loading="eager" fetchpriority="high">
     <img class="st-banner-title" src="st-images/st-banner-title.svg" alt="הכנס הבינלאומי INCOSE IL 2027" width="380" height="84" loading="eager" fetchpriority="high">
     <div class="st-banner-text">
       <p class="st-banner-line"><strong>שילוב הנדסת מערכות וניהול פרויקטים</strong>מזיהוי הצורך ועד למימוש הערך למשתמש</p>
-      <p class="st-banner-when"><time datetime="2027-01-12">12-13 בינואר 2027</time><span aria-hidden="true">•</span>מלון דניאל, הרצליה</p>
+      <p class="st-banner-when"><time datetime="2027-01-13">13 בינואר 2027</time><span aria-hidden="true">•</span>סדנאות מקוונות</p>
     </div>
     <picture class="st-pic"><source type="image/avif" srcset="st-images/incose_shape.avif"><img class="st-banner-shape" src="st-images/incose_shape.webp" alt="" width="960" height="953" loading="eager" fetchpriority="high"></picture>
   </div>
@@ -75,8 +75,10 @@
         </td></tr>
       <tr role="row"><th scope="row" role="rowheader"><span class="st-time"><time>08:15</time>-<time>08:30</time></span></th><td class="st-plenary" role="cell">
           <div class="st-slot">
-            <button class="st-slot-ttl st-ttl-btn" type="button" data-pop="d2-opening" aria-haspopup="dialog">Opening and agenda introduction</button>
-            <button class="st-slot-chair st-chair-btn" type="button" data-pop="p-yaniv" aria-haspopup="dialog"><img src="assets/Yaniv1.jpg" alt="" width="32" height="32">Dr. Yaniv Mordecai • Tel Aviv University & Amazon</button>
+            <button class="st-slot-head" type="button" data-pop="d2-opening" aria-haspopup="dialog">
+              <span class="st-slot-ttl">Opening and agenda introduction</span>
+              <span class="st-slot-chair"><img src="assets/Yaniv1.jpg" alt="" width="32" height="32">Dr. Yaniv Mordecai • Tel Aviv University & Amazon</span>
+            </button>
           </div>
         </td></tr>
       <tr role="row"><th scope="row" role="rowheader"><span class="st-time"><time>08:30</time>-<time>10:00</time></span></th><td class="st-t1" role="cell">
@@ -131,8 +133,10 @@
         </td></tr>
       <tr role="row"><th scope="row" role="rowheader"><span class="st-time"><time>17:00</time>-<time>17:15</time></span></th><td class="st-plenary" role="cell">
           <div class="st-slot">
-            <button class="st-slot-ttl st-ttl-btn" type="button" data-pop="d2-close" aria-haspopup="dialog">Wrap-Up and Conclusive Discussion on Key Takeaways</button>
-            <button class="st-slot-chair st-chair-btn" type="button" data-pop="p-yaniv" aria-haspopup="dialog"><img src="assets/Yaniv1.jpg" alt="" width="32" height="32">Dr. Yaniv Mordecai • Tel Aviv University & Amazon</button>
+            <button class="st-slot-head" type="button" data-pop="d2-close" aria-haspopup="dialog">
+              <span class="st-slot-ttl">Wrap-Up and Conclusive Discussion on Key Takeaways</span>
+              <span class="st-slot-chair"><img src="assets/Yaniv1.jpg" alt="" width="32" height="32">Dr. Yaniv Mordecai • Tel Aviv University & Amazon</span>
+            </button>
           </div>
         </td></tr>
     </tbody>
@@ -172,7 +176,6 @@
 </section>
 <template id="pop-p-sample" data-title="שם המרצה לדוגמא" data-meta="שם החברה"><div class="st-person-solo"><img src="assets/incose_vip_person.png" alt="" width="96" height="96"><div class="st-bio"><p>לורם איפסום דולור סיט אמט, קונסקטורר אדיפיסינג אלית. סת אלמנקום ניסי נון ניבאה. דס איאקוליס וולופטה דיאם. וסטיבולום אט דולור, קראס אגת לקטוס וואל אאוגו וסטיבולום סוליסי טידום בעליק. קונדימנטום קורוס בליקרה, נונסטי קלובר בריקנה סטום, לפריקך תצטריק לרטי.</p></div></div></template>
 <template id="pop-d2-opening" data-title="Opening and agenda introduction" data-meta="08:15-08:30|Dr. Yaniv Mordecai" data-back="Opening and agenda introduction" data-dir="ltr"><aside class="st-person-card"><p class="st-person-role">Chairman of Tutorials Day</p><div class="st-person"><img src="assets/Yaniv1.jpg" alt="" width="80" height="80"><p><b>Dr. Yaniv Mordecai</b><span>Tel Aviv University & Amazon</span></p></div><div class="st-bio" dir="ltr"><p>Dr. Yaniv Mordecai is a senior teaching fellow at Tel-Aviv University, Tel-Aviv, Israel, a Senior Research Scientist at Amazon, Bellevue, Washington, USA, and a former Technion-MIT Post-Doctoral Fellow at MIT’s Engineering Systems Laboratory (2019-21). He holds a Teaching Certificate from MIT (2020), a Ph.D. in information systems engineering from Technion – Israel Institute of Technology, Israel (2016), and M.Sc. (2010, cum laude) and B.Sc. (2002) in industrial engineering & management from Tel-Aviv University, Israel. His research interests include model-based systems engineering, model analytics, cybernetics, interoperable systems, decision automation, operations research, and applications of artificial intelligence for geospatial optimization. Dr. Mordecai is a senior member of IEEE, member of INCOSE and INFORMS, and Board Member of the Israeli Society for Systems Engineering – INCOSE_IL. He won multiple international research awards and is a recognized international expert in modeling and simulation of complex systems.</p></div></aside></template>
-<template id="pop-p-yaniv" data-title="Dr. Yaniv Mordecai" data-meta="Tel Aviv University &amp; Amazon" data-dir="ltr"><div class="st-person-solo"><img src="assets/Yaniv1.jpg" alt="" width="96" height="96"><div class="st-bio"><p>Dr. Yaniv Mordecai is a senior teaching fellow at Tel-Aviv University, Tel-Aviv, Israel, a Senior Research Scientist at Amazon, Bellevue, Washington, USA, and a former Technion-MIT Post-Doctoral Fellow at MIT’s Engineering Systems Laboratory (2019-21). He holds a Teaching Certificate from MIT (2020), a Ph.D. in information systems engineering from Technion – Israel Institute of Technology, Israel (2016), and M.Sc. (2010, cum laude) and B.Sc. (2002) in industrial engineering & management from Tel-Aviv University, Israel. His research interests include model-based systems engineering, model analytics, cybernetics, interoperable systems, decision automation, operations research, and applications of artificial intelligence for geospatial optimization. Dr. Mordecai is a senior member of IEEE, member of INCOSE and INFORMS, and Board Member of the Israeli Society for Systems Engineering – INCOSE_IL. He won multiple international research awards and is a recognized international expert in modeling and simulation of complex systems.</p></div></div></template>
 <template id="pop-d2-close" data-title="Wrap-Up and Conclusive Discussion on Key Takeaways" data-meta="17:00-17:15|Dr. Yaniv Mordecai" data-back="Wrap-Up and Conclusive Discussion on Key Takeaways" data-dir="ltr"><p>The purpose of this session is to summarize the main conclusions from participants' feedback as well as oral comments and remarks. We will attempt to identify key opportunities for implementation, both at the individual and collective community levels. Attendees will be invited to line up for sharing concluding remarks and takeaways in a few minutes per participant.</p><aside class="st-person-card"><p class="st-person-role">Chairman of Tutorials Day</p><div class="st-person"><img src="assets/Yaniv1.jpg" alt="" width="80" height="80"><p><b>Dr. Yaniv Mordecai</b><span>Tel Aviv University & Amazon</span></p></div><div class="st-bio" dir="ltr"><p>Dr. Yaniv Mordecai is a senior teaching fellow at Tel-Aviv University, Tel-Aviv, Israel, a Senior Research Scientist at Amazon, Bellevue, Washington, USA, and a former Technion-MIT Post-Doctoral Fellow at MIT’s Engineering Systems Laboratory (2019-21). He holds a Teaching Certificate from MIT (2020), a Ph.D. in information systems engineering from Technion – Israel Institute of Technology, Israel (2016), and M.Sc. (2010, cum laude) and B.Sc. (2002) in industrial engineering & management from Tel-Aviv University, Israel. His research interests include model-based systems engineering, model analytics, cybernetics, interoperable systems, decision automation, operations research, and applications of artificial intelligence for geospatial optimization. Dr. Mordecai is a senior member of IEEE, member of INCOSE and INFORMS, and Board Member of the Israeli Society for Systems Engineering – INCOSE_IL. He won multiple international research awards and is a recognized international expert in modeling and simulation of complex systems.</p></div></aside></template>
 </main>
 <!-- their logo files: assets/, the same folder and names as on their server -->
@@ -239,6 +242,6 @@
   </div>
 </dialog>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous" defer></script>
-<script src="st-js/st-site.js?v=62f49a6d" defer></script>
+<script src="st-js/st-site.js?v=3bbe055b" defer></script>
 </body>
 </html>

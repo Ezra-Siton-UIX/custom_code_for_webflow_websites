@@ -3,6 +3,17 @@
   // a touch listener on the page, so iPhone Safari shows the CSS :active (press) state
   document.addEventListener('touchstart', () => {}, { passive: true });
 
+  // the phone menu (Bootstrap's collapse): while it is open the page under it dims; a tap outside it, or Esc, closes it (Bootstrap's own API).
+  // The dim layer catches that tap, so it only closes the menu and does not also press what is under it
+  const panel = document.getElementById('st-nav-panel');
+  if (panel) {
+    panel.addEventListener('show.bs.collapse', () => document.body.classList.add('st-menu-open'));
+    panel.addEventListener('hide.bs.collapse', () => document.body.classList.remove('st-menu-open'));
+    const close = () => { if (panel.classList.contains('show') && window.bootstrap) window.bootstrap.Collapse.getOrCreateInstance(panel, { toggle: false }).hide(); };
+    document.addEventListener('click', (event) => { if (!event.target.closest('.st-nav')) close(); });
+    document.addEventListener('keydown', (event) => { if (event.key === 'Escape') close(); });
+  }
+
   // the registration: their scripts rewrite it while the page loads; it is shown once they are done
   const register = document.querySelector('.st-register');
   if (register) window.addEventListener('load', () => register.classList.add('is-ready'));

@@ -64,7 +64,7 @@ day2.html  (4 popups)  | no content yet: d2-h1, d2-h2, d2-h3, d2-h4, d2-h5
 "ram": { "name": "ד\"ר רם אורון", "org": "נובה", "img": "assets/OronRam.jpg", "bio": "<p>…</p>" }
 ```
 
-- **With a `bio`:** the person opens their card wherever they appear: a tile, a chair's line, a lecture's speaker, a panelist.
+- **With a `bio`:** the person opens their card wherever they appear: a tile, a lecture's speaker, a panelist, and the card inside a session's popup.
 - **Without a `bio`:** they show, but don't open (most committee members today).
 - **`"sample": true`:** the bio is lorem ipsum, waiting for the real one.
 - **`"dir": "ltr"`:** an English bio. If the person also has `name_en`, their popup is entirely in English.
@@ -119,9 +119,8 @@ Each day has `rows`. A row is either one cube across the whole row, or a row of 
 
 **One model for every program cube,** so adding lectures later changes nothing else:
 
-- **The parent:** only a cube's **title** opens its popup. It is always underlined in its track's colour, fully on hover. The rest of the cube doesn't react, so nobody thinks the whole card opens.
+- **The parent:** a cube's **head** (its number, title, short line and person's line: "יו״ר מושב: …", "בהובלת …") is one button that opens its popup. Only the title is underlined, in its track's colour, fully on hover. The person's card is inside that popup, so their line has no button of its own. The lectures under the head are separate cards.
 - **The children:** a **lecture** (or a panelist) is a whole card that opens. It has an arrow at its far end, its title underlined, and a frame in its track's colour on hover.
-- **The people's lines:** a chair's line ("יו״ר מושב: …") or a lead's line ("בהובלת …") opens that person's card.
 - **A session's popup:**
   - its lectures first, then its chair;
   - a lecture there switches the popup to the lecture (with a short fade), and a green "חזרה למושב …" button returns;

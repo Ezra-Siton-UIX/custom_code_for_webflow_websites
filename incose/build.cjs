@@ -7,7 +7,7 @@
 //   _src/program.json      both days' programs, once: rows (time, kind), sessions (number, title, the chair's key, lectures). The build
 //                          draws the tables and writes every program popup from it
 //   _src/pages/*.html      each page's frame; its first line is {"title", "description" (SEO), "nav": the menu item it marks,
-//                          "crumb": its name in the breadcrumbs (inner pages)}. Markers in it:
+//                          "crumb": its name in the breadcrumbs, "when": its date and place in the banner (inner pages)}. Markers in it:
 //                            <!-- @program day1 -->                 a day's program table (from program.json)
 //                            <!-- @tile ram | יו"ר מושב 2.2 -->    a person's tile (from people.json; the role after | is optional)
 //                            <!-- @figure shoker | יו"ר יום הכנס --> a person's signature figure (photo, name, role, organisation)
@@ -181,6 +181,13 @@ const figure = (key, role, en) => {
     + `<p class="st-chair-name">${nameOf(p, en)}</p>${role ? `<p class="st-chair-role">${role}</p>` : ''}${orgOf(p, en) ? `<p class="st-chair-org">${orgOf(p, en)}</p>` : ''}</figcaption></figure>`;
 };
 
+// the inner pages' banner, with the page's own date and place ("when": [iso date, the date as shown, the place] in its first line;
+// the default is both days)
+const WHEN = ['2027-01-12', '12-13 בינואר 2027', 'מלון דניאל, הרצליה'];
+const banner = (meta) => {
+  const [iso, date, place] = meta.when || WHEN;
+  return part('banner').replace('{{when-iso}}', iso).replace('{{when-date}}', date).replace('{{when-place}}', place);
+};
 // breadcrumbs under an inner page's banner: home › the page (its "crumb" in the first line). The .php build (their server, real URLs)
 // also writes them as a BreadcrumbList for Google
 const SITE = 'https://www.incoseil.org/activity_page/incoseil2027/';
@@ -207,7 +214,7 @@ for (const file of fs.readdirSync(path.join(SRC, 'pages')).filter((f) => f.endsW
     // the preview and the GitHub demo are not for search engines (only their server's .php pages are): noindex on those
     .replace('<!-- @head -->', () => part('head').replace('{{title}}', meta.title).replace('{{title-attr}}', attr(meta.title)).replace(/{{description}}/g, attr(meta.description || '')).replace('<title>', php ? '<title>' : '<meta name="robots" content="noindex, nofollow">\n<title>'))
     .replace('<!-- @nav -->', () => part('nav').split(`data-nav="${meta.nav}"`).join(`data-nav="${meta.nav}" aria-current="page"`))
-    .replace('<!-- @banner -->', () => `${part('banner')}\n${crumbs(meta, file.replace(/\.html$/, ''))}`)
+    .replace('<!-- @banner -->', () => `${banner(meta)}\n${crumbs(meta, file.replace(/\.html$/, ''))}`)
     .replace('<!-- @footer -->', () => part('footer'))
     .replace('<!-- @end -->', () => part('end'))
     .replace(/<!-- @program ([\w-]+) -->/g, (_, day) => renderProgram(day))
@@ -217,9 +224,8 @@ for (const file of fs.readdirSync(path.join(SRC, 'pages')).filter((f) => f.endsW
     .replace('<html lang="he" dir="rtl">', `<html lang="he" dir="rtl">\n<!-- built by build.cjs from _src/pages/${file}: edit there, not here -->`);
 
   // the cubes. A program cube (one with a .st-slot-ttl title) has ONE model, whatever it holds:
-  //   - its title is the button that opens its popup (when it has text, a person or lectures);
-  //   - its lectures, if any, are listed under it, each lecture its own button and popup;
-  //   - its person's line (a chair, a lead) opens that person's card.
+  //   - its head (number, title, person's line) is the one button that opens its popup (when it has text, a person or lectures);
+  //   - its lectures, if any, are listed under it, each lecture its own button and popup.
   //   A person's tile (no .st-slot-ttl) opens as a whole tile.
   const linked = new Set(extraLinked);
   extraLinked.clear();
@@ -234,15 +240,10 @@ for (const file of fs.readdirSync(path.join(SRC, 'pages')).filter((f) => f.endsW
     let head = inside;
     if (p.text || p.person || p.lectures) {
       linked.add(name);
-      // the title's span (it may hold a nested span, e.g. .st-nw): up to the </span> that ends it, before the cube's next part
-      head = inside.replace(/<span class="st-slot-ttl">([\s\S]*?)<\/span>(?=\s*(<span class="st-slot-|<ul|$))/, `<button class="st-slot-ttl st-ttl-btn" type="button" data-pop="${name}" aria-haspopup="dialog">$1</button>`);
-    }
-    // its person's line: a button to that person's own card (when they have a bio)
-    if (p.person && people[p.person].bio) {
-      head = head.replace(/<span class="st-slot-chair">([\s\S]*?)<\/span>/, (_, line) => {
-        linked.add(`p-${p.person}`);
-        return `<button class="st-slot-chair st-chair-btn" type="button" data-pop="p-${p.person}" aria-haspopup="dialog">${line}</button>`;
-      });
+      // the cube's head (its number, title, short line and person's line, the spans up to its first list) is ONE button to its popup;
+      // the popup holds the person's card, so their line needs no button of its own. A span may hold a nested span (.st-nw) or an img
+      head = inside.replace(/^(\s*)((?:<span class="st-slot-(?:num|ttl|text|chair)">(?:[^<]|<(?!\/?span)|<span[^>]*>[^<]*<\/span>)*<\/span>\s*)+)/,
+        (_, lead, parts) => `${lead}<button class="st-slot-head" type="button" data-pop="${name}" aria-haspopup="dialog">\n              ${parts.trim().replace(/\n\s*/g, '\n              ')}\n            </button>\n          `);
     }
     const list = p.lectures ? `  <ul class="st-lectures">\n              ${lectureItems(p.lectures, name, linked)}\n            </ul>\n          ` : '';
     return `<div class="st-slot${more}">${head}${list}</div>`;
