@@ -5,28 +5,14 @@
 <!-- @banner -->
 <!-- the registration: THEIR registration module, copied as it is (every id, name, class, onclick and hidden field: their scripts hang on them).
      Only the look is ours, from st.css (.st-register). It works on their server only: its scripts are at their site's root (/js/...),
-     and it sends to /regPost.php and checks membership at /iltam_check_mem.php there. The config below is what their PHP wrote (prices,
+     and it sends to /regPost.php and checks membership at /iltam_check_mem.php there. The config, now in st-js/register.js (with the rest of the page's inline code), is what their PHP wrote (prices,
      payment links) for activity 4086. acc-plug.js is their accessibility menu, and reg.js keeps the form in its cookie helper (cookieman2). One fix: the email link was missing its colon (mailto:). Source: _source/register.html -->
 <script src="/js/jquery.min.js"></script>
 <script src="/js/sweetalert2.min.js?v=3"></script>
 <script src="/js/acc-plug.js"></script>
 <script src="/js/my.js"></script>
 <script src="/js/reg.js?r=1"></script>
-<script>
-    var RECID =  ['4086'];
-    var VAT = parseFloat('1.18',10);
-    var localErrors = {"missing-email":"חסר מייל","invalid-email":"מייל לא תקין","missing-fname":"חסר שם פרטי","missing-lname":"חסר שם משפחה",
-"missing-cname":"חסר שם חברה","missing-jname":"חסר תפקיד","missing-phone":"חסר טלפון נייד","invalid-phone":"מספר טלפון לא תקין",
-"reg_exists":"הרשמה לפעילות זו כבר קיימת",
-"credit_error":"שגיאה - לא ניתן לשלם באשראי",
-"paypal_error":"PAYPAL AMOUNT ERROR",
-"reg_remove":"הסר",
-"non-member-but-selected":"לא זוהה, חברותך תאומת לאחר ההרשמה"};
-    var actGRP = {"p":1050,"0":1050,"1":600,"v0":"1,239","g0":"aHR0cHM6Ly9tZXNodWxhbS5jby5pbC9zL2M3OGQyZjAzLTMyZTUtOTE5Zi1hMzhkLTVjMzI3ZjdmNWVkZg==","v1":"708","g1":"aHR0cHM6Ly9tZXNodWxhbS5jby5pbC9zL2E1MDIwZDhhLTg2ODktY2JjMS1mNmVmLTE2MTIyZDYwMDA4NQ==","all":"aHR0cHM6Ly9tZXNodWxhbS5jby5pbC9zL2M3OGQyZjAzLTMyZTUtOTE5Zi1hMzhkLTVjMzI3ZjdmNWVkZg==","iincose":"aHR0cHM6Ly9tZXNodWxhbS5jby5pbC9zL2E1MDIwZDhhLTg2ODktY2JjMS1mNmVmLTE2MTIyZDYwMDA4NQ==","std":"error","lec":"aHR0cHM6Ly9tZXNodWxhbS5jby5pbC9zLzczYmE0MmU1LTQxNDMtMWFjZi1iYzA3LTBiZDY4MGQ0Y2JkOQ==","aud":"error","ieee":"aHR0cHM6Ly9tZXNodWxhbS5jby5pbC9zLzQ0OWI3ODQ5LTkwMzYtN2Q3NS1kMzgyLTQyM2QzNzhhNTUzYg==","vaa":"aHR0cHM6Ly9tZXNodWxhbS5jby5pbC9zLzdhNDdiZDJmLTU3NzItZTM1MC0yN2MxLWNhYWU0OTlmYjUxMg==","g_error":1};
-    var actPRC = [{"groupCode":"all","groupName":"קהל רחב","price":1050,"price_vat":1239},{"groupCode":"iincose","groupName":"IncoseIL","price":600,"price_vat":708},{"groupCode":"iincose","groupName":"חברי INCOSE_IL","price":"600,300,900","price_vat":708},{"groupCode":"std","groupName":"סטודנטים להנדסת מערכות","price":"330,130,440","price_vat":389.4},{"groupCode":"lec","groupName":"מרצים ויו\"ר מושבים","price":"0,300,300","price_vat":0},{"groupCode":"aud","groupName":"קהל רחב","price":"800,300,1050","price_vat":944},{"groupCode":"ieee","groupName":"חברי IEEE","price":"550,400,850","price_vat":649},{"groupCode":"vaa","groupName":"חברי ועדת התוכנית","price":"400,300,650","price_vat":472}];
-    var actDate = '12/01/2027';
-    
-</script>
+<script src="st-js/register.js"></script>
 <style>
     body  , #sec2 { background:#fff;}
 a.reg-btn:hover { color:#f3f3f3;}
@@ -55,7 +41,7 @@ a.reg-btn:hover { color:#f3f3f3;}
             
                  
                    
-                 <h1>הכנס הבינלאומי INCOSE_IL  2027</h1>
+                 <h1>הרשמה לכנס INCOSE IL 2027</h1>
                  <div class=more>
                  
                  <label>מועד הפעילות:</label>&nbsp;החל מ-&nbsp;12/01/2027
@@ -64,8 +50,8 @@ a.reg-btn:hover { color:#f3f3f3;}
  <div class=clear></div>
             <br/>
             
-            <div id="reg1-price" class="reg1">  
-                <table>
+            <div id="reg1-price" class="reg1 table-responsive">  
+                <table class="table table-bordered table-striped align-middle">
                  <thead>
                      <tr>
                          <td><font>לקהל הרחב</font><font>1,050<span class=sign>₪</span></font></td>
@@ -306,12 +292,6 @@ a.reg-btn:hover { color:#f3f3f3;}
     
 </section>   
 
-<script>
- 
-    for (var e in document.getElementsByClassName("air")){
-        document.getElementsByClassName("air")[e].target="_Blank";
-    }
-    </script>
  </div>
 </div>
 </main>

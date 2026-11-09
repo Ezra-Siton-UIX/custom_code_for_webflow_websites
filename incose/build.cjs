@@ -28,7 +28,7 @@ const people = readJson('people.json');
 const program = readJson('program.json');
 // a file's fingerprint (from its content) on its link: a changed CSS or JS gets a new address, so no browser shows an old copy
 const stamp = (file) => require('crypto').createHash('md5').update(fs.readFileSync(path.join(DIR, file))).digest('hex').slice(0, 8);
-const STAMPS = { 'st-css/st.css': stamp('st-css/st.css'), 'st-js/st-site.js': stamp('st-js/st-site.js') };
+const STAMPS = Object.fromEntries(['st-css/st.css', 'st-js/st-site.js', 'st-js/register.js'].map((file) => [file, stamp(file)]));
 const attr = (text) => String(text).replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;');
 const strip = (html) => String(html).replace(/<[^>]+>/g, '');
 
@@ -220,7 +220,7 @@ for (const file of fs.readdirSync(path.join(SRC, 'pages')).filter((f) => f.endsW
     .replace(/<!-- @program ([\w-]+) -->/g, (_, day) => renderProgram(day))
     .replace(/<!-- @tile(-en)? ([\w-]+)(?: \| (.+?))? -->/g, (_, en, key, role) => tile(key, role, !!en))
     .replace(/<!-- @figure(-en)? ([\w-]+)(?: \| (.+?))? -->/g, (_, en, key, role) => figure(key, role, !!en))
-    .replace(/(href|src)="(st-css\/st\.css|st-js\/st-site\.js)"/g, (_, at, file) => `${at}="${file}?v=${STAMPS[file]}"`)
+    .replace(/(href|src)="(st-css\/st\.css|st-js\/(?:st-site|register)\.js)"/g, (_, at, file) => `${at}="${file}?v=${STAMPS[file]}"`)
     .replace('<html lang="he" dir="rtl">', `<html lang="he" dir="rtl">\n<!-- built by build.cjs from _src/pages/${file}: edit there, not here -->`);
 
   // the cubes. A program cube (one with a .st-slot-ttl title) has ONE model, whatever it holds:

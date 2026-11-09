@@ -423,11 +423,19 @@ html:has(.st-pop[open]) { overflow: hidden; }
 .st-register .more { margin-top: 16px; font-size: 17px; color: var(--st-muted); text-align: center; }
 .st-register h2 { margin: 36px 0 14px; font-size: 20px; font-weight: 700; color: var(--st-ink); }
 /* the prices (their script writes the table): rows on a light line, the main prices bold */
-.st-register table { width: 100%; border-collapse: collapse; font-size: 16px; }
-.st-register th, .st-register td { padding: 12px 10px; border-bottom: 1px solid var(--st-line); text-align: center; vertical-align: middle; }
-.st-register th { font-weight: 700; color: var(--st-ink); background: var(--st-tint); }
-.st-register td.focus { font-weight: 700; color: var(--st-ink); }
-.st-register td.gray { color: var(--st-muted); }
+/* the price table: their script writes its rows (/js/script_act2027.js); the table is Bootstrap's own (.table .table-striped), in the site's colours:
+   lines on every cell (.table-bordered), the head in the brand green, every other row mint. Their style scales and greys the chosen date's column (.gray) and squeezes the cells: undone here */
+.st-register #reg1-price .table { --bs-table-striped-bg: color-mix(in srgb, var(--st-mint) 10%, #fff); --bs-table-border-color: var(--st-line); margin: 0; font-size: 16px; }
+.st-register #reg1-price .table th, .st-register #reg1-price .table td { padding: 12px 16px; text-align: center; transform: none; background-color: var(--bs-table-bg); color: var(--st-text); }
+.st-register #reg1-price .table thead th { --bs-table-bg: var(--st-green); border-bottom: 0; color: #fff; font-size: 15px; font-weight: 600; line-height: 1.5; }
+.st-register #reg1-price .table tbody td:first-child { text-align: start; font-weight: 600; color: var(--st-ink); }
+.st-register #reg1-price .table tfoot { display: none; }   /* their script's row: it holds only the script (and held the table wide on a phone) */
+.st-register #reg1-price .table td.gray { --bs-table-bg-state: color-mix(in srgb, var(--st-mint) 18%, #fff); font-weight: 700; color: var(--st-ink); }
+.st-register #reg1-price .table tbody tr:last-child td { --bs-table-bg-type: transparent; padding-top: 12px; border-bottom: 0; text-align: start; font-size: 14px; font-weight: 400; color: var(--st-muted); }
+@media (max-width: 767px) {
+  .st-register #reg1-price .table th, .st-register #reg1-price .table td { padding: 10px 6px; font-size: 14px; }
+  .st-register #reg1-price .table thead th { font-size: 13px; }
+}
 /* the fields: a label over each, a calm frame, mint when in use */
 .st-register .det-type1, .st-register .det-type2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin-bottom: 16px; }
 .st-register label { font-size: 15px; font-weight: 600; color: var(--st-text); }
@@ -455,15 +463,17 @@ html:has(.st-pop[open]) { overflow: hidden; }
 .st-register #sec3 a { color: var(--st-teal); }
 /* the group (their script writes these buttons, .active on the chosen one): pills, the chosen one dark green */
 .st-register #groupr-b { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 8px; }
-.st-register #groupr-b button { padding: 10px 18px; border: 1px solid var(--st-line-strong); border-radius: var(--st-pill); background: #fff; color: var(--st-ink); font: 600 15px var(--st-font); cursor: pointer; }
+.st-register #groupr-b button { display: inline-flex; align-items: center; justify-content: center; gap: 10px; padding: 10px 18px; border: 1px solid var(--st-line-strong); border-radius: var(--st-pill); background: #fff; color: var(--st-ink); font: 600 15px var(--st-font); cursor: pointer; }
 @media (hover: hover) { .st-register #groupr-b button:hover { border-color: var(--st-mint); } }
 .st-register #groupr-b button.active { border-color: var(--st-green); background: var(--st-green); color: #fff; }
+/* the shekel sign after a price (<span class=sign>, their markup): on its own, so it sits on the price's left as in Hebrew (₪ 354), not glued to the number */
+.st-register .sign { display: inline-block; margin-inline-start: 4px; }
+/* a choice of one: each button has a radio's circle before its name, filled on the chosen one */
+.st-register #groupr-b button::before { content: ""; flex: none; box-sizing: border-box; width: 18px; height: 18px; border: 2px solid currentColor; border-radius: 50%; }
+.st-register #groupr-b button.active::before { background: radial-gradient(circle, currentColor 0 4px, transparent 4.5px); }
 /* the footer's button to the association's site: a mint outline that fills on hover */
 .st-foot-btn { display: inline-flex; align-items: center; gap: 8px; padding: 10px 22px; border: 1px solid var(--st-mint); border-radius: var(--st-pill); color: #fff; font-weight: 700; text-decoration: none; white-space: nowrap; transition: background-color .2s, color .2s; }
 @media (hover: hover) { .st-foot .st-foot-btn:hover { background: var(--st-mint); color: var(--st-deep); text-decoration: none; } }
-/* their price table is wider than a phone: it scrolls inside its own box, the page does not */
-.st-register #reg1-price { max-width: 100%; overflow-x: auto; }
-.st-register #reg1-price table { min-width: 560px; }
 /* the registration appears once their scripts have written it (st-site.js adds .is-ready on load), so it does not jump into place */
 .st-register:not(.is-ready) { visibility: hidden; }
 /* a session's lectures in its cube (popups.json "lectures"): a list under the chair; each lecture (its title and speaker) is one button */
@@ -559,7 +569,7 @@ button.st-lecture:hover .st-lecture-ttl, button.st-lecture:focus-visible .st-lec
   .st-foot-btn { justify-self: end; }   /* its own width, at the row's end (not stretched to the column) */
 }
 /* the footer's contacts: a mail and a phone icon before them (st-images/footer_icons), drawn in mint through a mask */
-.st-foot a[href^="mailto:"], .st-foot a[href^="tel:"] { display: inline-flex; align-items: center; gap: 8px; }
+.st-foot a[href^="mailto:"], .st-foot a[href^="tel:"] { display: inline-flex; align-items: center; gap: 5px; }
 .st-foot a[href^="mailto:"]::before, .st-foot a[href^="tel:"]::before { content: ""; flex: none; width: 16px; height: 16px; background: var(--st-mint-light); -webkit-mask: var(--st-icon) center / contain no-repeat; mask: var(--st-icon) center / contain no-repeat; }
 .st-foot a[href^="mailto:"] { --st-icon: url(../st-images/footer_icons/mail.svg); }
 .st-foot a[href^="tel:"] { --st-icon: url(../st-images/footer_icons/phone.svg); }

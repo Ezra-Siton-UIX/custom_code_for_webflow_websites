@@ -43,7 +43,7 @@ day2.html  (4 popups)  | no content yet: d2-h1, d2-h2, d2-h3, d2-h4, d2-h5
 | The footer, the popup and the scripts | `_src/partials/end.html` |
 | The `<head>` | `_src/partials/head.html` |
 | All the CSS | `st-css/st.css` (one file) |
-| All our JS | `st-js/st-site.js` (the popup) |
+| All our JS | `st-js/st-site.js` (the popup, the menu); `st-js/register.js` (the registration page's code) |
 | Our pictures / the font / the favicon | `st-images/` / `st-fonts/` / `favicon.ico` |
 | Their pictures (the server's `assets/`) | `assets/` (a copy for the preview) |
 | Their old pages, old pictures | `_source/`, `_not-used/` (not in git) |
@@ -210,12 +210,12 @@ Replace each with the real content, keeping the same shape.
 `_src/pages/register.html` holds **their** registration module (activity 4086), copied as it is. Every `id`, `name`, `class`, `onclick` and hidden field stays as it was, because their scripts depend on them. **Only the look is ours,** from `.st-register` in `st.css`, styled through their own ids and classes. Don't rename or restructure anything inside it.
 
 - **Their scripts:** they load from their server's root, in their original order: `/js/jquery.min.js`, `/js/sweetalert2.min.js`, `/js/acc-plug.js`, `/js/my.js`, `/js/reg.js`. `acc-plug.js` is needed because `reg.js` saves the form in a cookie through it.
-- **The price table** is written by their `/js/script_act2027.js`.
+- **The price table** is written by their `/js/script_act2027.js` (its rows, and the date choice that highlights a column). The `<table>` is ours, with Bootstrap's standard classes (`table table-bordered table-striped align-middle`); `st.css` gives it the site's colours and undoes their style (it scaled the chosen column and squeezed the cells).
 - **Where the form sends:** it posts to `/regPost.php` and checks membership against `/iltam_check_mem.php`.
 - **Where it works:** **only on their server.** Opened locally, the page shows the form, but nothing in it runs.
-- **The config block** (`RECID`, `VAT`, `actGRP`, `actPRC`) is what their PHP wrote for this activity: prices and payment links. If prices change, it changes there.
+- **The code is in one file, `st-js/register.js`:** the config (`RECID`, `VAT`, `actGRP`, `actPRC`, the error messages) that their PHP wrote for this activity (prices and payment links), and their small loop that opens `.air` links in a new tab. The page itself holds only markup and their `onclick`s. On their server the PHP programmer writes the config, so if prices change, it changes there. The form is basic on purpose: its logic is theirs.
 - **It appears once it's ready.** The block stays hidden until the page has loaded (`st-site.js` adds `.is-ready`), because their scripts rewrite the price table while loading, and it would jump.
-- **The one edit:** the contact email link was missing its colon, and is now `mailto:`.
+- **The edits:** the contact email link was missing its colon, and is now `mailto:`; the heading is "הרשמה לכנס INCOSE IL 2027"; the shekel sign sits on the price's left (`.sign` is an inline-block, so it doesn't join the number).
 
 ## Still open (content from the client)
 
