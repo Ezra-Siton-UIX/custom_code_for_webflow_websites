@@ -19,7 +19,7 @@
   if (register) window.addEventListener('load', () => register.classList.add('is-ready'));
 
   // the popup: <button data-pop="x"> fills the one <dialog> from <template id="pop-x" data-title data-meta="a|b|c">
-  // (the build writes both from _src/popups.json):
+  // (the build writes both from _src/program.json and _src/people.json; the README has the whole mechanism):
   // the title, a label for each part of data-meta (the session, the time, the person), the template's content as the body.
   // The dialog is the browser's own: focus moves in and stays inside, Esc closes, focus returns to the button.
   // A popup opened from inside the open one (a lecture from its session) keeps a way back: "חזרה ל..." at the top.
@@ -29,6 +29,7 @@
   const meta = pop.querySelector('.st-pop-meta');
   const body = pop.querySelector('.st-pop-body');
   const back = pop.querySelector('.st-pop-back');
+  const badge = pop.querySelector('.st-pop-badge');
   const still = matchMedia('(prefers-reduced-motion: reduce)');
   const trail = [];   // the popups this one was opened from, the latest last
   let current = null;
@@ -39,6 +40,7 @@
     current = name;
     pop.dir = template.dataset.dir || 'rtl';   // an English popup is written left to right
     title.textContent = template.dataset.title || '';
+    if (badge) { badge.textContent = template.dataset.badge || ''; badge.hidden = !template.dataset.badge; }
     meta.replaceChildren(...(template.dataset.meta || '').split('|').filter(Boolean).map((text) => {
       const item = document.createElement('li');
       item.textContent = text;

@@ -649,3 +649,6 @@ body.st-menu-open::before { content: ""; position: fixed; inset: 0; z-index: 40;
 .st-register #reg-done { margin-top: 0; }
 .st-register #sec2 { cursor: auto !important; }   /* their script sets a pointer on the whole section (inline, a leftover link); the hand is only on what picks */
 .st-register .act-item.act-item-reg > br { display: none; }   /* their line break under the title, on top of its gap */
+/* a popup's day badge ("יום הסדנאות"): a bold pill above its title, in the popup's strong colour */
+.st-pop-badge { display: inline-block; margin: 0 0 10px; padding: 4px 14px; border-radius: var(--st-pill); background: var(--st-pop-strong); color: #fff; font-size: 14px; font-weight: 700; line-height: 1.5; }
+.st-pop-badge[hidden] { display: none; }

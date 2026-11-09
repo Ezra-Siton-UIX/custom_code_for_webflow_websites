@@ -102,13 +102,14 @@ const popupTemplate = (name) => {
     body += person(p.person, p.role, dir === 'ltr');
   }
   // data-back: its name on the "חזרה ל…" button of a popup opened from it (a session: מושב 1.3; a row: its "back" in program.json)
-  return `<template id="pop-${name}" data-title="${attr(title)}" data-meta="${attr(meta.join('|'))}"${p.back ? ` data-back="${attr(p.back)}"` : ''}${dir ? ` data-dir="${dir}"` : ''}>${body}</template>`;
+  return `<template id="pop-${name}" data-title="${attr(title)}" data-meta="${attr(meta.join('|'))}"${p.back ? ` data-back="${attr(p.back)}"` : ''}${dir ? ` data-dir="${dir}"` : ''}${p.badge ? ` data-badge="${attr(p.badge)}"` : ''}>${body}</template>`;
 };
 
 // ---- the program: a day's table from program.json; its sessions, lectures and popups are registered as it is drawn ----
 const renderProgram = (dayKey) => {
   const day = program[dayKey];
   if (!day) throw new Error(`no "${dayKey}" in _src/program.json`);
+  const before = new Set(Object.keys(popups));   // the popups this day adds get its badge (below)
   const en = day.lang === 'en';
   const tracks = day.tracks || [];
   for (const [id, p] of Object.entries(day.popups || {})) {
@@ -166,6 +167,8 @@ const renderProgram = (dayKey) => {
   const head = tracks.length
     ? `<thead role="rowgroup"><tr role="row"><td class="st-prog-corner" role="cell"></td>${tracks.map((t, i) => `<th class="st-t${i + 1}" scope="col" role="columnheader">${t}</th>`).join('')}</tr></thead>`
     : '<colgroup><col class="st-col-time"><col></colgroup>';
+  // a day's badge ("badge" in program.json): on every popup this day added, shown above the popup's title
+  if (day.badge) for (const id of Object.keys(popups)) if (!before.has(id)) popups[id].badge = day.badge;
   return `<table class="st-prog" role="table"${day.dir ? ` dir="${day.dir}"` : ''}${day.lang ? ` lang="${day.lang}"` : ''}>\n    ${head}\n    <tbody role="rowgroup">\n      ${rows}\n    </tbody>\n  </table>`;
 };
 

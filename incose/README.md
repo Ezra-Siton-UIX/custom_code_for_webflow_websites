@@ -193,6 +193,47 @@ Replace each with the real content, keeping the same shape.
    - Measured: the layout shift (CLS) is 0 on every page.
 10. **SEO.** Each page has a title and a description written for its topic, in its first line. The build puts them into `<title>`, `description` and the `og:` tags (a shared link's preview). The `.html` pages (the preview, a GitHub demo) carry `noindex`. The `.php` pages for their server don't, so only the real site is indexed.
 
+## How the popups work (for the next agent)
+
+**The content is in the HTML, not made by JavaScript.** The build writes every popup's text into the page itself; the script only shows it. Opening a popup never fetches anything.
+
+**The flow, from source to screen:**
+
+1. **The sources.** What a popup says lives in `_src/program.json` (rows, sessions, lectures, the panel) and `_src/people.json` (people and their bios). Nothing about a popup is written in a page.
+2. **The build writes one `<template>` per popup** a page needs, at the end of its `<main>` (`popupTemplate()` in `build.cjs`):
+   ```html
+   <template id="pop-d2-h1" data-title="TITLE 1" data-meta="08:30-10:00|John Doe" data-back="TITLE 1" data-dir="ltr" data-badge="יום הסדנאות">
+     …the body: paragraphs, the lecture cards, the person's card…
+   </template>
+   ```
+   A `<template>` is part of the HTML file (view-source shows it), but the browser doesn't draw it.
+   - `data-title` → the popup's `<h2>`;
+   - `data-meta` → the label pills under it (split on `|`);
+   - `data-back` → this popup's name on the "חזרה ל…" button of a popup opened from it;
+   - `data-dir` → `ltr` for an English popup;
+   - `data-badge` → the day's pill above the title (a day's `"badge"` in `program.json`).
+3. **The openers** are buttons with `data-pop="<name>"`, also written by the build: a cube's head, a lecture card, a panelist, a person's tile (`.st-slot-more`).
+4. **One `<dialog id="st-pop">` for the whole site** (`_src/partials/end.html`): the head (the back button, the badge, the `<h2>`, the pills, the X), the body, the foot ("סגירה").
+5. **`st-js/st-site.js`** (about 60 lines) listens for a click on any `[data-pop]`. It finds `#pop-<name>`, copies its `data-*` into the head and its content into the body, sets `dir`, and opens the dialog (`showModal()`).
+   - **A `[data-pop]` inside the open popup** (a lecture in its session) switches the content instead of opening a second popup. It keeps a trail, shows "חזרה ל{data-back}", and fades the change.
+   - **The colour** comes from the opener: inside `.st-t2` the popup gets `data-track="2"`, and the `--st-pop-*` variables turn blue.
+   - **Closing:** the X, "סגירה", a click on the backdrop, or Esc.
+6. **The browser's `<dialog>` does the accessibility:** focus moves in and stays inside, Esc closes it, and focus returns to the opener.
+
+**The names:**
+
+| Popup | Its name |
+|---|---|
+| A session | its `id` (`s11`) |
+| A lecture | the session's id and its place (`s11-1`) |
+| A single row | its `id` (`panel`, `d2-h1`) |
+| A shared popup | its key in the day's `popups` (`posters`) |
+| A person's card | `p-` and their key (`p-ram`) |
+
+**To add or change a popup:** edit the JSON (a row with an `id` and a `text` or a `speaker`; a lecture in a session; a person's `bio`), then run `node build.cjs`. Never write a `<template>` or a `data-pop` by hand: the build writes only the popups a page uses, and reports the cubes that have nothing to show yet.
+
+**Search:** the text is in the HTML source, but inside a `<template>` it isn't displayed, so don't count on it for SEO. What must be found belongs on the page itself (a session's title, a person's name in the table and the tiles).
+
 ## The framework
 
 - **Bootstrap 5.3.3, RTL build,** loaded from jsDelivr with integrity hashes (SRI), in `head.html` and `end.html`. **It is used for the menu only:** the navbar, which opens and closes on a phone (`collapse`). Our `st.css` loads after it, so ours wins. On a phone, the panel drops over the page under the bar, so the page doesn't move.
@@ -201,7 +242,7 @@ Replace each with the real content, keeping the same shape.
   - `body` has `data-bs-no-jquery`, so Bootstrap never touches jQuery (only the registration page has it, and that jQuery is theirs).
 - **The popup is the browser's own `<dialog>`,** not Bootstrap's modal.
   - There is one dialog for the whole site, in `end.html`.
-  - `st-site.js` fills it from the `<template>` the build writes for each popup.
+  - `st-site.js` fills it from the `<template>` the build writes for each popup (the whole mechanism: "How the popups work" above).
   - The browser handles the accessibility: focus moves in and stays inside, Esc closes it, and focus returns to the button that opened it.
 - **The font is Google Sans** (Hebrew included), **hosted with the site** in `st-fonts/`, preloaded in `head.html`, with `font-display: block`: no text is drawn until the font is in, so it never swaps and nothing jumps. Its fallback (`Google Sans Fallback` in `st.css`) is Arial resized to Google Sans's measured width, for a slow first visit. Don't switch back to the Google Fonts link or to `swap`: either brings the jump back.
 - **No other library.**
