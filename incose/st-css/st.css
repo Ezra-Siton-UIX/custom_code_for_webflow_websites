@@ -558,3 +558,6 @@ button.st-lecture:hover .st-lecture-ttl, button.st-lecture:focus-visible .st-lec
   .st-cards-over .st-place { font-size: 14px; }
   .st-cards-over .st-link { font-size: 16px; }
 }
+/* a line break for phones only (<br class="st-br-m">): it places a heading's break where it reads well */
+.st-br-m { display: none; }
+@media (max-width: 767px) { .st-br-m { display: inline; } }
