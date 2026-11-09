@@ -25,9 +25,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
 // 3. the three choices, in one place: the price table's head and the date choice under it both read them (in their order: date1, date2, date3)
 var CHOICES = [
-  { title: 'יום הכנס', date: 'יום ג׳, 12.01.2027', how: 'פרונטלי, במלון' },
-  { title: 'יום הסדנאות', date: 'יום ד׳, 13.01.2027', how: 'בזום' },
-  { title: 'שני הימים (כנס + סדנאות)', date: '12-13.01.2027', how: 'הכנס פרונטלי, הסדנאות בזום' },
+  { title: 'יום הכנס', pick: 'יום הכנס בלבד', date: 'יום ג׳, 12.01.2027', how: 'פרונטלי, במלון' },
+  { title: 'יום הסדנאות', pick: 'יום הסדנאות בלבד', date: 'יום ד׳, 13.01.2027', how: 'בזום' },
+  { title: 'שני הימים (כנס + סדנאות)', pick: 'שני הימים (כנס + סדנאות)', date: '12-13.01.2027', how: 'הכנס פרונטלי, הסדנאות בזום' },
 ];
 // their script writes both on load (lines of equal weight; the date choice with a wrong weekday and an old date); once it has,
 // these write a title and a lighter line under it in their place. Their rows, radios and handlers stay
@@ -46,7 +46,7 @@ document.addEventListener('DOMContentLoaded', function () {
     if (labels.length !== CHOICES.length || labels[0].querySelector('.st-date-ttl')) return;
     labels.forEach(function (label, i) {
       label.removeAttribute('style');
-      label.innerHTML = '<span class="st-date-ttl">' + CHOICES[i].title + '</span><span class="st-date-sub">' + CHOICES[i].date + '</span>';
+      label.innerHTML = '<span class="st-date-ttl">' + CHOICES[i].pick + '</span>, <span class="st-date-sub">' + CHOICES[i].date + '</span>';
     });
   };
   new MutationObserver(writeHead).observe(head, { childList: true });

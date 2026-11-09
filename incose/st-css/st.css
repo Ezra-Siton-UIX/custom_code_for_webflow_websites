@@ -446,19 +446,28 @@ html:has(.st-pop[open]) { overflow: hidden; }
 .st-register label { font-size: 15px; font-weight: 600; color: var(--st-text); }
 .st-register input[type="text"], .st-register input[type="email"], .st-register select { display: block; width: 100%; height: 46px; margin-top: 6px; padding: 0 14px; border: 1px solid color-mix(in srgb, var(--st-muted) 45%, #fff);   /* a field's frame, a little stronger than the hairlines */ border-radius: var(--st-radius-sm); background: #fff; font: inherit; font-size: 16px; color: var(--st-ink); }
 .st-register input[type="text"]:focus, .st-register input[type="email"]:focus, .st-register select:focus { outline: none; border-color: var(--st-mint); box-shadow: 0 0 0 3px color-mix(in srgb, var(--st-mint) 25%, transparent); }
-.st-register input[type="radio"], .st-register input[type="checkbox"] { accent-color: var(--st-teal); width: 18px; height: 18px; vertical-align: middle; }
+.st-register input[type="radio"], .st-register input[type="checkbox"] { accent-color: var(--st-teal); width: 18px; height: 18px; vertical-align: middle; cursor: pointer; }
+.st-register input[type="radio"] + label, .st-register input[type="checkbox"] + label { cursor: pointer; }   /* a choice's name picks it too */
 /* the date choice (their script writes it, with inline floats and a negative margin): each option one row, its circle on the text's line; the whole row picks it (register.js) */
-.st-register .date-sel > div { display: flex; align-items: center; gap: 10px; margin-block: 8px; cursor: pointer; }
+.st-register .date-sel { display: block; }   /* a plain list, one option a line (not the row grid of the fields: three side by side read as picking a column) */
+.st-register .date-sel h3 { margin: 0 0 8px; padding: 0; font-size: 18px; font-weight: 700; color: var(--st-ink); }
+.st-register .date-sel > div { display: flex; align-items: center; gap: 10px; width: auto !important; margin-block: 6px; cursor: pointer; }
 .st-register .date-sel input[type="radio"] { flex: none; float: none !important; width: 20px; height: 20px; margin: 0 !important; transform: none; }
 .st-register .date-sel label { margin: 0; padding: 0 !important; cursor: pointer; }
-/* an option: its title bold, its date lighter under it (register.js writes them) */
-.st-date-ttl { display: block; font-size: 16px; font-weight: 700; line-height: 1.35; color: var(--st-ink); }
-.st-date-sub { display: block; font-size: 14px; font-weight: 400; line-height: 1.5; color: var(--st-muted); }
+/* an option on one line: its name bold, its date lighter (register.js writes them) */
+.st-date-ttl { font-weight: 700; color: var(--st-ink); }
+.st-date-sub { font-weight: 400; color: var(--st-muted); }
 .st-register .reqstar { margin-inline-start: 2px; color: var(--st-red); }
 .st-register .add_reg-p a { color: var(--st-teal); font-weight: 700; text-decoration: underline; text-underline-offset: 3px; cursor: pointer; }
 /* the payment: each way a framed row, its line under it */
 .st-register #regp { margin: 10px 0 0; padding: 0; list-style: none; display: grid; gap: 8px; }
-.st-register #regp li { padding: 14px 16px; border: 1px solid var(--st-line); border-radius: var(--st-radius); background: #fff; }
+/* a payment card: the circle beside the title; the whole card picks it (its label stretches over it); the chosen card in mint */
+.st-register #regp li { position: relative; display: flex; align-items: flex-start; gap: 12px; padding: 14px 16px; border: 1px solid var(--st-line); border-radius: var(--st-radius); background: #fff; transition: border-color .2s, background-color .2s; }
+.st-register #regp li:has(input:checked) { border-color: var(--st-mint); background: color-mix(in srgb, var(--st-mint) 7%, #fff); }
+.st-register #regp input { flex: none; margin: 3px 0 0; }
+.st-register #regp label { flex: 1; margin: 0; font-weight: 700; color: var(--st-ink); cursor: pointer; }
+.st-register #regp label::after { content: ""; position: absolute; inset: 0; border-radius: inherit; }
+.st-register #regp input, .st-register #regp a { position: relative; z-index: 1; }
 .st-register #regp em { display: block; margin-top: 4px; font-size: 14px; font-style: normal; font-weight: 400; color: var(--st-muted); }
 .st-register #regp a { color: var(--st-teal); }
 .st-register .f2 { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 16px 20px; border-radius: var(--st-radius); background: var(--st-tint); font-weight: 600; color: var(--st-ink); }
@@ -468,8 +477,11 @@ html:has(.st-pop[open]) { overflow: hidden; }
 .st-register #reg3 hr { margin: 16px 0; border: 0; border-top: 1px solid var(--st-line); opacity: 1; }
 .st-register #reg-done { margin-top: 32px; text-align: center; }
 /* their button: the site's call to action (mint, round) */
-.st-register .btn-green { padding: 14px 40px; border: 0; border-radius: var(--st-pill); background: var(--st-mint); color: var(--st-deep); font: 700 18px var(--st-font); cursor: pointer; transition: background-color .2s; }
-@media (hover: hover) { .st-register .btn-green:hover { background: var(--st-mint-light); } }
+/* the pay button: the green people know from checkouts, white, an arrow forward (left, in Hebrew) */
+.st-register .btn-green { display: inline-flex; align-items: center; gap: 14px; padding: 14px 36px; border: 0; border-radius: var(--st-pill); background: #28a745; color: #fff; font: 700 18px var(--st-font); cursor: pointer; transition: background-color .2s; }
+.st-register .btn-green::after { content: ""; width: 8px; height: 8px; border: solid currentColor; border-width: 0 0 2px 2px; transform: rotate(45deg); }
+@media (hover: hover) { .st-register .btn-green:hover { background: #218838; } }
+.st-register .btn-green:active { background: #218838; }
 .st-register #sec3 { margin-top: 48px; text-align: center; color: var(--st-muted); }
 .st-register #sec3 strong { display: block; margin-bottom: 4px; font-size: 18px; color: var(--st-ink); }
 .st-register #sec3 a { color: var(--st-teal); }
