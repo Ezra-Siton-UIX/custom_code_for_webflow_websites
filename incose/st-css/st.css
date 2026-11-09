@@ -79,9 +79,9 @@ body { margin: 0; font-family: var(--st-font); color: var(--st-text); background
   .st-hero::before { background: url(../st-images/st-wave-mobile.webp) center bottom / 100% auto no-repeat; -webkit-mask-image: none; mask-image: none; }
   /* the glow follows the element, at the bottom in the middle */
   .st-hero { padding-block: 40px 74px; background: radial-gradient(ellipse 75% 35% at 50% 76%, color-mix(in srgb, var(--st-mint) 30%, transparent), transparent 70%), var(--st-dark-bg); }
-  .st-hero-in { flex-direction: column; gap: 24px; }
+  .st-hero-in { flex-direction: column; gap: 12px; }
   .st-copy { width: 100%; max-width: 420px; align-self: center; }
-  .st-shape { width: 220px; }
+  .st-shape { width: 170px; }   /* smaller and higher on a phone, so the first card shows on the first screen */
 }
 /* the two cards under the header, rising over its bottom (the header adds that much to its own bottom space); in the banner's greens */
 .st-cards { position: relative; margin-bottom: 0; list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
@@ -191,7 +191,11 @@ a:focus-visible, button:focus-visible { outline: 3px solid var(--st-mint); outli
 .st-nav { padding-block: 10px; background: var(--st-deep); border-bottom: 1px solid color-mix(in srgb, var(--st-mint-light) 18%, transparent); }
 .st-nav-logo { padding: 0; }
 .st-nav-logo img { display: block; width: 200px; height: auto; }
-@media (max-width: 767px) { .st-nav-logo img { width: 168px; } }
+@media (max-width: 767px) {
+  .st-nav-logo img { width: 150px; }
+  .st-nav-btn { padding: 4px 8px; }
+  .st-nav-btn .navbar-toggler-icon { width: 1.3em; height: 1.3em; }
+}
 .st-nav .nav-link { position: relative; padding: 12px 0; color: var(--st-on-dark); font-size: 16px; font-weight: 500; white-space: nowrap; }
 .st-nav .nav-link span { color: var(--st-mint-light); font-size: 14px; }
 .st-nav .nav-link:hover, .st-nav .nav-link:focus, .st-nav .nav-link[aria-current="page"] { color: #fff; }
@@ -220,7 +224,7 @@ a:focus-visible, button:focus-visible { outline: 3px solid var(--st-mint); outli
   .st-nav-end { flex-direction: column; align-items: stretch; gap: 0; }
   .st-nav-cta { margin-top: 12px; }
   /* the registration in the bar too, beside the menu button (and still in the open menu) */
-  .st-nav-cta-bar { display: inline-flex; margin: 0 0 0 0; margin-inline-start: auto; margin-inline-end: 10px; padding: 8px 16px; font-size: 15px; }
+  .st-nav-cta-bar { display: inline-flex; margin: 0; margin-inline-start: auto; margin-inline-end: 8px; padding: 6px 12px; font-size: 13px; }   /* small: the bar is tight on a phone */
   /* one row: the logo, the registration, the menu button; the logo gives way if the screen is narrow */
   .st-nav > .st-wrap { flex-wrap: nowrap; }
   .st-nav-logo { flex: 0 1 auto; min-width: 0; margin-inline-end: 8px; }
@@ -501,7 +505,6 @@ button.st-lecture:hover .st-lecture-ttl, button.st-lecture:focus-visible .st-lec
 /* the panel's questions in its popup */
 .st-pop-body .st-pop-q { margin-bottom: 8px; font-weight: 600; color: var(--st-ink); }
 .st-pop-ol { margin: 0 0 24px; padding-inline-start: 22px; display: grid; gap: 6px; }
-.st-foot-btn svg { width: 15px; height: 15px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; opacity: .8; }
 /* the home's two cards: on hover (or keyboard focus) the program's arrow appears at the far end, in the middle */
 .st-card-arrow { position: absolute; inset-inline-end: 22px; top: 50%; display: grid; color: var(--st-teal); opacity: 0; transform: translateY(-50%); transition: opacity .2s; pointer-events: none; }
 .st-card-arrow svg { width: 24px; height: 24px; fill: none; stroke: currentColor; stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round; }
@@ -539,5 +542,12 @@ button.st-lecture:hover .st-lecture-ttl, button.st-lecture:focus-visible .st-lec
 /* the footer on a phone: the logo and the association's button in one row (each at its end), the contacts under them */
 @media (max-width: 767px) {
   .st-foot-in { display: grid; grid-template-columns: auto auto; justify-content: space-between; align-items: center; gap: 18px 16px; }
-  .st-foot-in ul { grid-column: 1 / -1; grid-row: 2; gap: 8px 22px; }
+  .st-foot-in ul { grid-column: 1 / -1; grid-row: 2; justify-content: center; gap: 8px 22px; }   /* the contacts centred under them */
+  .st-foot-in > img { justify-self: start; }
+  .st-foot-btn { justify-self: end; }   /* its own width, at the row's end (not stretched to the column) */
 }
+/* the footer's contacts: a mail and a phone icon before them (st-images/footer_icons), drawn in mint through a mask */
+.st-foot a[href^="mailto:"], .st-foot a[href^="tel:"] { display: inline-flex; align-items: center; gap: 8px; }
+.st-foot a[href^="mailto:"]::before, .st-foot a[href^="tel:"]::before { content: ""; flex: none; width: 16px; height: 16px; background: var(--st-mint-light); -webkit-mask: var(--st-icon) center / contain no-repeat; mask: var(--st-icon) center / contain no-repeat; }
+.st-foot a[href^="mailto:"] { --st-icon: url(../st-images/footer_icons/mail.svg); }
+.st-foot a[href^="tel:"] { --st-icon: url(../st-images/footer_icons/phone.svg); }
