@@ -1,0 +1,5 @@
+# the upload build (made by node build.cjs --php)
+_php/
+# working material, not the site: their old pages, old pictures and render sources
+_source/
+_not-used/

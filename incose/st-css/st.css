@@ -1,0 +1,429 @@
+/* INCOSE IL 2027: the whole site's CSS, one file for every page (st- everything) */
+/* the font, hosted with the site (st-fonts: Google Sans, its Hebrew and Latin files, weights 400-700) and preloaded in the head; font-display: block (no text until the font is in, so it never swaps and nothing jumps) */
+@font-face { font-family: "Google Sans"; font-style: normal; font-weight: 400 700; font-display: block; src: url(../st-fonts/google-sans-hebrew.woff2) format("woff2"); unicode-range: U+0307-0308, U+0590-05FF, U+200C-2010, U+20AA, U+25CC, U+FB1D-FB4F; }
+@font-face { font-family: "Google Sans"; font-style: normal; font-weight: 400 700; font-display: block; src: url(../st-fonts/google-sans-latin.woff2) format("woff2"); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+/* a fallback with Google Sans's size (Arial at 110.6%, measured on the site's Hebrew text at 400-700; its height from Google Sans), so nothing moves when the font arrives */
+@font-face { font-family: "Google Sans Fallback"; font-display: block; src: local("Arial"); size-adjust: 110.6%; ascent-override: 87.7%; descent-override: 26.2%; line-gap-override: 0%; }
+body { margin: 0; font-family: var(--st-font); color: var(--st-text); background: #fff; }
+/* ---------- the frame of every page: one container, one section, one gap under a title. Change a value here and every page follows ---------- */
+:root {
+  /* the frame */
+  --st-container: 1232px;                 /* the one container: 1200px of content + its 16px sides */
+  --st-gutter: 16px;                      /* the container's sides */
+  --st-section: clamp(48px, 6vw, 96px);   /* every section's space, top and bottom */
+  --st-head-gap: clamp(32px, 4vw, 48px);  /* a section's title to what follows it */
+  /* the type */
+  --st-font: "Google Sans", "Google Sans Fallback", system-ui, sans-serif;
+  /* the colours, by role (the banner's greens and mint) */
+  --st-ink: #0b3a30;            /* headings and strong text */
+  --st-text: #33443f;           /* running text */
+  --st-muted: #4f6b62;          /* secondary text */
+  --st-faint: #9bb5ad;          /* a separator */
+  --st-green: #0b4433;          /* the brand green: badges, buttons, track 1 */
+  --st-deep: #05251a;           /* the menu, the bottom of a dark section */
+  --st-deepest: #041c14;        /* the footer */
+  --st-mint: #2cb096;           /* lines, dots, hover frames, focus */
+  --st-mint-light: #6ef3df;     /* glows, a CTA's hover */
+  --st-teal: #13866f;           /* links and labels on white (mint is too light there) */
+  --st-blue: #1b5e83;           /* track 2 (the logo's blue) */
+  --st-on-dark: #dcefe9;        /* text on the dark green */
+  --st-on-dark-muted: #9fbdb3;  /* secondary text on the dark green */
+  --st-line: #e1ebe7;           /* hairlines, card frames */
+  --st-line-strong: #d3e4de;    /* fields, photo rings */
+  --st-tint: #f2f7f5;           /* a light surface */
+  --st-grey: #f7f7f7;           /* the logos' section, breaks (the logo tiles are on this grey) */
+  --st-t1-bg: #eaf6f1;          /* track 1 cubes */
+  --st-t1-line: #cfe7de;
+  --st-t2-bg: #eaf1f7;          /* track 2 cubes */
+  --st-t2-line: #cfdfeb;
+  --st-yellow: #dee69d;         /* the dates on the banner */
+  --st-red: #c0392b;            /* a required field's star */
+  --st-dark-bg: linear-gradient(to bottom, var(--st-green), var(--st-deep));   /* every dark section */
+  /* the shapes */
+  --st-radius-sm: 8px;          /* badges, fields */
+  --st-radius: 12px;            /* cards, cubes, tiles */
+  --st-radius-lg: 16px;         /* the popup, a big picture */
+  --st-pill: 999px;             /* buttons, labels */
+}
+.st-wrap { width: 100%; max-width: var(--st-container); margin-inline: auto; padding-inline: var(--st-gutter); }
+.st-section { padding-block: var(--st-section); }
+/* ---------- the home's banner: the dark green, a mint glow behind the shape, the wave and the dots inside it ---------- */
+.st-hero { position: relative; isolation: isolate; overflow: clip; background: radial-gradient(ellipse 40% 75% at 34% 48%, color-mix(in srgb, var(--st-mint) 30%, transparent), transparent 70%), var(--st-dark-bg); padding-block: clamp(32px, 3vw, 56px) calc(clamp(32px, 3vw, 56px) + clamp(34px, 4.25vw, 82px)); }   /* the bottom: the top's space plus what the cards cover */
+/* the wave, along the top edge, clear of the text (st-wave-top.webp; its source in _not-used) */
+.st-hero::before { content: ""; position: absolute; inset: 0; z-index: -1; background: url(../st-images/st-wave-top.webp) center top / cover no-repeat; opacity: .2;
+  /* it fades out at both sides */
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 18%, #000 82%, transparent); mask-image: linear-gradient(to right, transparent, #000 18%, #000 82%, transparent); }
+/* halftone dots in two corners (top left, bottom right) of the dark sections that have them */
+.st-hero::after, .st-topics::after, .st-banner::after { content: ""; position: absolute; inset: 0; z-index: -1; background: url(../st-images/ai_dots_tl.webp) top left / min(560px, 55%) auto no-repeat, url(../st-images/ai_dots_br.webp) bottom right / min(560px, 55%) auto no-repeat; mix-blend-mode: screen; opacity: .35; }
+/* the text and the element side by side, centred; a phone: one under the other */
+.st-hero-in { display: flex; align-items: center; justify-content: center; gap: min(2vw, 40px); }
+.st-hero-in img { display: block; height: auto; max-width: 100%; }
+/* the logo over the text, one column from the top, beside the shape */
+.st-copy { width: min(30vw, 600px); align-self: flex-start; display: flex; flex-direction: column; align-items: center; gap: clamp(16px, 1.6vw, 28px); }
+.st-logo { width: 40%; }
+.st-text { width: 100%; }
+/* the element glows: screen over the green, a soft mint halo */
+.st-shape { width: min(24vw, 480px); mix-blend-mode: screen; filter: drop-shadow(0 0 14px color-mix(in srgb, var(--st-mint-light) 45%, transparent)) brightness(1.1); }
+/* SAVE THE DATE: a ring in the corner */
+.st-save { position: absolute; top: clamp(24px, 3vw, 56px); inset-inline-start: clamp(24px, 11vw, 210px); width: clamp(110px, 9.5vw, 180px); aspect-ratio: 1; box-sizing: border-box; border-radius: 50%; border: clamp(4px, .3vw, 6px) solid var(--st-mint-light); display: grid; place-content: center; justify-items: center; gap: 4px; color: #fff; font: 600 clamp(15px, 1.35vw, 25px)/1.15 var(--st-font); text-align: center; background: color-mix(in srgb, var(--st-deep) 80%, transparent); -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px); box-shadow: 0 0 18px color-mix(in srgb, var(--st-mint-light) 45%, transparent), inset 0 0 18px color-mix(in srgb, var(--st-mint-light) 25%, transparent); }
+.st-save svg { width: clamp(26px, 2vw, 38px); height: clamp(26px, 2vw, 38px); fill: none; stroke: var(--st-mint); stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; }
+@media (max-width: 767px) {
+  .st-save { width: 78px; top: 12px; inset-inline-start: 12px; border-width: 4px; font-size: 11px; gap: 2px; }
+  .st-save svg { width: 18px; height: 18px; }
+  /* a phone: its own wave (st-wave-mobile, Nano Banana, drawn for a narrow screen), along the bottom behind the element, clear of the text */
+  .st-hero::before { background: url(../st-images/st-wave-mobile.webp) center bottom / 100% auto no-repeat; -webkit-mask-image: none; mask-image: none; }
+  /* the glow follows the element, at the bottom in the middle */
+  .st-hero { padding-block: 40px 74px; background: radial-gradient(ellipse 75% 35% at 50% 76%, color-mix(in srgb, var(--st-mint) 30%, transparent), transparent 70%), var(--st-dark-bg); }
+  .st-hero-in { flex-direction: column; gap: 24px; }
+  .st-copy { width: 100%; max-width: 420px; align-self: center; }
+  .st-shape { width: 220px; }
+}
+/* the two cards under the header, rising over its bottom (the header adds that much to its own bottom space); in the banner's greens */
+.st-cards { position: relative; margin-bottom: 0; list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+.st-cards-over { margin-top: calc(clamp(34px, 4.25vw, 82px) * -1); }
+/* the whole card is the link (its ::after covers the card); a light green stroke, mint on hover, nothing moves */
+.st-card { position: relative; margin: 0; background: #fff; border: 2px solid var(--st-line-strong); border-radius: var(--st-radius); box-shadow: 0 6px 24px rgb(0 0 0 / .12); padding: 20px 24px; display: grid; justify-items: center; gap: 8px; text-align: center; transition: border-color .2s; }
+.st-card:hover { border-color: var(--st-mint); }
+.st-card:has(.st-link:focus-visible) { outline: 2px solid var(--st-mint); outline-offset: 3px; }
+.st-badge { background: var(--st-green); color: #fff; border-radius: var(--st-radius-sm); padding: 4px 16px; font-size: 17px; line-height: 1.4; }
+.st-date { margin: 0; font-size: 26px; font-weight: 700; color: var(--st-ink); line-height: 1.3; }
+.st-date span { color: var(--st-mint); }
+.st-date .st-sep { font-weight: 400; color: var(--st-faint); margin-inline: 6px; }
+.st-place { margin: 0; font-size: 15px; color: var(--st-muted); }
+.st-link { font-size: 19px; color: var(--st-teal); text-decoration: underline; text-underline-offset: 3px; outline: none; }
+.st-link::after { content: ""; position: absolute; inset: 0; border-radius: inherit; }
+@media (max-width: 767px) {
+  .st-cards { grid-template-columns: 1fr; gap: 16px; }
+  .st-cards-over { margin-top: -34px; }
+}
+/* about the conference: text beside a picture, both from the top. Everything inside .st-prose only, so the site's own h2, p and ul stay as they are */
+.st-about { display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr); gap: clamp(32px, 5vw, 80px); align-items: start; }
+/* .st-prose: text to read, on any page (the home's about, the tutorials day): its h1 or h2, paragraphs, lists with mint dots, the signature */
+.st-prose h1 { margin: 0 0 24px; font-size: clamp(26px, 2.4vw, 34px); font-weight: 700; line-height: 1.25; color: var(--st-ink); }
+.st-prose h1::after { content: ""; display: block; width: 64px; height: 4px; margin-top: 16px; border-radius: 2px; background: var(--st-mint); }
+.st-prose h1 span { color: var(--st-teal); }   /* the name in teal (the mint itself is too light on white for text) */
+.st-prose h2 { margin: 36px 0 12px; font-size: 20px; font-weight: 700; line-height: 1.3; color: var(--st-ink); }
+.st-prose p { margin: 0 0 16px; font-size: 17px; line-height: 1.75; }
+.st-prose .st-lead { font-size: 18px; font-weight: 600; line-height: 1.65; color: var(--st-ink); }
+.st-prose ul { margin: 0; padding: 0; list-style: none; display: grid; gap: 10px; }
+.st-prose li { position: relative; padding-inline-start: 22px; font-size: 17px; line-height: 1.6; }
+.st-prose li::before { content: ""; position: absolute; inset-inline-start: 2px; top: .62em; width: 8px; height: 8px; border-radius: 50%; background: var(--st-mint); }
+.st-prose strong { color: var(--st-ink); font-weight: 700; }
+.st-prose .st-after { margin-top: 36px; }
+.st-about-img { display: block; width: 100%; height: auto; border-radius: var(--st-radius-lg); }
+@media (max-width: 767px) {
+  .st-about { grid-template-columns: 1fr; }
+  .st-about-img { max-width: 360px; margin-inline: auto; }
+}
+/* see you at the conference: the two chairs, inside the text column, a round photo beside the name, the role and the organisation */
+.st-prose .st-chairs { margin-top: 40px; }
+.st-prose .st-chairs-title { margin: 0 0 24px; font-size: 19px; font-weight: 600; color: var(--st-ink); }
+.st-prose .st-chairs-row { display: flex; flex-wrap: wrap; gap: 24px 48px; }
+.st-prose .st-chair { margin: 0; display: flex; align-items: center; gap: 16px; }
+.st-prose .st-chair img { width: 104px; height: 104px; border-radius: 50%; object-fit: cover; border: 3px solid var(--st-line-strong); }
+.st-prose .st-chair p { margin: 0; }
+.st-prose .st-chair-name, .st-prose .st-chair-role { font-size: 17px; font-weight: 700; line-height: 1.4; color: var(--st-ink); }
+.st-prose .st-chair-org { margin-top: 8px; font-size: 15px; color: var(--st-muted); }
+/* a phone: the same text, tighter */
+@media (max-width: 767px) {
+  .st-about { gap: 28px; }
+  .st-prose h1 { margin-bottom: 16px; }
+  .st-prose h1::after { margin-top: 12px; }
+  .st-prose h2 { margin: 24px 0 8px; font-size: 18px; }
+  .st-prose p { margin-bottom: 12px; font-size: 16px; line-height: 1.6; }
+  .st-prose .st-lead { font-size: 17px; line-height: 1.55; }
+  .st-prose ul { gap: 6px; }
+  .st-prose li { font-size: 16px; line-height: 1.55; }
+  .st-prose .st-after { margin-top: 20px; }
+  .st-prose .st-chairs { margin-top: 24px; }
+  .st-prose .st-chairs-title { margin-bottom: 16px; }
+  .st-prose .st-chair img { width: 84px; height: 84px; }
+}
+/* the dark sections under the header (the topics, the calendar): the header's green, a soft mint glow from the top */
+.st-dark { position: relative; isolation: isolate; overflow: clip; background: radial-gradient(ellipse 60% 55% at 50% 0%, color-mix(in srgb, var(--st-mint) 25%, transparent), transparent 70%), var(--st-dark-bg); color: #fff; }
+/* a section's centred heading with the mint bar under it: white on the dark, dark green on white; the block after it keeps the gap */
+.st-title { margin: 0; font: 700 clamp(26px, 2.4vw, 34px)/1.25 var(--st-font); color: inherit; text-align: center; }
+.st-title::after { content: ""; display: block; width: 64px; height: 4px; margin: 16px auto 0; border-radius: 2px; background: var(--st-mint); }
+/* the gaps between blocks live only here (a block never sets its own top margin, so it cannot erase them) */
+.st-title + *, .st-sub + * { margin-top: var(--st-head-gap); }
+.st-title + .st-sub { margin-top: 20px; }
+.st-sub { max-width: 760px; margin-inline: auto; margin-bottom: 0; font-size: clamp(17px, 1.4vw, 20px); line-height: 1.6; color: var(--st-muted); text-align: center; }
+.st-dark .st-sub { color: var(--st-on-dark); }
+/* the topics: an icon over its line, four in a row (the icons: one Nano Banana sheet, cut into eight, black made transparent) */
+.st-topics-grid { margin-bottom: 0; padding: 0; list-style: none; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: clamp(32px, 3.5vw, 56px) clamp(20px, 2.5vw, 40px); }
+.st-topics-grid li { margin: 0; padding: 0; display: grid; justify-items: center; align-content: start; gap: 16px; text-align: center; }
+.st-topics-grid li::before { content: none; }
+.st-topics-grid img { display: block; width: clamp(96px, 8vw, 128px); height: auto; }
+.st-topics-grid p { margin: 0; max-width: 260px; font-size: 17px; line-height: 1.55; color: var(--st-on-dark); }
+.st-topics-grid strong { display: block; font-weight: 700; color: #fff; }
+@media (max-width: 959px) { .st-topics-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 767px) { .st-topics-grid img { width: 84px; } .st-topics-grid p { font-size: 15px; } }
+/* the supporters: the site's own logo tiles (assets/, framed already, on var(--st-grey): the section takes that grey so the tiles' edges vanish),
+   their order and three in a row, as on the site */
+.st-sponsors { background: var(--st-grey); color: var(--st-ink); }
+.st-logos { margin-bottom: 0; padding: 0; list-style: none; display: grid; grid-template-columns: repeat(3, minmax(0, 180px)); justify-content: center; gap: clamp(10px, 1.4vw, 20px); }
+.st-logos li { margin: 0; padding: 0; }
+.st-logos li::before { content: none; }
+.st-logos img { display: block; width: 100%; height: auto; }
+/* the calendar: the cards grid again, each with a calendar page and an add button; the whole card opens Google Calendar */
+.st-calendar .st-card { gap: 12px; padding: 28px 24px; }
+.st-calendar .st-date { font-size: 24px; }
+/* a calendar page: the month on a dark band, two rings holding it, the day big, and a mint plus: this one adds the day */
+.st-cal { position: relative; width: 78px; margin: 6px 0 8px; border: 2px solid var(--st-green); border-radius: var(--st-radius-sm); background: #fff; display: grid; text-align: center; }
+.st-cal b { padding: 5px 0 4px; border-radius: 6px 6px 0 0; background: var(--st-green); color: #fff; font-size: 12px; font-weight: 600; letter-spacing: .08em; }
+.st-cal strong { padding-bottom: 2px; font-size: 34px; font-weight: 700; line-height: 1.25; color: var(--st-ink); }
+.st-cal::before { content: ""; position: absolute; top: -8px; left: 18px; right: 18px; height: 13px; border-inline: 4px solid var(--st-mint); border-radius: 2px; }
+.st-cal::after { content: "+"; position: absolute; right: -13px; bottom: -11px; width: 28px; height: 28px; border-radius: 50%; background: var(--st-mint); color: #fff; font: 700 22px/27px var(--st-font); text-align: center; box-shadow: 0 0 0 3px #fff; }
+.st-add { display: inline-flex; align-items: center; gap: 8px; margin-top: 4px; padding: 10px 22px; border-radius: var(--st-pill); background: var(--st-green); color: #fff; font-size: 16px; font-weight: 600; letter-spacing: .03em; text-decoration: none; transition: background-color .2s; }
+.st-add svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.st-card:hover .st-add { background: var(--st-teal); }
+
+/* ---------- the site's frame: skip link, focus, menu, page head, footer ---------- */
+.st-skip { position: absolute; top: -60px; inset-inline-start: 16px; z-index: 100; padding: 10px 16px; border-radius: var(--st-radius-sm); background: var(--st-mint); color: var(--st-deep); font-weight: 700; text-decoration: none; }
+.st-skip:focus { top: 8px; }
+a:focus-visible, button:focus-visible { outline: 3px solid var(--st-mint); outline-offset: 2px; }
+/* the menu: Bootstrap's navbar (it opens and closes the links under 1200px), in the header's dark green; the current page underlined in mint */
+.st-nav { padding-block: 10px; background: var(--st-deep); border-bottom: 1px solid color-mix(in srgb, var(--st-mint-light) 18%, transparent); }
+.st-nav-logo { padding: 0; }
+.st-nav-logo img { display: block; width: 200px; height: auto; }
+@media (max-width: 767px) { .st-nav-logo img { width: 168px; } }
+.st-nav .nav-link { position: relative; padding: 12px 0; color: var(--st-on-dark); font-size: 16px; font-weight: 500; white-space: nowrap; }
+.st-nav .nav-link span { color: var(--st-mint-light); font-size: 14px; }
+.st-nav .nav-link:hover, .st-nav .nav-link:focus, .st-nav .nav-link[aria-current="page"] { color: #fff; }
+.st-nav .nav-link[aria-current="page"]::after { content: ""; position: absolute; inset-inline: 0; bottom: 4px; height: 3px; border-radius: 2px; background: var(--st-mint); }
+.st-nav .st-nav-lang { font-size: 15px; }
+.st-nav-end { display: flex; align-items: center; gap: 20px; }
+.st-nav-cta { padding: 10px 20px; border: 0; border-radius: var(--st-pill); background: var(--st-mint); color: var(--st-deep); font-size: 16px; font-weight: 700; white-space: nowrap; }
+.st-nav-cta:hover, .st-nav-cta:focus, .st-nav-cta[aria-current="page"] { background: var(--st-mint-light); color: var(--st-deep); }
+.st-nav-btn { border-color: color-mix(in srgb, var(--st-mint-light) 45%, transparent); }
+.st-nav-btn:focus { box-shadow: none; }
+.st-nav-btn:focus-visible { box-shadow: 0 0 0 3px color-mix(in srgb, var(--st-mint) 50%, transparent); }   /* the ring for the keyboard only, not after a tap */
+@media (min-width: 1200px) {
+  .st-nav-links { margin-inline: auto; gap: clamp(12px, 1.8vw, 28px); }
+}
+@media (max-width: 1199.98px) {
+  /* the panel drops over the page, under the bar (not into the flow: the page stays where it is); it scrolls if taller than the screen */
+  .st-nav-panel { position: absolute; top: 100%; inset-inline: 0; padding: 8px var(--st-gutter) 16px; max-height: calc(100dvh - 100%); overflow-y: auto; background: var(--st-deep); border-bottom: 1px solid color-mix(in srgb, var(--st-mint-light) 18%, transparent); box-shadow: 0 18px 32px rgb(0 0 0 / .35); }
+  .st-nav .nav-link { border-bottom: 1px solid rgb(255 255 255 / .08); }
+  .st-nav .nav-link[aria-current="page"]::after { inset-block: 12px; inset-inline: -12px auto; width: 4px; height: auto; }
+  .st-nav-end { flex-direction: column; align-items: stretch; gap: 0; }
+  .st-nav-cta { margin-top: 12px; }
+}
+/* the footer: the logo and the contacts, under the calendar */
+.st-foot { background: var(--st-deepest); color: var(--st-on-dark-muted); font-size: 15px; }
+.st-foot-in { padding-block: 28px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px 32px; }
+.st-foot img { display: block; width: 120px; height: auto; }
+.st-foot ul { margin: 0; padding: 0; list-style: none; display: flex; flex-wrap: wrap; gap: 8px 28px; }
+.st-foot a { color: var(--st-on-dark); text-decoration: none; }
+.st-foot a:hover { color: var(--st-mint-light); text-decoration: underline; }
+
+/* ---------- the program: a table of cubes, the time on the right, two tracks (track 1 green, track 2 blue, from the logo) ---------- */
+/* the 8px between the cubes also rings the table: a -8px margin puts the cubes' edges on the container's */
+.st-prog { width: calc(100% + 16px); margin: 0 -8px -8px; border-collapse: separate; border-spacing: 8px; table-layout: fixed; }
+.st-prog-corner { width: 140px; }
+.st-prog thead th { padding: 14px 16px; border-radius: var(--st-radius); color: #fff; font-size: 18px; font-weight: 700; text-align: center; }
+.st-prog thead .st-t1 { background: var(--st-green); }
+.st-prog thead .st-t2 { background: var(--st-blue); }
+.st-prog tbody th { padding: 12px 4px; vertical-align: middle; text-align: center; font-weight: 400; }
+.st-time { display: block; font-size: 17px; font-weight: 700; color: var(--st-ink); white-space: nowrap; }
+.st-part { display: block; margin-top: 4px; font-size: 15px; font-weight: 600; color: var(--st-teal); }
+/* a cube: the cell is its frame; the slot inside fills it (a td height of 1px lets a child's 100% work) */
+.st-prog td { height: 1px; padding: 0; border: 1px solid var(--st-line); border-radius: var(--st-radius); vertical-align: top; background: var(--st-tint); }
+.st-prog td.st-t1 { background: var(--st-t1-bg); border-color: var(--st-t1-line); }
+.st-prog td.st-t2 { background: var(--st-t2-bg); border-color: var(--st-t2-line); }
+.st-prog td.st-plenary { background: #fff; border: 2px solid var(--st-mint); }
+.st-prog td.st-break { background: var(--st-grey); }
+.st-slot { display: grid; align-content: center; justify-items: center; gap: 6px; width: 100%; height: 100%; box-sizing: border-box; padding: 16px 20px; border: 0; border-radius: calc(var(--st-radius) - 1px); background: none; color: inherit; font: inherit; text-align: center; }
+.st-break .st-slot { padding-block: 12px; }
+/* a cube that opens (the build adds .is-pop and the button): its "+ לפרטים" button stretches over the whole cube; a mint frame on hover */
+.st-slot.is-pop { position: relative; transition: box-shadow .2s, background-color .2s; }
+.st-slot.is-pop:hover { background: rgb(255 255 255 / .6); box-shadow: inset 0 0 0 2px var(--st-mint); }
+.st-slot.is-pop:has(.st-slot-more:focus-visible) { outline: 3px solid var(--st-mint); outline-offset: 2px; }
+.st-slot-num { font-size: 14px; font-weight: 600; color: var(--st-teal); }
+.st-t2 .st-slot-num { color: var(--st-blue); }
+.st-slot-ttl { font-size: 18px; font-weight: 700; line-height: 1.4; color: var(--st-ink); }
+.st-break .st-slot-ttl { font-size: 16px; font-weight: 600; }
+.st-slot-text { max-width: 720px; font-size: 15px; line-height: 1.55; color: var(--st-muted); }
+.st-slot-chair { display: inline-flex; align-items: center; gap: 8px; font-size: 15px; line-height: 1.4; color: var(--st-text); }
+.st-slot-chair img { flex: none; width: 32px; height: 32px; border-radius: 50%; object-fit: cover; border: 2px solid #fff; }
+/* a list in a cube: a block in the middle, its lines from the right with mint dots; the topic bold, the speaker light */
+.st-slot-list { margin: 6px 0 0; padding: 0; list-style: none; display: grid; gap: 6px; font-size: 16px; line-height: 1.5; color: var(--st-muted); text-align: start; }
+.st-slot-list li { position: relative; padding-inline-start: 18px; }
+.st-slot-list li::before { content: ""; position: absolute; inset-inline-start: 2px; top: .6em; width: 7px; height: 7px; border-radius: 50%; background: var(--st-mint); }
+.st-slot-list strong { font-weight: 700; color: var(--st-ink); }
+.st-slot-more { display: inline-flex; align-items: center; gap: 6px; margin-top: 4px; padding: 0; border: 0; background: none; font: inherit; font-size: 14px; font-weight: 700; color: var(--st-teal); cursor: pointer; }
+.st-slot-more::after { content: ""; position: absolute; inset: 0; border-radius: inherit; }
+.st-slot-more:focus-visible { outline: none; }
+.st-slot-more::before { content: "+"; display: grid; place-items: center; width: 20px; height: 20px; border-radius: 50%; background: var(--st-mint); color: #fff; font-size: 16px; line-height: 1; }
+/* a phone: the rows stack, the time over its cubes, each track cube labelled with its track */
+@media (max-width: 767px) {
+  .st-prog, .st-prog tbody, .st-prog tr, .st-prog th, .st-prog td { display: block; }
+  .st-prog { width: 100%; margin: 0; border-spacing: 0; }
+  .st-prog thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
+  .st-prog tr { margin-bottom: 20px; }
+  .st-prog tbody th { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 10px; padding: 0 0 8px; text-align: start; }
+  .st-time { font-size: 16px; }
+  .st-part { margin: 0; font-size: 14px; }
+  .st-prog td { height: auto; margin-bottom: 8px; }
+  .st-prog td[data-track]::before { content: attr(data-track); display: block; padding: 10px 16px 0; font-size: 13px; font-weight: 700; color: var(--st-green); text-align: center; }
+  .st-prog td.st-t2[data-track]::before { color: var(--st-blue); }
+  .st-slot { padding: 12px 16px 16px; }
+  .st-slot-ttl { font-size: 17px; }
+}
+
+/* ---------- the popup: the browser's dialog. The order: the title, its labels (the session, the time, the person), the running text, a card for the person ---------- */
+.st-pop { width: min(820px, calc(100% - 32px)); max-width: none; max-height: min(88vh, 900px); padding: 0; border: 0; border-radius: var(--st-radius-lg); background: #fff; color: var(--st-text); box-shadow: 0 24px 80px rgb(0 0 0 / .35); overflow: hidden; }
+.st-pop::backdrop { background: color-mix(in srgb, var(--st-deep) 62%, transparent); -webkit-backdrop-filter: blur(3px); backdrop-filter: blur(3px); }
+.st-pop[open] { animation: st-pop-in .22s ease-out; }
+@keyframes st-pop-in { from { opacity: 0; transform: translateY(12px) scale(.98); } }
+@media (prefers-reduced-motion: reduce) { .st-pop[open] { animation: none; } }
+html:has(.st-pop[open]) { overflow: hidden; }
+.st-pop-in { display: flex; flex-direction: column; max-height: min(88vh, 900px); }
+/* the head: the title is the biggest thing; the labels under it are quiet */
+.st-pop-head { position: relative; flex: none; padding: 28px 32px 22px; padding-inline-end: 76px; border-bottom: 1px solid var(--st-line); background: var(--st-tint); }
+.st-pop-head h2 { margin: 0; font-size: clamp(22px, 2.4vw, 28px); font-weight: 700; line-height: 1.3; color: var(--st-ink); }
+.st-pop-meta { display: flex; flex-wrap: wrap; gap: 8px; margin: 14px 0 0; padding: 0; list-style: none; }
+.st-pop-meta li { padding: 3px 12px; border: 1px solid var(--st-line-strong); border-radius: var(--st-pill); background: #fff; font-size: 14px; font-weight: 600; line-height: 1.5; color: var(--st-teal); }
+.st-pop-x { position: absolute; top: 18px; inset-inline-end: 18px; width: 40px; height: 40px; display: grid; place-items: center; padding: 0; border: 2px solid var(--st-green); border-radius: 50%; background: #fff; color: var(--st-green); cursor: pointer; }
+.st-pop-x svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 2.4; stroke-linecap: round; }
+.st-pop-x:hover { background: var(--st-green); color: #fff; }
+/* the body: the running text at reading size, then the person's card */
+.st-pop-body { flex: 1 1 auto; min-height: 0; overflow-y: auto; overscroll-behavior: contain; padding: 28px 32px 32px; font-size: 17px; line-height: 1.75; }
+.st-pop-body > p { margin: 0 0 24px; }
+.st-person-card { padding: 20px 24px; border: 1px solid var(--st-line); border-radius: var(--st-radius); background: var(--st-tint); }
+.st-person-role { margin: 0 0 12px; font-size: 13px; font-weight: 700; color: var(--st-teal); }
+.st-person { display: flex; align-items: center; gap: 16px; margin-bottom: 14px; }
+.st-person img { flex: none; width: 80px; height: 80px; border-radius: 50%; object-fit: cover; border: 3px solid #fff; box-shadow: 0 2px 10px rgb(0 0 0 / .1); }
+.st-person p { margin: 0; display: grid; line-height: 1.35; }
+.st-person b { font-size: 18px; color: var(--st-ink); }
+.st-person span { font-size: 15px; color: var(--st-muted); }
+.st-bio { font-size: 15px; line-height: 1.7; }
+.st-bio p { margin: 0 0 10px; }
+.st-bio p:last-child { margin-bottom: 0; }
+.st-bio h3 { margin: 16px 0 6px; font-size: 15px; font-weight: 700; color: var(--st-ink); }
+.st-bio h3:first-child { margin-top: 0; }
+.st-bio ul { margin: 0; padding-inline-start: 20px; display: grid; gap: 4px; }
+.st-pop-foot { flex: none; padding: 12px; border-top: 1px solid var(--st-line); text-align: center; }
+.st-pop-close { padding: 8px 28px; border: 0; border-radius: var(--st-pill); background: var(--st-green); color: #fff; font: 600 16px var(--st-font); cursor: pointer; }
+.st-pop-close:hover { background: var(--st-teal); }
+@media (max-width: 767px) {
+  .st-pop { width: calc(100% - 20px); max-height: 92vh; }
+  .st-pop-in { max-height: 92vh; }
+  .st-pop-head { padding: 22px 20px 18px; padding-inline-end: 64px; }
+  .st-pop-x { top: 14px; inset-inline-end: 14px; }
+  .st-pop-body { padding: 22px 20px 24px; font-size: 16px; }
+  .st-person-card { padding: 16px; }
+  .st-person img { width: 64px; height: 64px; }
+}
+/* a term that must not break at its hyphen (ה-AI) */
+.st-nw { white-space: nowrap; }
+.st-prog .st-prog-corner { border: 0; background: none; }
+/* a link that opens a new window: a small arrow-out-of-a-box after its words */
+.st-nav .st-nav-ext { display: inline-flex; align-items: center; gap: 6px; }
+.st-nav-ext svg { width: 15px; height: 15px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; opacity: .8; }
+
+/* ---------- pieces of the inner pages ---------- */
+/* a section on the same background as the one above it: no second top space (two whites in a row would double it) */
+.st-section.st-joined { padding-top: 0; }
+/* a reading column inside the container (the tutorials day's text) */
+.st-narrow { max-width: 760px; margin-inline: auto; }
+/* the tutorials day: the same program table with one column of cubes; the time column keeps its width without a head row */
+.st-prog .st-col-time { width: 140px; }
+/* people: a grid of tiles (round photo, name, role, organisation); a tile with a bio is a cube that opens it (data-pop, as in the program) */
+.st-people { margin-bottom: 0; padding: 0; list-style: none; display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; }
+.st-people li { flex: 0 0 180px; margin: 0; padding: 0; }
+/* the next group on the same page (the speakers, the committees): a section's space above its title */
+.st-people + .st-title { margin-top: var(--st-section); }
+.st-tile { gap: 4px; padding: 24px 16px 20px; border: 1px solid var(--st-line); border-radius: var(--st-radius); background: #fff; }
+.st-tile img { width: 112px; height: 112px; margin-bottom: 10px; border-radius: 50%; object-fit: cover; border: 3px solid var(--st-line-strong); }
+.st-tile-name { font-size: 18px; font-weight: 700; line-height: 1.35; color: var(--st-ink); }
+.st-tile-role { font-size: 15px; font-weight: 600; color: var(--st-teal); }
+.st-tile-org { font-size: 15px; color: var(--st-muted); }
+@media (max-width: 767px) {
+  .st-people { gap: 12px; }
+  .st-people li { flex-basis: calc(50% - 6px); }
+  .st-tile { padding: 18px 10px 16px; }
+  .st-tile img { width: 84px; height: 84px; }
+  .st-tile-name { font-size: 16px; }
+  .st-tile-role, .st-tile-org { font-size: 14px; }
+}
+/* a popup about a person alone: the photo beside the bio */
+.st-person-solo { display: grid; grid-template-columns: 96px minmax(0, 1fr); gap: 24px; align-items: start; }
+.st-person-solo img { width: 96px; height: 96px; border-radius: 50%; object-fit: cover; border: 3px solid var(--st-line-strong); }
+.st-person-solo .st-bio { font-size: 16px; }
+@media (max-width: 767px) { .st-person-solo { grid-template-columns: 1fr; gap: 16px; } .st-person-solo img { width: 80px; height: 80px; } }
+/* the table after a page's title: the title's gap, less the 8px the table's own spacing adds */
+.st-title + .st-prog, .st-sub + .st-prog { margin-top: calc(var(--st-head-gap) - 8px); }
+
+/* ---------- the inner pages' banner: the header's green, a plain flexbox (logo | title box | the line and the dates | shape) ---------- */
+.st-banner { position: relative; isolation: isolate; overflow: clip; background: radial-gradient(ellipse 50% 90% at 30% 50%, color-mix(in srgb, var(--st-mint) 22%, transparent), transparent 70%), var(--st-dark-bg); color: #fff; }
+.st-banner-in { display: flex; align-items: center; gap: clamp(20px, 2.2vw, 32px); padding-block: clamp(20px, 2.4vw, 36px); }
+.st-banner-logo { flex: none; width: clamp(120px, 9vw, 140px); height: auto; padding-inline-end: clamp(20px, 2.2vw, 32px); border-inline-end: 1px solid rgb(255 255 255 / .2); box-sizing: content-box; }
+.st-banner-title { flex: none; width: clamp(240px, 24vw, 340px); height: auto; }
+.st-banner-text { flex: 1; min-width: 0; }
+.st-banner-line { margin: 0; padding-bottom: 12px; border-bottom: 2px solid var(--st-mint); font-size: 16px; line-height: 1.45; color: var(--st-on-dark); }
+.st-banner-line strong { display: block; font-size: clamp(18px, 1.6vw, 22px); font-weight: 700; color: #fff; }
+.st-banner-when { margin: 12px 0 0; display: flex; flex-wrap: wrap; align-items: center; gap: 4px 12px; font-size: clamp(17px, 1.5vw, 21px); font-weight: 700; }
+.st-banner-when time { color: var(--st-yellow); }
+.st-banner-when span { color: var(--st-mint); }
+.st-banner-shape { flex: none; width: clamp(90px, 8vw, 120px); height: auto; mix-blend-mode: screen; filter: drop-shadow(0 0 10px color-mix(in srgb, var(--st-mint-light) 40%, transparent)); }
+@media (max-width: 1099px) { .st-banner-logo, .st-banner-shape { display: none; } }
+@media (max-width: 767px) {
+  .st-banner-in { flex-direction: column; gap: 16px; padding-block: 28px; text-align: center; }
+  .st-banner-title { width: min(320px, 100%); }
+  .st-banner-line { padding-bottom: 0; border-bottom: 0; }
+  .st-banner-when { justify-content: center; }
+}
+
+/* ---------- the registration: their module's markup as it is, our look on it (only inside .st-register, by their ids and classes) ---------- */
+.st-register .container { max-width: none; padding: 0; }
+.st-register #sec2, .st-register #sec3 { background: none; }
+.st-register #comming-acts { width: auto; max-width: 860px; margin-inline: auto; }
+.st-register .act-item-reg h1 { margin: 0; font-size: clamp(26px, 2.4vw, 34px); font-weight: 700; line-height: 1.25; color: var(--st-ink); text-align: center; }
+.st-register .act-item-reg h1::after { content: ""; display: block; width: 64px; height: 4px; margin: 16px auto 0; border-radius: 2px; background: var(--st-mint); }
+.st-register .more { margin-top: 16px; font-size: 17px; color: var(--st-muted); text-align: center; }
+.st-register h2 { margin: 36px 0 14px; font-size: 20px; font-weight: 700; color: var(--st-ink); }
+/* the prices (their script writes the table): rows on a light line, the main prices bold */
+.st-register table { width: 100%; border-collapse: collapse; font-size: 16px; }
+.st-register th, .st-register td { padding: 12px 10px; border-bottom: 1px solid var(--st-line); text-align: center; vertical-align: middle; }
+.st-register th { font-weight: 700; color: var(--st-ink); background: var(--st-tint); }
+.st-register td.focus { font-weight: 700; color: var(--st-ink); }
+.st-register td.gray { color: var(--st-muted); }
+/* the fields: a label over each, a calm frame, mint when in use */
+.st-register .det-type1, .st-register .det-type2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin-bottom: 16px; }
+.st-register label { font-size: 15px; font-weight: 600; color: var(--st-text); }
+.st-register input[type="text"], .st-register input[type="email"], .st-register select { display: block; width: 100%; height: 46px; margin-top: 6px; padding: 0 14px; border: 1px solid var(--st-line-strong); border-radius: var(--st-radius-sm); background: #fff; font: inherit; font-size: 16px; color: var(--st-ink); }
+.st-register input[type="text"]:focus, .st-register input[type="email"]:focus, .st-register select:focus { outline: none; border-color: var(--st-mint); box-shadow: 0 0 0 3px color-mix(in srgb, var(--st-mint) 25%, transparent); }
+.st-register input[type="radio"], .st-register input[type="checkbox"] { accent-color: var(--st-teal); width: 18px; height: 18px; vertical-align: middle; }
+.st-register .reqstar { margin-inline-start: 2px; color: var(--st-red); }
+.st-register .add_reg-p a { color: var(--st-teal); font-weight: 700; text-decoration: underline; text-underline-offset: 3px; cursor: pointer; }
+/* the payment: each way a framed row, its line under it */
+.st-register #regp { margin: 10px 0 0; padding: 0; list-style: none; display: grid; gap: 8px; }
+.st-register #regp li { padding: 14px 16px; border: 1px solid var(--st-line); border-radius: var(--st-radius); background: #fff; }
+.st-register #regp em { display: block; margin-top: 4px; font-size: 14px; font-style: normal; font-weight: 400; color: var(--st-muted); }
+.st-register #regp a { color: var(--st-teal); }
+.st-register .f2 { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 16px 20px; border-radius: var(--st-radius); background: var(--st-tint); font-weight: 600; color: var(--st-ink); }
+.st-register .f2 span { font-weight: 400; color: var(--st-muted); }
+.st-register #total-price { font-size: 28px; font-weight: 700; color: var(--st-ink); }
+.st-register #reg3 > div { margin-bottom: 8px; }
+.st-register #reg3 hr { margin: 16px 0; border: 0; border-top: 1px solid var(--st-line); opacity: 1; }
+.st-register #reg-done { margin-top: 32px; text-align: center; }
+/* their button: the site's call to action (mint, round) */
+.st-register .btn-green { padding: 14px 40px; border: 0; border-radius: var(--st-pill); background: var(--st-mint); color: var(--st-deep); font: 700 18px var(--st-font); cursor: pointer; transition: background-color .2s; }
+.st-register .btn-green:hover { background: var(--st-mint-light); }
+.st-register #sec3 { margin-top: 48px; text-align: center; color: var(--st-muted); }
+.st-register #sec3 strong { display: block; margin-bottom: 4px; font-size: 18px; color: var(--st-ink); }
+.st-register #sec3 a { color: var(--st-teal); }
+/* the group (their script writes these buttons, .active on the chosen one): pills, the chosen one dark green */
+.st-register #groupr-b { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 8px; }
+.st-register #groupr-b button { padding: 10px 18px; border: 1px solid var(--st-line-strong); border-radius: var(--st-pill); background: #fff; color: var(--st-ink); font: 600 15px var(--st-font); cursor: pointer; }
+.st-register #groupr-b button:hover { border-color: var(--st-mint); }
+.st-register #groupr-b button.active { border-color: var(--st-green); background: var(--st-green); color: #fff; }
+/* the footer's button to the association's site: a mint outline that fills on hover */
+.st-foot-btn { padding: 10px 22px; border: 1px solid var(--st-mint); border-radius: var(--st-pill); color: #fff; font-weight: 700; text-decoration: none; white-space: nowrap; transition: background-color .2s, color .2s; }
+.st-foot .st-foot-btn:hover { background: var(--st-mint); color: var(--st-deep); text-decoration: none; }
+/* their price table is wider than a phone: it scrolls inside its own box, the page does not */
+.st-register #reg1-price { max-width: 100%; overflow-x: auto; }
+.st-register #reg1-price table { min-width: 560px; }
+/* the registration appears once their scripts have written it (st-site.js adds .is-ready on load), so it does not jump into place */
+.st-register:not(.is-ready) { visibility: hidden; }

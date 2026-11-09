@@ -1,0 +1,21 @@
+<!-- the menu: Bootstrap 5's navbar (collapse opens and closes it under 1200px); the conference's pages, the hotel, English and the registration -->
+<nav class="navbar navbar-expand-xl sticky-top st-nav" data-bs-theme="dark" aria-label="תפריט ראשי">
+  <div class="container-fluid st-wrap">
+    <a class="navbar-brand st-nav-logo" href="index.html"><img src="st-images/incose_il_2027_conf_logo.svg" alt="הכנס הבינלאומי INCOSE IL 2027, לדף הראשי" width="200" height="33"></a>
+    <button class="navbar-toggler st-nav-btn" type="button" data-bs-toggle="collapse" data-bs-target="#st-nav-panel" aria-controls="st-nav-panel" aria-expanded="false" aria-label="תפריט"><span class="navbar-toggler-icon"></span></button>
+    <div class="collapse navbar-collapse st-nav-panel" id="st-nav-panel">
+      <ul class="navbar-nav st-nav-links">
+        <li class="nav-item"><a class="nav-link" href="index.html" data-nav="index">ראשי</a></li>
+        <li class="nav-item"><a class="nav-link" href="day1.html" data-nav="day1">יום הכנס <span>12.1</span></a></li>
+        <li class="nav-item"><a class="nav-link" href="day2.html" data-nav="day2">יום הסדנאות <span>13.1</span></a></li>
+        <li class="nav-item"><a class="nav-link" href="speakers.html" data-nav="speakers">יו"ר ומרצים</a></li>
+        <li class="nav-item"><a class="nav-link" href="committees.html" data-nav="committees">וועדות הכנס</a></li>
+      </ul>
+      <!-- beside the registration: the hotel (a new window: an icon, and its words for a screen reader). No English: their old "English" link led back to the Hebrew home -->
+      <div class="st-nav-end">
+        <a class="nav-link st-nav-ext" href="https://www.tamareshotels.co.il/daniel-herzliya-hotel" target="_blank" rel="noopener">מלון דניאל<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></svg><span class="visually-hidden">(נפתח בחלון חדש)</span></a>
+        <a class="btn st-nav-cta" href="register.html" data-nav="register">הרשמה לכנס</a>
+      </div>
+    </div>
+  </div>
+</nav>

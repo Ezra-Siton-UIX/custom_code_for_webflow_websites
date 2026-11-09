@@ -1,0 +1,256 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<!-- built by build.cjs from _src/pages/day1.html: edit there, not here -->
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>תוכנית יום הכנס, 12.1.2027 במלון דניאל | INCOSE IL 2027</title>
+<meta name="description" content="התוכנית של יום הכנס, יום שלישי 12.1.2027 במלון דניאל בהרצליה: מושב הפתיחה, שני מסלולים מקבילים, תערוכת הפוסטרים ופאנל המומחים.">
+<meta property="og:title" content="תוכנית יום הכנס, 12.1.2027 במלון דניאל | INCOSE IL 2027">
+<meta property="og:description" content="התוכנית של יום הכנס, יום שלישי 12.1.2027 במלון דניאל בהרצליה: מושב הפתיחה, שני מסלולים מקבילים, תערוכת הפוסטרים ופאנל המומחים.">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="he_IL">
+<link rel="icon" href="favicon.ico" sizes="any">
+<!-- the font is ours (st-fonts), preloaded: there at the first paint, so nothing jumps -->
+<link rel="preload" href="st-fonts/google-sans-hebrew.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="st-fonts/google-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
+<!-- Bootstrap 5 (its RTL build) for the menu; ours after it, so ours wins -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.rtl.min.css" integrity="sha384-dpuaG1suU0eT09tx5plTaGMLBsfDLzUCCUXOY2j/LSvXYuG6Bqs43ALlhIqAJVRb" crossorigin="anonymous">
+<link rel="stylesheet" href="st-css/st.css">
+</head>
+<body data-bs-no-jquery>
+<a class="st-skip" href="#main">דילוג לתוכן</a>
+<!-- the menu: Bootstrap 5's navbar (collapse opens and closes it under 1200px); the conference's pages, the hotel, English and the registration -->
+<nav class="navbar navbar-expand-xl sticky-top st-nav" data-bs-theme="dark" aria-label="תפריט ראשי">
+  <div class="container-fluid st-wrap">
+    <a class="navbar-brand st-nav-logo" href="index.html"><img src="st-images/incose_il_2027_conf_logo.svg" alt="הכנס הבינלאומי INCOSE IL 2027, לדף הראשי" width="200" height="33"></a>
+    <button class="navbar-toggler st-nav-btn" type="button" data-bs-toggle="collapse" data-bs-target="#st-nav-panel" aria-controls="st-nav-panel" aria-expanded="false" aria-label="תפריט"><span class="navbar-toggler-icon"></span></button>
+    <div class="collapse navbar-collapse st-nav-panel" id="st-nav-panel">
+      <ul class="navbar-nav st-nav-links">
+        <li class="nav-item"><a class="nav-link" href="index.html" data-nav="index">ראשי</a></li>
+        <li class="nav-item"><a class="nav-link" href="day1.html" data-nav="day1" aria-current="page">יום הכנס <span>12.1</span></a></li>
+        <li class="nav-item"><a class="nav-link" href="day2.html" data-nav="day2">יום הסדנאות <span>13.1</span></a></li>
+        <li class="nav-item"><a class="nav-link" href="speakers.html" data-nav="speakers">יו"ר ומרצים</a></li>
+        <li class="nav-item"><a class="nav-link" href="committees.html" data-nav="committees">וועדות הכנס</a></li>
+      </ul>
+      <!-- beside the registration: the hotel (a new window: an icon, and its words for a screen reader). No English: their old "English" link led back to the Hebrew home -->
+      <div class="st-nav-end">
+        <a class="nav-link st-nav-ext" href="https://www.tamareshotels.co.il/daniel-herzliya-hotel" target="_blank" rel="noopener">מלון דניאל<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></svg><span class="visually-hidden">(נפתח בחלון חדש)</span></a>
+        <a class="btn st-nav-cta" href="register.html" data-nav="register">הרשמה לכנס</a>
+      </div>
+    </div>
+  </div>
+</nav>
+<main id="main">
+<!-- the inner pages' banner (the branding strip they open with), a plain flexbox: the logo, the title box (st-banner-title.svg, cut from
+     the home banner's SVG), the line and the dates as text, the shape -->
+<header class="st-banner">
+  <div class="st-wrap st-banner-in">
+    <img class="st-banner-logo" src="st-images/incose_logo_heb_WHITE.svg" alt="INCOSE IL, האיגוד הישראלי להנדסת מערכות" width="151" height="60">
+    <img class="st-banner-title" src="st-images/st-banner-title.svg" alt="הכנס הבינלאומי INCOSE IL 2027" width="380" height="84">
+    <div class="st-banner-text">
+      <p class="st-banner-line"><strong>שילוב הנדסת מערכות וניהול פרויקטים</strong>מזיהוי הצורך ועד למימוש הערך למשתמש</p>
+      <p class="st-banner-when"><time datetime="2027-01-12">12-13 בינואר 2027</time><span aria-hidden="true">•</span>מלון דניאל, הרצליה</p>
+    </div>
+    <img class="st-banner-shape" src="st-images/incose_shape.png" alt="" width="1631" height="1619">
+  </div>
+</header>
+
+<!-- the program: a real table (the time is each row's header, the tracks the columns'). The source: the client's program table.
+     A cube is a div.st-slot with data-pop="its name": when _src/popups.json has that name, the build adds the cube's "+ לפרטים" button
+     and its popup; when not, the cube stays plain. No div inside a cube. On a phone the rows stack (the explicit roles keep it a table for a screen reader) -->
+<section class="st-section" aria-labelledby="st-page-title">
+ <div class="st-wrap">
+  <h1 class="st-title" id="st-page-title">תוכנית יום הכנס</h1>
+  <p class="st-sub"><time datetime="2027-01-12">יום שלישי, 12.1.2027</time><span aria-hidden="true"> · </span>מלון דניאל, הרצליה</p>
+  <table class="st-prog" role="table">
+    <thead role="rowgroup">
+      <tr role="row">
+        <td class="st-prog-corner" role="cell"></td>
+        <th class="st-t1" scope="col" role="columnheader">מסלול 1</th>
+        <th class="st-t2" scope="col" role="columnheader">מסלול 2</th>
+      </tr>
+    </thead>
+    <tbody role="rowgroup">
+      <tr role="row">
+        <th scope="row" role="rowheader"><span class="st-time"><time>08:00</time>-<time>09:00</time></span></th>
+        <td class="st-all st-break" colspan="2" role="cell"><div class="st-slot"><span class="st-slot-ttl">התכנסות, הרשמה וכיבוד בוקר</span></div></td>
+      </tr>
+      <tr role="row">
+        <th scope="row" role="rowheader"><span class="st-time"><time>09:00</time>-<time>10:30</time></span><span class="st-part">מושב פתיחה</span></th>
+        <td class="st-all st-plenary" colspan="2" role="cell">
+          <div class="st-slot">
+            <span class="st-slot-ttl">מושב פתיחה ע"ש הדר גולדין</span>
+            <ul class="st-slot-list">
+              <li><strong>דברי פתיחה</strong> - ד״ר משה שוקר</li>
+              <li><strong>מרצה אורח</strong> מתעשייה ביטחונית/גוף ביטחוני</li>
+              <li><strong>מרצה אורח</strong> - תעשייה אזרחית</li>
+              <li><strong>מהנדסת מערכת להנדסת ערכים - להחזיר את הדר הביתה</strong> – ד״ר לאה גולדין</li>
+            </ul>
+          </div>
+        </td>
+      </tr>
+      <tr role="row">
+        <th scope="row" role="rowheader"><span class="st-time"><time>10:30</time>-<time>11:00</time></span></th>
+        <td class="st-all" colspan="2" role="cell">
+          <div class="st-slot is-pop">
+            <span class="st-slot-ttl">רעיונות על הקיר - תערוכת פוסטרים והפסקת קפה</span>
+            <span class="st-slot-text">תערוכת הפוסטרים השנתית מציגה את מיטב פרויקטי הגמר והעבודות המחקריות של הסטודנטים להנדסת מערכות.</span>
+            <span class="st-slot-chair"><img src="assets/motil.png" alt="" width="32" height="32">בהובלת ד"ר מוטי ליבוביץ, אוניברסיטת בן גוריון</span>
+            <button class="st-slot-more" type="button" data-pop="posters" aria-haspopup="dialog" dir="rtl">לפרטים<span class="visually-hidden"> על רעיונות על הקיר - תערוכת פוסטרים</span></button>
+          </div>
+        </td>
+      </tr>
+      <tr role="row">
+        <th scope="row" role="rowheader"><span class="st-time"><time>11:00</time>-<time>12:15</time></span><span class="st-part">מושב בוקר</span></th>
+        <td class="st-t1" data-track="מסלול 1" role="cell">
+          <div class="st-slot is-pop">
+            <span class="st-slot-num">מושב 1.1</span>
+            <span class="st-slot-ttl">תובנות, לקחים ודפוסי הצלחה מפיתוח מערכות מורכבות</span>
+            <span class="st-slot-chair">יו״ר מושב: ד״ר אירית פלד, רפאל</span>
+            <button class="st-slot-more" type="button" data-pop="s11" aria-haspopup="dialog" dir="rtl">לפרטים<span class="visually-hidden"> על תובנות, לקחים ודפוסי הצלחה מפיתוח מערכות מורכבות</span></button>
+          </div>
+        </td>
+        <td class="st-t2" data-track="מסלול 2" role="cell">
+          <div class="st-slot is-pop">
+            <span class="st-slot-num">מושב 2.1</span>
+            <span class="st-slot-ttl">אימות, תיקוף וניסויים תוך שילוב AI</span>
+            <span class="st-slot-chair"><img src="assets/orenh.jpg" alt="" width="32" height="32">יו״ר מושב: אורן הראל, אלתא - תע״א</span>
+            <button class="st-slot-more" type="button" data-pop="s21" aria-haspopup="dialog" dir="rtl">לפרטים<span class="visually-hidden"> על אימות, תיקוף וניסויים תוך שילוב AI</span></button>
+          </div>
+        </td>
+      </tr>
+      <tr role="row">
+        <th scope="row" role="rowheader"><span class="st-time"><time>12:20</time>-<time>13:35</time></span><span class="st-part">מושב צהרים</span></th>
+        <td class="st-t1" data-track="מסלול 1" role="cell">
+          <div class="st-slot">
+            <span class="st-slot-num">מושב 1.2</span>
+            <span class="st-slot-ttl">אתגרי הבשלה מערכתית בשילוב משתמשי קצה</span>
+            <span class="st-slot-chair"><img src="assets/ifat.png" alt="" width="32" height="32">יו״ר מושב: יפעת קוזובסקי, אלביט מערכות</span>
+          </div>
+        </td>
+        <td class="st-t2" data-track="מסלול 2" role="cell">
+          <div class="st-slot">
+            <span class="st-slot-num">מושב 2.2</span>
+            <span class="st-slot-ttl">הנדסת מערכות בהנדסת שבבים והמיקרואלקטרוניקה</span>
+            <span class="st-slot-chair"><img src="assets/OronRam.jpg" alt="" width="32" height="32">יו״ר מושב: ד״ר רם אורון, נובה</span>
+          </div>
+        </td>
+      </tr>
+      <tr role="row">
+        <th scope="row" role="rowheader"><span class="st-time"><time>13:35</time>-<time>14:35</time></span></th>
+        <td class="st-all" colspan="2" role="cell">
+          <div class="st-slot is-pop">
+            <span class="st-slot-ttl">ארוחת צהרים ורעיונות על הקיר - תערוכת פוסטרים</span>
+            <span class="st-slot-text">תערוכת הפוסטרים השנתית מציגה את מיטב פרויקטי הגמר והעבודות המחקריות של הסטודנטים להנדסת מערכות.</span>
+            <span class="st-slot-chair"><img src="assets/motil.png" alt="" width="32" height="32">בהובלת ד"ר מוטי ליבוביץ, אוניברסיטת בן גוריון</span>
+            <button class="st-slot-more" type="button" data-pop="posters" aria-haspopup="dialog" dir="rtl">לפרטים<span class="visually-hidden"> על רעיונות על הקיר - תערוכת פוסטרים</span></button>
+          </div>
+        </td>
+      </tr>
+      <tr role="row">
+        <th scope="row" role="rowheader"><span class="st-time"><time>14:35</time>-<time>15:50</time></span><span class="st-part">מושב אחה"צ</span></th>
+        <td class="st-t1" data-track="מסלול 1" role="cell">
+          <div class="st-slot is-pop">
+            <span class="st-slot-num">מושב 1.3</span>
+            <span class="st-slot-ttl">ייזום והתנעת פרויקטים בדגש על הממשק בין הלקוח, המזמין וגוף הפיתוח</span>
+            <span class="st-slot-chair"><img src="assets/motil.png" alt="" width="32" height="32">יו״ר מושב: ד״ר מוטי ליבוביץ, אוניברסיטת בן גוריון</span>
+            <button class="st-slot-more" type="button" data-pop="s13" aria-haspopup="dialog" dir="rtl">לפרטים<span class="visually-hidden"> על ייזום והתנעת פרויקטים בדגש על הממשק בין הלקוח, המזמין וגוף הפיתוח</span></button>
+          </div>
+        </td>
+        <td class="st-t2" data-track="מסלול 2" role="cell">
+          <div class="st-slot">
+            <span class="st-slot-num">מושב 2.3</span>
+            <span class="st-slot-ttl">מושב אקדמי: שיטות וכלים חדשים בהנדסת מערכות בעידן <span class="st-nw">ה-AI</span></span>
+            <span class="st-slot-chair"><img src="assets/michael_winokur.png" alt="" width="32" height="32">יו״ר מושב: פרופ׳ מיכאל וינוקור, HIT</span>
+          </div>
+        </td>
+      </tr>
+      <tr role="row">
+        <th scope="row" role="rowheader"><span class="st-time"><time>15:50</time>-<time>16:00</time></span></th>
+        <td class="st-all st-break" colspan="2" role="cell"><div class="st-slot"><span class="st-slot-ttl">הפסקה מתוקה וקפה</span></div></td>
+      </tr>
+      <tr role="row">
+        <th scope="row" role="rowheader"><span class="st-time"><time>16:00</time>-<time>17:00</time></span></th>
+        <td class="st-all st-plenary" colspan="2" role="cell">
+          <div class="st-slot">
+            <span class="st-slot-ttl">פאנל מומחים: הנדסת המערכות בעידן של מהפכות: מהפכת <span class="st-nw">ה-AI</span> ומהפכת <span class="st-nw">ה-DefenseTech</span></span>
+            <span class="st-slot-chair"><img src="st-images/shoker.jpg" alt="" width="32" height="32">בהובלת ד"ר משה שוקר, יו"ר יום הכנס</span>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+ </div>
+</section>
+<template id="pop-posters" data-title="רעיונות על הקיר - תערוכת פוסטרים" data-meta="10:30-11:00|13:35-14:35|ד״ר מוטי ליבוביץ"><p>תערוכת הפוסטרים השנתית מציגה את מיטב פרויקטי הגמר והעבודות המחקריות של הסטודנטים להנדסת מערכות.</p><aside class="st-person-card"><p class="st-person-role">בהובלת</p><div class="st-person"><img src="assets/motil.png" alt="" width="80" height="80"><p><b>ד"ר מוטי ליבוביץ</b><span>אוניברסיטת בן גוריון</span></p></div><div class="st-bio"><p>ב-1980 תואר B.Sc. בהנדסת מכונות וב-1986 תואר מוסמך M.Sc. בהצטיינות בהנדסת מכונות מהטכניון. ב-1993 תואר PhD בהנדסת מכונות בארה"ב באוניברסיטת Delaware מכון לחומרים מרוכבים ‘Center for Composite Materials – University of Delaware (CCM – UD)’ . התמחותי הייתה, בין השאר, בתחומים של מבנים וחומרים חכמים ומסתגלים (Smart & Adaptive) ובנושאי בריאות מבנים (Structural Health Monitoring – SHM).</p><p>עבדתי ברפאל מערכות מתקדמות כ-30 שנה ומלאתי מגוון תפקידים הכוללים בין השאר מהנדס מערכת ראשי, ראש פרויקט, ראש מנהלה וראש מטה. לאחר מכן, עבדתי כ-10 שנים בקריה למחקר גרעיני בנגב (הקמ"ג) בתפקידים של משנה למנהל הקמ"ג, סמנכ"ל בכיר ור' תוכנית. כחלק מתפקידיי, פעלתי לגיבוש תפיסות ארגוניות ומתודולוגיות בנושאי ניהול פרויקטים והנדסת מערכת, להטמעה ולהכשרה רחבה של עובדים ומנהלים.</p><p>בהיבט האקדמי לקחתי חלק פעיל בהקמת התוכנית להנדסת מערכות באורט בראודה ושמשתי מרצה וחבר בתוכנית מספר שנים. החל מ-2019 יזמתי והקמתי באוניברסיטת בן גוריון בנגב, יחד עם פרופ' קובי בורטמן, את התוכנית להנדסת מערכות שקיבלה את אישורי המל"ג והנהלת האוניברסיטה. מאז ועד היום אני משמש באוניברסיטה כראש התוכנית להנדסת מערכות.</p></div></aside></template>
+<template id="pop-s11" data-title="תובנות, לקחים ודפוסי הצלחה מפיתוח מערכות מורכבות" data-meta="מושב 1.1|11:00-12:15|ד״ר אירית פלד"><aside class="st-person-card"><p class="st-person-role">יו״ר המושב</p><div class="st-person"><p><b>ד"ר אירית פלד</b><span>רפאל</span></p></div><div class="st-bio" dir="ltr"><h3>Education</h3><ul><li><b>2006-2010:</b> Ph.D. in Mechanical Engineering, Technion, Haifa. “Control of Flexible Systems with Elements Governed by the Wave Equation”</li><li><b>1990-1993:</b> M.Sc. in Mechanical Engineering, Technion, Haifa. “Internal Model Control Analysis Using Operator”</li><li><b>1986-1990:</b> B.Sc. in Mechanical Engineering, Technion, Haifa.</li></ul><h3>Professional experience</h3><ul><li><b>1994-Now:</b> Rafael, several Systems Engineering and Program Management positions.</li><li><b>1994:</b> Electrical Company, Research Department.</li></ul></div></aside></template>
+<template id="pop-s21" data-title="אימות, תיקוף וניסויים תוך שילוב AI" data-meta="מושב 2.1|11:00-12:15|אורן הראל"><aside class="st-person-card"><p class="st-person-role">יו״ר המושב</p><div class="st-person"><img src="assets/orenh.jpg" alt="" width="80" height="80"><p><b>אורן הראל</b><span>אלתא - תע"א</span></p></div><div class="st-bio"><p>בעל תואר ראשון במתמטיקה ומדעי המחשב מאוניברסיטת בן-גוריון ולימודי תואר שני במדעי המחשב באוניברסיטת תל אביב. בעל ניסיון של 26 שנה בתעשייה האווירית ו 8 שנים בחברות הייטק.</p><p>שימש כמהנדס מערכת , ראש פרויקט וראש תחום בשתי חטיבות בתע"א. ניהול והכשרה של עשרות מהנדסי מערכת מתחומים שונים. שותף לפיתוח לפרויקטים פורצי דרך בחטיבה .</p><p>היום בתפקיד ראש מנהל הנדסת מערכת ואחריות על ניהול הידע בגוף אסטרטגיה וטכנולוגיות במטה חטיבת אלתא. כחלק מתפקידו - עוסק בקביעת מתודולוגיה אחידה בחטיבה, ארגון קורסי הכשרה, תמיכה בפרויקטי פיתוח ובהטמעת כלים לעבודת מהנדס המערכת.</p><p>חבר בהנהלת INCOSE-IL ומשמש כסגן נשיא.</p></div></aside></template>
+<template id="pop-s13" data-title="ייזום והתנעת פרויקטים בדגש על הממשק בין הלקוח, המזמין וגוף הפיתוח" data-meta="מושב 1.3|14:35-15:50|ד״ר מוטי ליבוביץ"><aside class="st-person-card"><p class="st-person-role">יו״ר המושב</p><div class="st-person"><img src="assets/motil.png" alt="" width="80" height="80"><p><b>ד"ר מוטי ליבוביץ</b><span>אוניברסיטת בן גוריון</span></p></div><div class="st-bio"><p>ב-1980 תואר B.Sc. בהנדסת מכונות וב-1986 תואר מוסמך M.Sc. בהצטיינות בהנדסת מכונות מהטכניון. ב-1993 תואר PhD בהנדסת מכונות בארה"ב באוניברסיטת Delaware מכון לחומרים מרוכבים ‘Center for Composite Materials – University of Delaware (CCM – UD)’ . התמחותי הייתה, בין השאר, בתחומים של מבנים וחומרים חכמים ומסתגלים (Smart & Adaptive) ובנושאי בריאות מבנים (Structural Health Monitoring – SHM).</p><p>עבדתי ברפאל מערכות מתקדמות כ-30 שנה ומלאתי מגוון תפקידים הכוללים בין השאר מהנדס מערכת ראשי, ראש פרויקט, ראש מנהלה וראש מטה. לאחר מכן, עבדתי כ-10 שנים בקריה למחקר גרעיני בנגב (הקמ"ג) בתפקידים של משנה למנהל הקמ"ג, סמנכ"ל בכיר ור' תוכנית. כחלק מתפקידיי, פעלתי לגיבוש תפיסות ארגוניות ומתודולוגיות בנושאי ניהול פרויקטים והנדסת מערכת, להטמעה ולהכשרה רחבה של עובדים ומנהלים.</p><p>בהיבט האקדמי לקחתי חלק פעיל בהקמת התוכנית להנדסת מערכות באורט בראודה ושמשתי מרצה וחבר בתוכנית מספר שנים. החל מ-2019 יזמתי והקמתי באוניברסיטת בן גוריון בנגב, יחד עם פרופ' קובי בורטמן, את התוכנית להנדסת מערכות שקיבלה את אישורי המל"ג והנהלת האוניברסיטה. מאז ועד היום אני משמש באוניברסיטה כראש התוכנית להנדסת מערכות.</p></div></aside></template>
+</main>
+<!-- their logo files: assets/, the same folder and names as on their server -->
+<section class="st-section st-sponsors">
+ <div class="st-wrap">
+  <h2 class="st-title">בתמיכה ובהשתתפות</h2>
+  <ul class="st-logos">
+    <li><img src="assets/elbitlogo.jpeg" alt="אלביט מערכות"></li>
+    <li><img src="assets/iailogo.jpeg" alt="התעשייה האווירית"></li>
+    <li><img src="assets/rafael.jpeg" alt="רפאל"></li>
+    <li><img src="assets/Technionlogo.png" alt="הטכניון"></li>
+    <li><img src="assets/bgulogo.jpeg" alt="אוניברסיטת בן-גוריון בנגב"></li>
+    <li><img src="assets/taul.png" alt="אוניברסיטת תל אביב"></li>
+    <li><img src="assets/braudelogo.png" alt="המכללה האקדמית להנדסה בראודה"></li>
+    <li><img src="assets/HITlogo.png" alt="מכון טכנולוגי חולון HIT"></li>
+    <li><img src="assets/arielu.png" alt="אוניברסיטת אריאל"></li>
+  </ul>
+ </div>
+</section>
+<!-- the same Google Calendar events their old site's goto_event(1) / goto_event(2) opened (_source/menu.js), as plain links -->
+<section class="st-section st-dark st-calendar" id="savethedate">
+ <div class="st-wrap">
+  <h2 class="st-title" dir="ltr">SAVE TO YOUR CALENDAR</h2>
+  <p class="st-sub">שריינו כבר עכשיו את 12–13 בינואר. זה המקום שבו קהילת הנדסת המערכות בישראל נפגשת</p>
+  <ul class="st-cards">
+    <li class="st-card" dir="ltr">
+      <span class="st-cal" aria-hidden="true"><b>JAN 2027</b><strong>12</strong></span>
+      <span class="st-badge">Conference Day</span>
+      <p class="st-date"><time datetime="2027-01-12">Tuesday <span>12.1.2027</span></time></p>
+      <a class="st-link st-add" href="https://calendar.google.com/calendar/r/eventedit?text=INCOSE%20IL%202027%20-%20Conference%20Day&amp;dates=20270112T060000Z/20270112T180000Z&amp;details=Join%20us%20for%20the%20INCOSE%20IL%202027%20conference&amp;location=Daniel%20Hotel%2C%20Herzlia" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4M12 13v5M9.5 15.5h5"/></svg>SAVE THE DATE</a>
+    </li>
+    <li class="st-card" dir="ltr">
+      <span class="st-cal" aria-hidden="true"><b>JAN 2027</b><strong>13</strong></span>
+      <span class="st-badge">Tutorials Day</span>
+      <p class="st-date"><time datetime="2027-01-13">Wednesday <span>13.1.2027</span></time></p>
+      <a class="st-link st-add" href="https://calendar.google.com/calendar/r/eventedit?text=INCOSE%20IL%202027%20-%20Tutorial%20Day&amp;dates=20270113T060000Z/20270113T180000Z&amp;details=Join%20us%20for%20the%20INCOSE%20IL%202027%20conference&amp;location=Daniel%20Hotel%2C%20Herzlia" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4M12 13v5M9.5 15.5h5"/></svg>SAVE THE DATE</a>
+    </li>
+  </ul>
+ </div>
+</section>
+<footer class="st-foot">
+  <div class="st-wrap st-foot-in">
+    <img src="st-images/incose_logo_heb_WHITE.svg" alt="INCOSE IL, האיגוד הישראלי להנדסת מערכות" width="140" height="46">
+    <ul>
+      <li><a href="mailto:conf2027@incoseil.org">conf2027@incoseil.org</a></li>
+      <li><a href="tel:+972525805001" dir="ltr">052-580-5001</a></li>
+      <li><a href="https://www.incoseil.org/incoseil2027/previous">כנסים קודמים</a></li>
+    </ul>
+    <a class="st-foot-btn" href="https://incoseil.org">לאתר האיגוד</a>
+  </div>
+</footer>
+<!-- the popup: one dialog for the whole site; a button with data-pop="<a template's id>" fills it from that template (st-js/st-site.js) -->
+<dialog class="st-pop" id="st-pop" aria-labelledby="st-pop-title">
+  <div class="st-pop-in">
+    <div class="st-pop-head">
+      <h2 id="st-pop-title"></h2>
+      <ul class="st-pop-meta"></ul>
+      <button class="st-pop-x" type="button" aria-label="סגירה"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+    </div>
+    <div class="st-pop-body" tabindex="0"></div>
+    <div class="st-pop-foot"><button class="st-pop-close" type="button">סגירה</button></div>
+  </div>
+</dialog>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous" defer></script>
+<script src="st-js/st-site.js" defer></script>
+</body>
+</html>

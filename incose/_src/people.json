@@ -1,0 +1,27 @@
+{
+  "orenh": {
+    "name": "אורן הראל",
+    "org": "אלתא - תע\"א",
+    "img": "assets/orenh.jpg",
+    "bio": "<p>בעל תואר ראשון במתמטיקה ומדעי המחשב מאוניברסיטת בן-גוריון ולימודי תואר שני במדעי המחשב באוניברסיטת תל אביב. בעל ניסיון של 26 שנה בתעשייה האווירית ו 8 שנים בחברות הייטק.</p><p>שימש כמהנדס מערכת , ראש פרויקט וראש תחום בשתי חטיבות בתע\"א. ניהול והכשרה של עשרות מהנדסי מערכת מתחומים שונים. שותף לפיתוח לפרויקטים פורצי דרך בחטיבה .</p><p>היום בתפקיד ראש מנהל הנדסת מערכת ואחריות על ניהול הידע בגוף אסטרטגיה וטכנולוגיות במטה חטיבת אלתא. כחלק מתפקידו - עוסק בקביעת מתודולוגיה אחידה בחטיבה, ארגון קורסי הכשרה, תמיכה בפרויקטי פיתוח ובהטמעת כלים לעבודת מהנדס המערכת.</p><p>חבר בהנהלת INCOSE-IL ומשמש כסגן נשיא.</p>"
+  },
+  "motil": {
+    "name": "ד\"ר מוטי ליבוביץ",
+    "org": "אוניברסיטת בן גוריון",
+    "img": "assets/motil.png",
+    "bio": "<p>ב-1980 תואר B.Sc. בהנדסת מכונות וב-1986 תואר מוסמך M.Sc. בהצטיינות בהנדסת מכונות מהטכניון. ב-1993 תואר PhD בהנדסת מכונות בארה\"ב באוניברסיטת Delaware מכון לחומרים מרוכבים ‘Center for Composite Materials – University of Delaware (CCM – UD)’ . התמחותי הייתה, בין השאר, בתחומים של מבנים וחומרים חכמים ומסתגלים (Smart & Adaptive) ובנושאי בריאות מבנים (Structural Health Monitoring – SHM).</p><p>עבדתי ברפאל מערכות מתקדמות כ-30 שנה ומלאתי מגוון תפקידים הכוללים בין השאר מהנדס מערכת ראשי, ראש פרויקט, ראש מנהלה וראש מטה. לאחר מכן, עבדתי כ-10 שנים בקריה למחקר גרעיני בנגב (הקמ\"ג) בתפקידים של משנה למנהל הקמ\"ג, סמנכ\"ל בכיר ור' תוכנית. כחלק מתפקידיי, פעלתי לגיבוש תפיסות ארגוניות ומתודולוגיות בנושאי ניהול פרויקטים והנדסת מערכת, להטמעה ולהכשרה רחבה של עובדים ומנהלים.</p><p>בהיבט האקדמי לקחתי חלק פעיל בהקמת התוכנית להנדסת מערכות באורט בראודה ושמשתי מרצה וחבר בתוכנית מספר שנים. החל מ-2019 יזמתי והקמתי באוניברסיטת בן גוריון בנגב, יחד עם פרופ' קובי בורטמן, את התוכנית להנדסת מערכות שקיבלה את אישורי המל\"ג והנהלת האוניברסיטה. מאז ועד היום אני משמש באוניברסיטה כראש התוכנית להנדסת מערכות.</p>"
+  },
+  "iritp": {
+    "name": "ד\"ר אירית פלד",
+    "org": "רפאל",
+    "dir": "ltr",
+    "bio": "<h3>Education</h3><ul><li><b>2006-2010:</b> Ph.D. in Mechanical Engineering, Technion, Haifa. “Control of Flexible Systems with Elements Governed by the Wave Equation”</li><li><b>1990-1993:</b> M.Sc. in Mechanical Engineering, Technion, Haifa. “Internal Model Control Analysis Using Operator”</li><li><b>1986-1990:</b> B.Sc. in Mechanical Engineering, Technion, Haifa.</li></ul><h3>Professional experience</h3><ul><li><b>1994-Now:</b> Rafael, several Systems Engineering and Program Management positions.</li><li><b>1994:</b> Electrical Company, Research Department.</li></ul>"
+  },
+  "yaniv": {
+    "name": "Dr. Yaniv Mordecai",
+    "org": "Tel Aviv University & Amazon",
+    "img": "assets/Yaniv1.jpg",
+    "dir": "ltr",
+    "bio": "<p>Dr. Yaniv Mordecai is a senior teaching fellow at Tel-Aviv University, Tel-Aviv, Israel, a Senior Research Scientist at Amazon, Bellevue, Washington, USA, and a former Technion-MIT Post-Doctoral Fellow at MIT’s Engineering Systems Laboratory (2019-21). He holds a Teaching Certificate from MIT (2020), a Ph.D. in information systems engineering from Technion – Israel Institute of Technology, Israel (2016), and M.Sc. (2010, cum laude) and B.Sc. (2002) in industrial engineering & management from Tel-Aviv University, Israel. His research interests include model-based systems engineering, model analytics, cybernetics, interoperable systems, decision automation, operations research, and applications of artificial intelligence for geospatial optimization. Dr. Mordecai is a senior member of IEEE, member of INCOSE and INFORMS, and Board Member of the Israeli Society for Systems Engineering – INCOSE_IL. He won multiple international research awards and is a recognized international expert in modeling and simulation of complex systems.</p>"
+  }
+}

@@ -1,0 +1,319 @@
+<!--{"title":"הרשמה לכנס INCOSE IL 2027 | מחירים ומועדים","description":"הרשמה לכנס הבינלאומי להנדסת מערכות INCOSE IL 2027: ליום הכנס, ליום הסדנאות או לשני הימים, במחירים לקהל הרחב, לחברי האיגוד ולסטודנטים.","nav":"register"}-->
+<!-- @head -->
+<!-- @nav -->
+<main id="main">
+<!-- @banner -->
+<!-- the registration: THEIR registration module, copied as it is (every id, name, class, onclick and hidden field: their scripts hang on them).
+     Only the look is ours, from st.css (.st-register). It works on their server only: its scripts are at their site's root (/js/...),
+     and it sends to /regPost.php and checks membership at /iltam_check_mem.php there. The config below is what their PHP wrote (prices,
+     payment links) for activity 4086. acc-plug.js is their accessibility menu, and reg.js keeps the form in its cookie helper (cookieman2). One fix: the email link was missing its colon (mailto:). Source: _source/register.html -->
+<script src="/js/jquery.min.js"></script>
+<script src="/js/sweetalert2.min.js?v=3"></script>
+<script src="/js/acc-plug.js"></script>
+<script src="/js/my.js"></script>
+<script src="/js/reg.js?r=1"></script>
+<script>
+    var RECID =  ['4086'];
+    var VAT = parseFloat('1.18',10);
+    var localErrors = {"missing-email":"חסר מייל","invalid-email":"מייל לא תקין","missing-fname":"חסר שם פרטי","missing-lname":"חסר שם משפחה",
+"missing-cname":"חסר שם חברה","missing-jname":"חסר תפקיד","missing-phone":"חסר טלפון נייד","invalid-phone":"מספר טלפון לא תקין",
+"reg_exists":"הרשמה לפעילות זו כבר קיימת",
+"credit_error":"שגיאה - לא ניתן לשלם באשראי",
+"paypal_error":"PAYPAL AMOUNT ERROR",
+"reg_remove":"הסר",
+"non-member-but-selected":"לא זוהה, חברותך תאומת לאחר ההרשמה"};
+    var actGRP = {"p":1050,"0":1050,"1":600,"v0":"1,239","g0":"aHR0cHM6Ly9tZXNodWxhbS5jby5pbC9zL2M3OGQyZjAzLTMyZTUtOTE5Zi1hMzhkLTVjMzI3ZjdmNWVkZg==","v1":"708","g1":"aHR0cHM6Ly9tZXNodWxhbS5jby5pbC9zL2E1MDIwZDhhLTg2ODktY2JjMS1mNmVmLTE2MTIyZDYwMDA4NQ==","all":"aHR0cHM6Ly9tZXNodWxhbS5jby5pbC9zL2M3OGQyZjAzLTMyZTUtOTE5Zi1hMzhkLTVjMzI3ZjdmNWVkZg==","iincose":"aHR0cHM6Ly9tZXNodWxhbS5jby5pbC9zL2E1MDIwZDhhLTg2ODktY2JjMS1mNmVmLTE2MTIyZDYwMDA4NQ==","std":"error","lec":"aHR0cHM6Ly9tZXNodWxhbS5jby5pbC9zLzczYmE0MmU1LTQxNDMtMWFjZi1iYzA3LTBiZDY4MGQ0Y2JkOQ==","aud":"error","ieee":"aHR0cHM6Ly9tZXNodWxhbS5jby5pbC9zLzQ0OWI3ODQ5LTkwMzYtN2Q3NS1kMzgyLTQyM2QzNzhhNTUzYg==","vaa":"aHR0cHM6Ly9tZXNodWxhbS5jby5pbC9zLzdhNDdiZDJmLTU3NzItZTM1MC0yN2MxLWNhYWU0OTlmYjUxMg==","g_error":1};
+    var actPRC = [{"groupCode":"all","groupName":"קהל רחב","price":1050,"price_vat":1239},{"groupCode":"iincose","groupName":"IncoseIL","price":600,"price_vat":708},{"groupCode":"iincose","groupName":"חברי INCOSE_IL","price":"600,300,900","price_vat":708},{"groupCode":"std","groupName":"סטודנטים להנדסת מערכות","price":"330,130,440","price_vat":389.4},{"groupCode":"lec","groupName":"מרצים ויו\"ר מושבים","price":"0,300,300","price_vat":0},{"groupCode":"aud","groupName":"קהל רחב","price":"800,300,1050","price_vat":944},{"groupCode":"ieee","groupName":"חברי IEEE","price":"550,400,850","price_vat":649},{"groupCode":"vaa","groupName":"חברי ועדת התוכנית","price":"400,300,650","price_vat":472}];
+    var actDate = '12/01/2027';
+    
+</script>
+<style>
+    body  , #sec2 { background:#fff;}
+a.reg-btn:hover { color:#f3f3f3;}
+   #sec2 #comming-acts { width:71%;} 
+   #sec3 { margin-top:100px; text-align:center;}
+   
+   .reg-open-def-0 { display:none;}
+   
+  /* -x option[value=aud] {    display: none !important;} */
+   
+</style>
+<div class="st-section st-register">
+ <div class="st-wrap">
+<input type="hidden" id="country" name="country" value="0," />
+
+ 
+    
+    
+<section id="sec2" >
+    <div class="container">
+    <div id="comming-acts">
+         
+        
+        <div class="body">
+            <div class="act-item act-item-reg">
+            
+                 
+                   
+                 <h1>הכנס הבינלאומי INCOSE_IL  2027</h1>
+                 <div class=more>
+                 
+                 <label>מועד הפעילות:</label>&nbsp;החל מ-&nbsp;12/01/2027
+
+                 , מלון דניאל</div>
+ <div class=clear></div>
+            <br/>
+            
+            <div id="reg1-price" class="reg1">  
+                <table>
+                 <thead>
+                     <tr>
+                         <td><font>לקהל הרחב</font><font>1,050<span class=sign>₪</span></font></td>
+                         <td><font>חברי INCOSE_IL</font><font>600<span class=sign>₪</span></font></td>
+                         <td><font></font><font></font></td>
+                     </tr>
+                     <tr>
+                         <td colspan="3" style="text-align:right; padding:3px 27px;">
+                             <font>
+                             המחירים הינם לפני מע"מ
+                             </font>
+                         </td>
+                     </tr>
+                 </thead>
+                 <tbody>
+                     <tr class="tr1"><td colspan="3"><div></div></td></tr>
+                 <tr class="mid" style="display:none;">
+                     <td>1,050<span class=sign>₪</span></td>
+                     <td>600<span class=sign>₪</span></td>
+                     <td></td>
+                     
+                 </tr>
+                    <tr class="tr3"><td colspan="3"><div></div></td></tr>
+                 </tbody>
+                 <tfoot class="f1 fl-small-center">
+                     <tr>
+                         <td colspan="3">
+                             <script src=/js/script_act2027.js?l=2027e3 ></script>
+                         </td>
+                     </tr>
+                 </tfoot>
+                   
+             </table>
+            </div>
+            
+            
+            
+         <div id="reg1" class="reg1">   
+            <!--<h2>הפרטים שלך</h2>-->
+            <h2>פרטי הרשמה</h2>
+            <div class="det-type1">
+                
+                <div><select name="personttl" id="personttl"><option>מר</option><option>גב</option><option>ד''ר</option><option>פרופ'</option><option>עו''ד</option><option>Mr.</option></select></div>
+                <div>
+                    <label for="fname">שם פרטי<span class=reqstar>*</span></label>
+                    <input type="text" name="fname" id="fname" />
+                </div>
+                <div>
+                    <label for="lname">שם משפחה<span class=reqstar>*</span></label>
+                    <input type="text" name="lname" id="lname" />
+                </div>
+            </div>
+            
+             <div class="det-type2">
+                
+                
+                <div>
+                    <label for="cname">חברה<span class=reqstar>*</span></label>
+                    <input type="text" name="cname" id="cname" />
+                </div>
+                <div>
+                    <label for="jname">תפקיד</label>
+                    <input type="text" name="jname" id="jname" />
+                </div>
+            </div>
+            
+            
+            <div class="det-type2">
+                
+                
+                <div>
+                    <label for="email">דוא&quot;ל<span class=reqstar>*</span></label>
+                    <input type="email" name="email" id="email" />
+                </div>
+                <div>
+                    <label for="phone">טלפון<span class=reqstar>*</span></label>
+                    <input type="text" name="phone" id="phone" />
+                </div>
+            </div>
+            
+            <p class="add_reg-p">
+                <a onclick="add_reg()">הוספת נרשם +</a>
+            </p>
+        </div>
+       <div id="reg2"> 
+            <h2>קבוצת שיוך</h2>
+            <select id="groupr" name="groupr">
+                <option value="non-members">לקהל הרחב</option><option value="incose_il members">חברי INCOSE_IL</option><option value="std">סטודנטים להנדסת מערכות</option><option value="lec">מרצים ויו"ר מושבים</option><option value="aud">קהל רחב</option><option value="ieee">חברי IEEE</option><option value="vaa">חברי ועדת התוכנית</option>
+            </select>
+            <em></em>
+       </div>
+            
+             <div id="reg2sum"> 
+            <h2>סה&quot;כ לתשלום</h2>
+           
+            
+            <div class="f2">
+                  <div>
+                      סה&quot;כ לתשלום
+                      <span>(מע&quot;מ 18% כלול)</span>
+                  </div>
+                  <div id="total-price">
+                      1,239<span class=sign>₪</span>
+                  </div>
+                  <div class="clear" ></div>
+              </div> 
+            
+            
+             <div class="f3">
+                  <label id=reg3label class="reg-open-def-1">אופן התשלום:</label>
+                  
+                  <ul class="reg-open-def-1" id="regp">
+                      <li id="l-credit">
+                          <input name="payment_method" type="radio" checked="checked" value="credit" id="p-credit" />
+                          <label for="p-credit">כרטיס אשראי או BIT<em>תשלום באמצעות כרטיס אשראי</em></label>
+                      </li>
+                      
+                      <!--<li id="l-bit">
+                          <input name="payment_method" type="radio" value="bit" id="p-bit" />
+                          <label for="p-bit">אפליקציית BIT<em>זמין במכשירים ניידים תומכים בלבד</em></label>
+                      </li>-->
+                      
+                      <li id="l-paypal">
+                          <input name="payment_method" type="radio" value="paypal" id="p-paypal" />
+                          <label for="p-paypal">PayPal<em><em>לאחר התשלום יתקבל לכתובת המייל אישור תשלום. <a class=air href="https://www.incoseil.org/q/paypal-payment">לחצו כאן לקבלת קובץ הנחיות קצר לתשלום ב-Paypal.</a></em></em></label>
+                      </li>
+                      
+                      <li id="l-company">
+                          <input name="payment_method" type="radio" value="company" id="p-company" />
+                          <label for="p-company">תשלום דרך החברה<em>אני פועל להשגת אישור מהחברה</em></label>
+                      </li>
+                      
+                    
+                  </ul>
+                  <p>
+                   
+                  </p>
+                  <p id="v-error">
+                      
+                  </p>
+                  
+              </div>
+            
+            
+       </div>
+            
+            
+        <div id="reg3" class="reg-open-def-1">     
+            <h2>כתובת לחשבונית</h2>
+            <p>בחר כיצד ועל שם מי תרצה לקבל את החשבונית</p>
+            <div>
+                <input type="radio" name="hn-on" id="hn-on-me" value="hn-on-me"/>
+                <label for="hn-on-me">חשבונית על שמי</label>
+                </div>
+            
+            <div>
+                <input type="radio" name="hn-on" id="hn-on-name" value="hn-on-name" />
+                <label for="hn-on-name">חשבונית על שם</label>
+                <input style="display:none;" type="text" name="hn-on-name-str" id="hn-on-name-str" />
+            </div>
+            
+            <hr/>
+            
+            <div>
+                <input type="radio" name="hn-to" id="hn-to-email"  value="hn-to-email" />
+                <label for="hn-to-email">למייל</label>
+            </div>
+            
+            <div>
+                <input type="radio" name="hn-to" id="hn-to-address" value="hn-to-address" />
+                <label for="hn-to-address">בדואר לכתובת</label>
+                <br/>
+                <input style="display:none;" type="text" name="hn-to-house" id="hn-to-house" placeholder="מס' בית" />
+                <input style="display:none;" type="text" name="hn-to-street" id="hn-to-street" placeholder="רחוב" />
+                <input style="display:none;" type="text" name="hn-to-area" id="hn-to-area" placeholder="איזור"/>
+                <font>ת.ד.</font>
+                <input style="display:none;" type="text" name="hn-to-postcode" id="hn-to-postcode" placeholder="ת.ד."/> 
+                <input style="display:none;" type="text" name="hn-to-city" id="hn-to-city" placeholder="עיר"/>
+                <input style="display:none;" type="text" name="hn-to-zip" id="hn-to-city" placeholder="מיקוד"/>
+                <div style="display:none;"></div>
+            </div>
+            
+            <div>
+                <input type="radio" name="hn-to" id="hn-to-both" value="hn-to-both"/>
+                <label for="hn-to-both">למייל וגם לכתובת</label>
+                <br/>
+                <input style="display:none;" type="text" name="hn-to-house2" id="hn-to-house2" placeholder="מס' בית" />
+                <input style="display:none;" type="text" name="hn-to-street2" id="hn-to-street2" placeholder="רחוב" />
+                <input style="display:none;" type="text" name="hn-to-area2" id="hn-to-area2" placeholder="איזור" />
+                 <font>ת.ד.</font>
+                <input style="display:none;" type="text" name="hn-to-postcode2" id="hn-to-postcode2" placeholder="ת.ד."/> 
+                <input style="display:none;" type="text" name="hn-to-city2" id="hn-to-city2" placeholder="עיר"/>
+                <input style="display:none;" type="text" name="hn-to-zip2" id="hn-to-city2" placeholder="מיקוד"/>
+                <div style="display:none;"></div>
+            </div>
+            
+            
+        </div>   
+            <div id="reg-done">
+                <p id="ragree-text">
+                    נא להמשיך לעדכן אותי בפעילויות המקצועיות של האיגוד
+                    &nbsp;&nbsp;<input checked type="radio" name="ragree" value="1" id="ragree1"/><label for=ragree1>&nbsp;&nbsp;כן</label>
+                    &nbsp;&nbsp;<input type="radio" name="ragree" value="0" id="ragree0"/><label for=ragree0>&nbsp;&nbsp;לא</label>
+                </p>
+                    
+                    
+                    
+                <p>
+                     <button class="btn-green" type="button" data-freetxt="שליחה" data-paytxt="המשך לתשלום">המשך לתשלום</button>
+                    
+                  </p> 
+            </div>   
+            
+            
+            
+            
+            
+            
+            
+            
+        </div>
+    </div>
+    </div>
+    
+     
+     </div>
+    
+</section>
+    
+<section id="sec3" >
+    <div class="container">
+        <strong>יש שאלות? דברו איתנו</strong>
+        <br/>
+        טלפון: <a href="tel:0525805001">052-5805001</a>, פקס: <a>153-52-5805001</a>
+        <br/>
+        דוא&quot;ל: <a href="mailto:office@incoseil.org">office@incoseil.org</a>
+    </div>
+    
+</section>   
+
+<script>
+ 
+    for (var e in document.getElementsByClassName("air")){
+        document.getElementsByClassName("air")[e].target="_Blank";
+    }
+    </script>
+ </div>
+</div>
+</main>
+<!-- @footer -->
+<!-- @end -->
