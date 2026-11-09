@@ -30,6 +30,12 @@ day2.html  (4 popups)  | no content yet: d2-h1, d2-h2, d2-h3, d2-h4, d2-h5
 
 ## One source of truth
 
+**How the content is managed, in short:**
+
+1. **Content is JSON and the page sources:** people in `_src/people.json`, both days' programs and every popup in `_src/program.json`, a page's own texts in `_src/pages/*.html`.
+2. **`node build.cjs`** writes the site's pages (the `.html` at the root) from them.
+3. **Never edit a built page:** the next build overwrites it.
+
 **Every detail is written in one place.** A person's name, photo or organisation lives only in `people.json`. A session's title, time or chair lives only in `program.json`. Pages and the program refer to people by key, and the build writes them out. If you fix something in one place, it changes everywhere.
 
 | What | Its one place |
@@ -97,8 +103,8 @@ Each day has `rows`. A row is either one cube across the whole row, or a row of 
 - **A single cube:** `kind` gives its look:
   - `"break"`: a short break, dashed;
   - `"neutral"`: a meal or a gathering;
-  - `"plenary"`: white with a mint frame;
-  - `"session"`: tinted, used on the one-track day.
+  - `"plenary"`: white, framed in the sky blue (for everyone);
+  - `"session"`: in the day's track colour, used on the one-track day.
 - **What a single cube can hold:**
   - `title`;
   - `list`: lines of [bold, the rest];
@@ -113,7 +119,7 @@ Each day has `rows`. A row is either one cube across the whole row, or a row of 
 - **The panel** (the last row of day 1):
   - `questions`: its numbered questions, in the popup;
   - `panelists`: people's keys. Each panelist is a card that opens their card, three in a row (one under another on a phone).
-- **A day:** `tracks` (the column heads) for two tracks; `"dir": "ltr", "lang": "en"` for an English day (day 2).
+- **A day:** `tracks` (the column heads) for two tracks; `"dir": "ltr", "lang": "en"` for an English day; `"badge"`, the pill above its popups' titles ("Tutorials Day"); `"track": 3`, its own colour (day 2).
 
 ### What opens
 
@@ -126,17 +132,40 @@ Each day has `rows`. A row is either one cube across the whole row, or a row of 
   - a lecture there switches the popup to the lecture (with a short fade), and a green "חזרה למושב …" button returns;
   - a panelist in the panel's popup works the same way ("חזרה לפאנל המומחים").
 - **A person's tile** opens as a whole tile, with "+ לפרטים".
+- **A cube with nothing else to click** (no lectures inside: a tutorial, the posters, the panel) opens as a whole card.
 - **A cube with nothing to show** (a coffee break) doesn't open.
 
-### The colours
+### The colours: one place for the table and its popups
 
-- **A track's colour:** each track sets `--st-accent` and `--st-accent-ink` on its cubes (track 1: mint and teal; track 2: the logo's blue). The underlines and numbers inherit them.
-- **A day's colour:** a one-track day can have its own (`"track": 3` in `program.json`: the tutorials day's deep blue, `--st-t3`). Its table gets `.st-day-t3`, its cubes and frames take that blue through `--st-accent`, and its popups open with `data-track="3"`. Day 1 keeps the mint and the blue.
-- **The popup's colour:** the popup takes the colour of the track it was opened from. `st-site.js` sets `data-track="2"`, and the `--st-pop-*` variables switch to blue. A switch inside the popup keeps it.
-- **Three kinds of cube:**
-  - **sessions** are tinted by track;
-  - **meals and breaks** share one pale tint of the logo's bright blue (`--st-sky`, `--st-neutral-bg`), and short breaks are also dashed;
-  - **plenaries** (for everyone) are white with a frame in that blue: no track's colour.
+**Every colour of the program table and its popups is a variable in `:root`** (`st-css/st.css`, the block "the program table and its popups"). Change a value there and everything that uses it follows; no rule below holds a colour of its own.
+
+| Variable | What it colours |
+|---|---|
+| `--st-t1` | track 1: its column head, its session cubes, and in a popup opened from it the pills, the role labels and the lecture frames |
+| `--st-t1-deep` | the title of a track 1 popup |
+| `--st-t1-bg` | the head and the cards of a track 1 popup |
+| `--st-t1-line` | the line between a cube's head and its lectures |
+| `--st-t2` and its `-deep`, `-bg`, `-line` | the same for track 2; a track 2 popup's buttons are its blue too |
+| `--st-t3` and its `-deep`, `-bg`, `-line` | the same for the tutorials day (`"track": 3` in `program.json`) |
+| `--st-sky` | the rows for everyone: a plenary's frame, the underline of a meal or a break |
+| `--st-neutral-bg`, `--st-neutral-line` | meals and breaks: their tint and their 2px frame (both from `--st-sky`) |
+| `--st-green`, `--st-teal` (the brand's) | a popup's buttons (סגירה, the way back, the X) and their hover, on track 1 and the tutorials day |
+
+**How it works:**
+- **A track's cube** (`td.st-t1`, `td.st-t2`, `td.st-t3`) copies its track's variables into `--st-track`, `--st-track-bg` and `--st-track-line`.
+- **The popup** copies the track it was opened from: `st-site.js` sets `data-track` (1, 2, or 3) from the button that opened it, and `.st-pop[data-track]` copies that track into `--st-track`, `--st-track-deep` and `--st-track-bg`. A switch inside the popup keeps it.
+- **Every rule inside** reads only `--st-track*` (and `--st-accent`, set from it).
+
+So, **to recolour a track**, change its four variables. **To add a track or a day's colour:** add `--st-t4` and its three in `:root`, a `td.st-t4` line and a `.st-pop[data-track="4"]` line that copy them, and the opener's check in `st-site.js`.
+
+**Three kinds of cube:**
+- **sessions:** their track's colour;
+- **meals and breaks:** a pale tint of the sky blue, short breaks dashed;
+- **plenaries** (for everyone): white, framed in the sky blue.
+
+Every cube has a 2px frame, so none reads as a hole in the table.
+
+**The session cubes in negative** (a try, 10.11: the track's colour as the background, white text, the lectures as white cards) are the last block of `st.css`. Delete it and the cubes go back to light tints with coloured text. The git tag `before-negative-cubes` is the state before it.
 
 ### The sample content
 
