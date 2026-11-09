@@ -26,6 +26,9 @@ const part = (name) => fs.readFileSync(path.join(SRC, 'partials', `${name}.html`
 const readJson = (name) => JSON.parse(fs.readFileSync(path.join(SRC, name), 'utf8'));
 const people = readJson('people.json');
 const program = readJson('program.json');
+// a file's fingerprint (from its content) on its link: a changed CSS or JS gets a new address, so no browser shows an old copy
+const stamp = (file) => require('crypto').createHash('md5').update(fs.readFileSync(path.join(DIR, file))).digest('hex').slice(0, 8);
+const STAMPS = { 'st-css/st.css': stamp('st-css/st.css'), 'st-js/st-site.js': stamp('st-js/st-site.js') };
 const attr = (text) => String(text).replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;');
 const strip = (html) => String(html).replace(/<[^>]+>/g, '');
 
@@ -145,6 +148,8 @@ const renderProgram = (dayKey) => {
     if (r.id && (r.text || r.speaker)) {
       popups[r.id] = { title: strip(r.title), meta: [r.time, ...(host ? [nameOf(who(host), en)] : [])],
         text: typeof r.text === 'string' ? [r.text] : r.text, questions: r.questions, panelists: r.panelists, person: host, back: r.back || strip(r.title), role: r.role || (r.lead && r.lead.label), ...(day.dir ? { dir: day.dir } : {}) };
+      // the panelists show only in the panel's popup (not in the cube, as on their old site); their cards must be on the page
+      for (const key of r.panelists || []) if (who(key).bio) extraLinked.add(`p-${key}`);
     }
     const parts = [
       `<span class="st-slot-ttl">${r.title}</span>`,
@@ -154,7 +159,6 @@ const renderProgram = (dayKey) => {
       r.lead && line(r.lead.person, r.lead.label, r.lead.as),
       r.speaker && line(r.speaker, '', '', ' • '),
       r.note && `<span class="st-slot-chair">${r.note}</span>`,
-      r.panelists && `<ul class="st-lectures st-panelists">${panelistItems(r.panelists)}</ul>`,
     ];
     const kind = [tracks.length ? 'st-all' : '', KIND[r.kind] || ''].filter(Boolean).join(' ');
     return `<tr role="row">${timeCell(r)}<td${kind ? ` class="${kind}"` : ''}${tracks.length ? ` colspan="${tracks.length}"` : ''} role="cell">${cube(r.pop || r.id, parts)}</td></tr>`;
@@ -209,6 +213,7 @@ for (const file of fs.readdirSync(path.join(SRC, 'pages')).filter((f) => f.endsW
     .replace(/<!-- @program ([\w-]+) -->/g, (_, day) => renderProgram(day))
     .replace(/<!-- @tile(-en)? ([\w-]+)(?: \| (.+?))? -->/g, (_, en, key, role) => tile(key, role, !!en))
     .replace(/<!-- @figure(-en)? ([\w-]+)(?: \| (.+?))? -->/g, (_, en, key, role) => figure(key, role, !!en))
+    .replace(/(href|src)="(st-css\/st\.css|st-js\/st-site\.js)"/g, (_, at, file) => `${at}="${file}?v=${STAMPS[file]}"`)
     .replace('<html lang="he" dir="rtl">', `<html lang="he" dir="rtl">\n<!-- built by build.cjs from _src/pages/${file}: edit there, not here -->`);
 
   // the cubes. A program cube (one with a .st-slot-ttl title) has ONE model, whatever it holds:
