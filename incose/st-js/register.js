@@ -22,3 +22,31 @@ document.addEventListener('DOMContentLoaded', function () {
         document.getElementsByClassName("air")[e].target="_Blank";
     }
 });
+
+// 3. the price table's head: a title and a line of running text under it, for each column. Their script writes the head on load
+//    (three lines of equal weight); once it has, this writes ours in its place. The rows and the date choice stay theirs
+var PRICE_HEAD = [
+  ['יום הכנס', 'יום ג׳, 12.01.2027<br>פרונטלי, במלון'],
+  ['יום הסדנאות', 'יום ד׳, 13.01.2027<br>בזום'],
+  ['שני הימים (כנס + סדנאות)', '12-13.01.2027<br>הכנס פרונטלי, הסדנאות בזום'],
+];
+document.addEventListener('DOMContentLoaded', function () {
+  var head = document.querySelector('#reg1-price thead');
+  if (!head) return;
+  var write = function () {
+    if (head.querySelector('.st-price-ttl')) return;
+    head.innerHTML = '<tr><th></th>' + PRICE_HEAD.map(function (col) {
+      return '<th><span class="st-price-ttl">' + col[0] + '</span><span class="st-price-sub">' + col[1] + '</span></th>';
+    }).join('') + '</tr>';
+  };
+  new MutationObserver(function () { if (head.querySelector('th')) write(); }).observe(head, { childList: true });
+});
+
+// 4. the date choice: a click anywhere on an option's row picks it, not only its circle (their labels' "for" is broken: xfor=date1, for=xdate3).
+//    It clicks the radio itself, so their own handlers (the price, the highlighted column) run as before
+document.addEventListener('click', function (event) {
+  var row = event.target.closest && event.target.closest('.date-sel > div');
+  if (!row || event.target.tagName === 'INPUT') return;
+  var radio = row.querySelector('input[type="radio"]');
+  if (radio && !radio.checked) radio.click();
+});

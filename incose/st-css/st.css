@@ -427,8 +427,12 @@ html:has(.st-pop[open]) { overflow: hidden; }
    lines on every cell (.table-bordered), the head in the brand green, every other row mint. Their style scales and greys the chosen date's column (.gray) and squeezes the cells: undone here */
 .st-register #reg1-price .table { --bs-table-striped-bg: color-mix(in srgb, var(--st-mint) 10%, #fff); --bs-table-border-color: var(--st-line); margin: 0; font-size: 16px; }
 .st-register #reg1-price .table th, .st-register #reg1-price .table td { padding: 12px 16px; text-align: center; transform: none; background-color: var(--bs-table-bg); color: var(--st-text); }
-.st-register #reg1-price .table thead th { --bs-table-bg: var(--st-green); border-bottom: 0; color: #fff; font-size: 15px; font-weight: 600; line-height: 1.5; }
+.st-register #reg1-price .table thead th { --bs-table-bg: var(--st-green); vertical-align: top; border-bottom: 0; color: #fff; font-size: 15px; font-weight: 600; line-height: 1.5; }
 .st-register #reg1-price .table tbody td:first-child { text-align: start; font-weight: 600; color: var(--st-ink); }
+/* its head: a title, and a line of running text under it (register.js writes them) */
+.st-price-ttl { display: block; font-size: 17px; font-weight: 700; line-height: 1.35; }
+.st-price-sub { display: block; margin-top: 6px; font-size: 14px; font-weight: 400; line-height: 1.5; color: color-mix(in srgb, #fff 78%, transparent); }
+@media (max-width: 767px) { .st-price-ttl { font-size: 14px; } .st-price-sub { font-size: 12px; } }
 .st-register #reg1-price .table tfoot { display: none; }   /* their script's row: it holds only the script (and held the table wide on a phone) */
 .st-register #reg1-price .table td.gray { --bs-table-bg-state: color-mix(in srgb, var(--st-mint) 18%, #fff); font-weight: 700; color: var(--st-ink); }
 .st-register #reg1-price .table tbody tr:last-child td { --bs-table-bg-type: transparent; padding-top: 12px; border-bottom: 0; text-align: start; font-size: 14px; font-weight: 400; color: var(--st-muted); }
@@ -439,9 +443,13 @@ html:has(.st-pop[open]) { overflow: hidden; }
 /* the fields: a label over each, a calm frame, mint when in use */
 .st-register .det-type1, .st-register .det-type2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin-bottom: 16px; }
 .st-register label { font-size: 15px; font-weight: 600; color: var(--st-text); }
-.st-register input[type="text"], .st-register input[type="email"], .st-register select { display: block; width: 100%; height: 46px; margin-top: 6px; padding: 0 14px; border: 1px solid var(--st-line-strong); border-radius: var(--st-radius-sm); background: #fff; font: inherit; font-size: 16px; color: var(--st-ink); }
+.st-register input[type="text"], .st-register input[type="email"], .st-register select { display: block; width: 100%; height: 46px; margin-top: 6px; padding: 0 14px; border: 1px solid color-mix(in srgb, var(--st-muted) 45%, #fff);   /* a field's frame, a little stronger than the hairlines */ border-radius: var(--st-radius-sm); background: #fff; font: inherit; font-size: 16px; color: var(--st-ink); }
 .st-register input[type="text"]:focus, .st-register input[type="email"]:focus, .st-register select:focus { outline: none; border-color: var(--st-mint); box-shadow: 0 0 0 3px color-mix(in srgb, var(--st-mint) 25%, transparent); }
 .st-register input[type="radio"], .st-register input[type="checkbox"] { accent-color: var(--st-teal); width: 18px; height: 18px; vertical-align: middle; }
+/* the date choice (their script writes it, with inline floats and a negative margin): each option one row, its circle on the text's line; the whole row picks it (register.js) */
+.st-register .date-sel > div { display: flex; align-items: center; gap: 10px; margin-block: 8px; cursor: pointer; }
+.st-register .date-sel input[type="radio"] { flex: none; float: none !important; width: 20px; height: 20px; margin: 0 !important; transform: none; }
+.st-register .date-sel label { margin: 0; padding: 0 !important; cursor: pointer; }
 .st-register .reqstar { margin-inline-start: 2px; color: var(--st-red); }
 .st-register .add_reg-p a { color: var(--st-teal); font-weight: 700; text-decoration: underline; text-underline-offset: 3px; cursor: pointer; }
 /* the payment: each way a framed row, its line under it */
@@ -450,8 +458,8 @@ html:has(.st-pop[open]) { overflow: hidden; }
 .st-register #regp em { display: block; margin-top: 4px; font-size: 14px; font-style: normal; font-weight: 400; color: var(--st-muted); }
 .st-register #regp a { color: var(--st-teal); }
 .st-register .f2 { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 16px 20px; border-radius: var(--st-radius); background: var(--st-tint); font-weight: 600; color: var(--st-ink); }
-.st-register .f2 span { font-weight: 400; color: var(--st-muted); }
-.st-register #total-price { font-size: 28px; font-weight: 700; color: var(--st-ink); }
+.st-register .f2 > div:first-child span { display: block; font-size: 14px; font-weight: 400; color: var(--st-muted); }   /* "(מע"מ 18% כלול)" on its own line */
+.st-register #total-price { font-size: 28px; font-weight: 700; color: var(--st-ink); white-space: nowrap; }   /* the amount and its ₪ on one line */
 .st-register #reg3 > div { margin-bottom: 8px; }
 .st-register #reg3 hr { margin: 16px 0; border: 0; border-top: 1px solid var(--st-line); opacity: 1; }
 .st-register #reg-done { margin-top: 32px; text-align: center; }
@@ -462,8 +470,10 @@ html:has(.st-pop[open]) { overflow: hidden; }
 .st-register #sec3 strong { display: block; margin-bottom: 4px; font-size: 18px; color: var(--st-ink); }
 .st-register #sec3 a { color: var(--st-teal); }
 /* the group (their script writes these buttons, .active on the chosen one): pills, the chosen one dark green */
-.st-register #groupr-b { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 8px; }
-.st-register #groupr-b button { display: inline-flex; align-items: center; justify-content: center; gap: 10px; padding: 10px 18px; border: 1px solid var(--st-line-strong); border-radius: var(--st-pill); background: #fff; color: var(--st-ink); font: 600 15px var(--st-font); cursor: pointer; }
+/* the audience buttons: three in a row (two on a phone); their own width and margins are undone */
+.st-register #groupr-b { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; margin-top: 8px; }
+@media (max-width: 767px) { .st-register #groupr-b { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+.st-register #groupr-b button { display: inline-flex; align-items: center; justify-content: center; gap: 10px; width: auto; margin: 0; padding: 10px 18px; border: 1px solid var(--st-line-strong); border-radius: var(--st-pill); background: #fff; color: var(--st-ink); font: 600 15px var(--st-font); cursor: pointer; }
 @media (hover: hover) { .st-register #groupr-b button:hover { border-color: var(--st-mint); } }
 .st-register #groupr-b button.active { border-color: var(--st-green); background: var(--st-green); color: #fff; }
 /* the shekel sign after a price (<span class=sign>, their markup): on its own, so it sits on the price's left as in Hebrew (₪ 354), not glued to the number */
@@ -471,6 +481,8 @@ html:has(.st-pop[open]) { overflow: hidden; }
 /* a choice of one: each button has a radio's circle before its name, filled on the chosen one */
 .st-register #groupr-b button::before { content: ""; flex: none; box-sizing: border-box; width: 18px; height: 18px; border: 2px solid currentColor; border-radius: 50%; }
 .st-register #groupr-b button.active::before { background: radial-gradient(circle, currentColor 0 4px, transparent 4.5px); }
+/* a phone: a long name takes two lines, so the buttons are cards (a pill that tall looks odd), their text from the start */
+@media (max-width: 767px) { .st-register #groupr-b button { justify-content: flex-start; padding-inline: 12px; border-radius: var(--st-radius); font-size: 14px; line-height: 1.35; text-align: start; } }
 /* the footer's button to the association's site: a mint outline that fills on hover */
 .st-foot-btn { display: inline-flex; align-items: center; gap: 8px; padding: 10px 22px; border: 1px solid var(--st-mint); border-radius: var(--st-pill); color: #fff; font-weight: 700; text-decoration: none; white-space: nowrap; transition: background-color .2s, color .2s; }
 @media (hover: hover) { .st-foot .st-foot-btn:hover { background: var(--st-mint); color: var(--st-deep); text-decoration: none; } }
