@@ -6,10 +6,10 @@
   <div class="st-save" dir="ltr"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>SAVE THE<br>DATE</div>
   <div class="st-wrap st-hero-in">
     <div class="st-copy">
-      <img class="st-logo" src="st-images/incose_logo_heb_WHITE.svg" alt="INCOSE IL, האיגוד הישראלי להנדסת מערכות" width="571" height="227">
-      <img class="st-text" src="st-images/conf_26_incose_homepage_banner-TEXT.svg" alt="הכנס הבינלאומי INCOSE IL 2027. שילוב הנדסת מערכות וניהול פרויקטים, מזיהוי הצורך ועד למימוש הערך למשתמש. 12/01/2027 יום שלישי, מלון דניאל, הרצליה. 13/01/2027 יום רביעי, מפגשים אונליין." width="576" height="351">
+      <img class="st-logo" src="st-images/incose_logo_heb_WHITE.svg" alt="INCOSE IL, האיגוד הישראלי להנדסת מערכות" width="571" height="227" loading="eager" fetchpriority="high">
+      <img class="st-text" src="st-images/conf_26_incose_homepage_banner-TEXT.svg" alt="הכנס הבינלאומי INCOSE IL 2027. שילוב הנדסת מערכות וניהול פרויקטים, מזיהוי הצורך ועד למימוש הערך למשתמש. 12/01/2027 יום שלישי, מלון דניאל, הרצליה. 13/01/2027 יום רביעי, מפגשים אונליין." width="576" height="351" loading="eager" fetchpriority="high">
     </div>
-    <img class="st-shape" src="st-images/incose_shape.png" alt="" width="1631" height="1619">
+    <picture class="st-pic"><source type="image/avif" srcset="st-images/incose_shape.avif"><img class="st-shape" src="st-images/incose_shape.webp" alt="" width="960" height="953" loading="eager" fetchpriority="high"></picture>
   </div>
 </header>
 <ul class="st-wrap st-cards st-cards-over">
@@ -18,12 +18,14 @@
     <p class="st-date"><time datetime="2027-01-12"><span>12.1</span><span class="st-sep" aria-hidden="true">|</span>יום שלישי</time></p>
     <p class="st-place">מלון דניאל, הרצליה</p>
     <a class="st-link" href="day1.html">תוכנית יום הכנס</a>
+    <span class="st-card-arrow" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg></span>
   </li>
   <li class="st-card">
     <span class="st-badge">יום הסדנאות</span>
     <p class="st-date"><time datetime="2027-01-13"><span>13.1</span><span class="st-sep" aria-hidden="true">|</span>יום רביעי</time></p>
     <p class="st-place">סדנאות מקוונות</p>
     <a class="st-link" href="day2.html">תוכנית יום הסדנאות</a>
+    <span class="st-card-arrow" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg></span>
   </li>
 </ul>
 <section class="st-section">
@@ -55,22 +57,8 @@
     <div class="st-chairs">
       <p class="st-chairs-title">נתראה בכנס,</p>
       <div class="st-chairs-row">
-        <figure class="st-chair">
-          <img src="st-images/shoker.jpg" alt="ד&quot;ר משה שוקר" width="400" height="400">
-          <figcaption>
-            <p class="st-chair-name">ד"ר משה שוקר</p>
-            <p class="st-chair-role">יו"ר יום הכנס</p>
-            <p class="st-chair-org">סמנכ"ל מו"פ רפאל</p>
-          </figcaption>
-        </figure>
-        <figure class="st-chair">
-          <img src="st-images/Yaniv1.jpg" alt="ד&quot;ר יניב מרדכי" width="142" height="142">
-          <figcaption>
-            <p class="st-chair-name">ד"ר יניב מרדכי</p>
-            <p class="st-chair-role">יו"ר יום הסדנאות</p>
-            <p class="st-chair-org">אוניברסיטת ת"א</p>
-          </figcaption>
-        </figure>
+        <!-- @figure shoker | יו"ר יום הכנס -->
+        <!-- @figure yaniv | יו"ר יום הסדנאות -->
       </div>
     </div>
   </div>
@@ -83,14 +71,14 @@
  <div class="st-wrap">
   <h2 class="st-title">נושאי הכנס המרכזיים</h2>
   <ul class="st-topics-grid">
-    <li><img src="st-images/st-topic-initiation.webp" alt="" width="240" height="240"><p>ייזום פרויקטים והממשק בין הלקוח, המזמין וצוות הפיתוח</p></li>
-    <li><img src="st-images/st-topic-lessons.webp" alt="" width="240" height="240"><p>תובנות, לקחים ודפוסי הצלחה מפיתוח מערכות מורכבות</p></li>
-    <li><img src="st-images/st-topic-chips.webp" alt="" width="240" height="240"><p>שבבים ומיקרואלקטרוניקה</p></li>
-    <li><img src="st-images/st-topic-users.webp" alt="" width="240" height="240"><p>אתגרי הבשלה מערכתית בשילוב המשתמשים</p></li>
-    <li><img src="st-images/st-topic-research.webp" alt="" width="240" height="240"><p>המחקרים, השיטות והכלים המתקדמים בהנדסת מערכות</p></li>
-    <li><img src="st-images/st-topic-ai.webp" alt="" width="240" height="240"><p>אימות, תיקוף וניסויים בעידן ה-AI</p></li>
-    <li><img src="st-images/st-topic-panel.webp" alt="" width="240" height="240"><p><strong>פאנל מומחים:</strong> איך סוגרים את הפער בין המצוי לרצוי בפיתוח מערכות מורכבות?</p></li>
-    <li><img src="st-images/st-topic-posters.webp" alt="" width="240" height="240"><p><strong>תצוגת פוסטרים:</strong> פרויקטי הגמר של סטודנטים לתואר שני, הדור הבא של מהנדסי המערכות</p></li>
+    <li><picture class="st-pic"><source type="image/avif" srcset="st-images/st-topic-initiation.avif"><img src="st-images/st-topic-initiation.webp" alt="" width="240" height="240"></picture><p>ייזום פרויקטים והממשק בין הלקוח, המזמין וצוות הפיתוח</p></li>
+    <li><picture class="st-pic"><source type="image/avif" srcset="st-images/st-topic-lessons.avif"><img src="st-images/st-topic-lessons.webp" alt="" width="240" height="240"></picture><p>תובנות, לקחים ודפוסי הצלחה מפיתוח מערכות מורכבות</p></li>
+    <li><picture class="st-pic"><source type="image/avif" srcset="st-images/st-topic-chips.avif"><img src="st-images/st-topic-chips.webp" alt="" width="240" height="240"></picture><p>שבבים ומיקרואלקטרוניקה</p></li>
+    <li><picture class="st-pic"><source type="image/avif" srcset="st-images/st-topic-users.avif"><img src="st-images/st-topic-users.webp" alt="" width="240" height="240"></picture><p>אתגרי הבשלה מערכתית בשילוב המשתמשים</p></li>
+    <li><picture class="st-pic"><source type="image/avif" srcset="st-images/st-topic-research.avif"><img src="st-images/st-topic-research.webp" alt="" width="240" height="240"></picture><p>המחקרים, השיטות והכלים המתקדמים בהנדסת מערכות</p></li>
+    <li><picture class="st-pic"><source type="image/avif" srcset="st-images/st-topic-ai.avif"><img src="st-images/st-topic-ai.webp" alt="" width="240" height="240"></picture><p>אימות, תיקוף וניסויים בעידן ה-AI</p></li>
+    <li><picture class="st-pic"><source type="image/avif" srcset="st-images/st-topic-panel.avif"><img src="st-images/st-topic-panel.webp" alt="" width="240" height="240"></picture><p><strong>פאנל מומחים:</strong> איך סוגרים את הפער בין המצוי לרצוי בפיתוח מערכות מורכבות?</p></li>
+    <li><picture class="st-pic"><source type="image/avif" srcset="st-images/st-topic-posters.avif"><img src="st-images/st-topic-posters.webp" alt="" width="240" height="240"></picture><p><strong>תצוגת פוסטרים:</strong> פרויקטי הגמר של סטודנטים לתואר שני, הדור הבא של מהנדסי המערכות</p></li>
   </ul>
  </div>
 </section>

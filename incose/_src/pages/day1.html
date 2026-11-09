@@ -1,129 +1,15 @@
-<!--{"title":"תוכנית יום הכנס, 12.1.2027 במלון דניאל | INCOSE IL 2027","description":"התוכנית של יום הכנס, יום שלישי 12.1.2027 במלון דניאל בהרצליה: מושב הפתיחה, שני מסלולים מקבילים, תערוכת הפוסטרים ופאנל המומחים.","nav":"day1"}-->
+<!--{"title":"תוכנית יום הכנס, 12.1.2027 במלון דניאל | INCOSE IL 2027","description":"התוכנית של יום הכנס, יום שלישי 12.1.2027 במלון דניאל בהרצליה: מושב הפתיחה, שני מסלולים מקבילים, תערוכת הפוסטרים ופאנל המומחים.","nav":"day1","crumb":"תוכנית יום הכנס"}-->
 <!-- @head -->
 <!-- @nav -->
 <main id="main">
 <!-- @banner -->
 
-<!-- the program: a real table (the time is each row's header, the tracks the columns'). The source: the client's program table.
-     A cube is a div.st-slot with data-pop="its name": when _src/popups.json has that name, the build adds the cube's "+ לפרטים" button
-     and its popup; when not, the cube stays plain. No div inside a cube. On a phone the rows stack (the explicit roles keep it a table for a screen reader) -->
+<!-- the program: drawn from _src/program.json (day1) by the build: the table, its sessions and lectures, and their popups -->
 <section class="st-section" aria-labelledby="st-page-title">
  <div class="st-wrap">
   <h1 class="st-title" id="st-page-title">תוכנית יום הכנס</h1>
   <p class="st-sub"><time datetime="2027-01-12">יום שלישי, 12.1.2027</time><span aria-hidden="true"> · </span>מלון דניאל, הרצליה</p>
-  <table class="st-prog" role="table">
-    <thead role="rowgroup">
-      <tr role="row">
-        <td class="st-prog-corner" role="cell"></td>
-        <th class="st-t1" scope="col" role="columnheader">מסלול 1</th>
-        <th class="st-t2" scope="col" role="columnheader">מסלול 2</th>
-      </tr>
-    </thead>
-    <tbody role="rowgroup">
-      <tr role="row">
-        <th scope="row" role="rowheader"><span class="st-time"><time>08:00</time>-<time>09:00</time></span></th>
-        <td class="st-all st-break" colspan="2" role="cell"><div class="st-slot"><span class="st-slot-ttl">התכנסות, הרשמה וכיבוד בוקר</span></div></td>
-      </tr>
-      <tr role="row">
-        <th scope="row" role="rowheader"><span class="st-time"><time>09:00</time>-<time>10:30</time></span><span class="st-part">מושב פתיחה</span></th>
-        <td class="st-all st-plenary" colspan="2" role="cell">
-          <div class="st-slot" data-pop="opening">
-            <span class="st-slot-ttl">מושב פתיחה ע"ש הדר גולדין</span>
-            <ul class="st-slot-list">
-              <li><strong>דברי פתיחה</strong> - ד״ר משה שוקר</li>
-              <li><strong>מרצה אורח</strong> מתעשייה ביטחונית/גוף ביטחוני</li>
-              <li><strong>מרצה אורח</strong> - תעשייה אזרחית</li>
-              <li><strong>מהנדסת מערכת להנדסת ערכים - להחזיר את הדר הביתה</strong> – ד״ר לאה גולדין</li>
-            </ul>
-          </div>
-        </td>
-      </tr>
-      <tr role="row">
-        <th scope="row" role="rowheader"><span class="st-time"><time>10:30</time>-<time>11:00</time></span></th>
-        <td class="st-all" colspan="2" role="cell">
-          <div class="st-slot" data-pop="posters">
-            <span class="st-slot-ttl">רעיונות על הקיר - תערוכת פוסטרים והפסקת קפה</span>
-            <span class="st-slot-text">תערוכת הפוסטרים השנתית מציגה את מיטב פרויקטי הגמר והעבודות המחקריות של הסטודנטים להנדסת מערכות.</span>
-            <span class="st-slot-chair"><img src="assets/motil.png" alt="" width="32" height="32">בהובלת ד"ר מוטי ליבוביץ, אוניברסיטת בן גוריון</span>
-          </div>
-        </td>
-      </tr>
-      <tr role="row">
-        <th scope="row" role="rowheader"><span class="st-time"><time>11:00</time>-<time>12:15</time></span><span class="st-part">מושב בוקר</span></th>
-        <td class="st-t1" data-track="מסלול 1" role="cell">
-          <div class="st-slot" data-pop="s11">
-            <span class="st-slot-num">מושב 1.1</span>
-            <span class="st-slot-ttl">תובנות, לקחים ודפוסי הצלחה מפיתוח מערכות מורכבות</span>
-            <span class="st-slot-chair">יו״ר מושב: ד״ר אירית פלד, רפאל</span>
-          </div>
-        </td>
-        <td class="st-t2" data-track="מסלול 2" role="cell">
-          <div class="st-slot" data-pop="s21">
-            <span class="st-slot-num">מושב 2.1</span>
-            <span class="st-slot-ttl">אימות, תיקוף וניסויים תוך שילוב AI</span>
-            <span class="st-slot-chair"><img src="assets/orenh.jpg" alt="" width="32" height="32">יו״ר מושב: אורן הראל, אלתא - תע״א</span>
-          </div>
-        </td>
-      </tr>
-      <tr role="row">
-        <th scope="row" role="rowheader"><span class="st-time"><time>12:20</time>-<time>13:35</time></span><span class="st-part">מושב צהרים</span></th>
-        <td class="st-t1" data-track="מסלול 1" role="cell">
-          <div class="st-slot" data-pop="s12">
-            <span class="st-slot-num">מושב 1.2</span>
-            <span class="st-slot-ttl">אתגרי הבשלה מערכתית בשילוב משתמשי קצה</span>
-            <span class="st-slot-chair"><img src="assets/ifat.png" alt="" width="32" height="32">יו״ר מושב: יפעת קוזובסקי, אלביט מערכות</span>
-          </div>
-        </td>
-        <td class="st-t2" data-track="מסלול 2" role="cell">
-          <div class="st-slot" data-pop="s22">
-            <span class="st-slot-num">מושב 2.2</span>
-            <span class="st-slot-ttl">הנדסת מערכות בהנדסת שבבים והמיקרואלקטרוניקה</span>
-            <span class="st-slot-chair"><img src="assets/OronRam.jpg" alt="" width="32" height="32">יו״ר מושב: ד״ר רם אורון, נובה</span>
-          </div>
-        </td>
-      </tr>
-      <tr role="row">
-        <th scope="row" role="rowheader"><span class="st-time"><time>13:35</time>-<time>14:35</time></span></th>
-        <td class="st-all" colspan="2" role="cell">
-          <div class="st-slot" data-pop="posters">
-            <span class="st-slot-ttl">ארוחת צהרים ורעיונות על הקיר - תערוכת פוסטרים</span>
-            <span class="st-slot-text">תערוכת הפוסטרים השנתית מציגה את מיטב פרויקטי הגמר והעבודות המחקריות של הסטודנטים להנדסת מערכות.</span>
-            <span class="st-slot-chair"><img src="assets/motil.png" alt="" width="32" height="32">בהובלת ד"ר מוטי ליבוביץ, אוניברסיטת בן גוריון</span>
-          </div>
-        </td>
-      </tr>
-      <tr role="row">
-        <th scope="row" role="rowheader"><span class="st-time"><time>14:35</time>-<time>15:50</time></span><span class="st-part">מושב אחה"צ</span></th>
-        <td class="st-t1" data-track="מסלול 1" role="cell">
-          <div class="st-slot" data-pop="s13">
-            <span class="st-slot-num">מושב 1.3</span>
-            <span class="st-slot-ttl">ייזום והתנעת פרויקטים בדגש על הממשק בין הלקוח, המזמין וגוף הפיתוח</span>
-            <span class="st-slot-chair"><img src="assets/motil.png" alt="" width="32" height="32">יו״ר מושב: ד״ר מוטי ליבוביץ, אוניברסיטת בן גוריון</span>
-          </div>
-        </td>
-        <td class="st-t2" data-track="מסלול 2" role="cell">
-          <div class="st-slot" data-pop="s23">
-            <span class="st-slot-num">מושב 2.3</span>
-            <span class="st-slot-ttl">מושב אקדמי: שיטות וכלים חדשים בהנדסת מערכות בעידן <span class="st-nw">ה-AI</span></span>
-            <span class="st-slot-chair"><img src="assets/michael_winokur.png" alt="" width="32" height="32">יו״ר מושב: פרופ׳ מיכאל וינוקור, HIT</span>
-          </div>
-        </td>
-      </tr>
-      <tr role="row">
-        <th scope="row" role="rowheader"><span class="st-time"><time>15:50</time>-<time>16:00</time></span></th>
-        <td class="st-all st-break" colspan="2" role="cell"><div class="st-slot"><span class="st-slot-ttl">הפסקה מתוקה וקפה</span></div></td>
-      </tr>
-      <tr role="row">
-        <th scope="row" role="rowheader"><span class="st-time"><time>16:00</time>-<time>17:00</time></span></th>
-        <td class="st-all st-plenary" colspan="2" role="cell">
-          <div class="st-slot" data-pop="panel">
-            <span class="st-slot-ttl">פאנל מומחים: הנדסת המערכות בעידן של מהפכות: מהפכת <span class="st-nw">ה-AI</span> ומהפכת <span class="st-nw">ה-DefenseTech</span></span>
-            <span class="st-slot-chair"><img src="st-images/shoker.jpg" alt="" width="32" height="32">בהובלת ד"ר משה שוקר, יו"ר יום הכנס</span>
-          </div>
-        </td>
-      </tr>
-    </tbody>
-  </table>
+  <!-- @program day1 -->
  </div>
 </section>
 </main>

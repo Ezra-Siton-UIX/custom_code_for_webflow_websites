@@ -25,6 +25,8 @@
 <nav class="navbar navbar-expand-xl sticky-top st-nav" data-bs-theme="dark" aria-label="תפריט ראשי">
   <div class="container-fluid st-wrap">
     <a class="navbar-brand st-nav-logo" href="index.html"><img src="st-images/incose_il_2027_conf_logo.svg" alt="הכנס הבינלאומי INCOSE IL 2027, לדף הראשי" width="200" height="33"></a>
+    <!-- under 1200px: the registration in the bar too, beside the menu button (the open menu keeps its own) -->
+    <a class="btn st-nav-cta st-nav-cta-bar" href="register.html" data-nav="register">הרשמה לכנס</a>
     <button class="navbar-toggler st-nav-btn" type="button" data-bs-toggle="collapse" data-bs-target="#st-nav-panel" aria-controls="st-nav-panel" aria-expanded="false" aria-label="תפריט"><span class="navbar-toggler-icon"></span></button>
     <div class="collapse navbar-collapse st-nav-panel" id="st-nav-panel">
       <ul class="navbar-nav st-nav-links">
@@ -47,26 +49,27 @@
      the home banner's SVG), the line and the dates as text, the shape -->
 <header class="st-banner">
   <div class="st-wrap st-banner-in">
-    <img class="st-banner-logo" src="st-images/incose_logo_heb_WHITE.svg" alt="INCOSE IL, האיגוד הישראלי להנדסת מערכות" width="151" height="60">
-    <img class="st-banner-title" src="st-images/st-banner-title.svg" alt="הכנס הבינלאומי INCOSE IL 2027" width="380" height="84">
+    <img class="st-banner-logo" src="st-images/incose_logo_heb_WHITE.svg" alt="INCOSE IL, האיגוד הישראלי להנדסת מערכות" width="151" height="60" loading="eager" fetchpriority="high">
+    <img class="st-banner-title" src="st-images/st-banner-title.svg" alt="הכנס הבינלאומי INCOSE IL 2027" width="380" height="84" loading="eager" fetchpriority="high">
     <div class="st-banner-text">
       <p class="st-banner-line"><strong>שילוב הנדסת מערכות וניהול פרויקטים</strong>מזיהוי הצורך ועד למימוש הערך למשתמש</p>
       <p class="st-banner-when"><time datetime="2027-01-12">12-13 בינואר 2027</time><span aria-hidden="true">•</span>מלון דניאל, הרצליה</p>
     </div>
-    <img class="st-banner-shape" src="st-images/incose_shape.png" alt="" width="1631" height="1619">
+    <picture class="st-pic"><source type="image/avif" srcset="st-images/incose_shape.avif"><img class="st-banner-shape" src="st-images/incose_shape.webp" alt="" width="960" height="953" loading="eager" fetchpriority="high"></picture>
   </div>
 </header>
+<nav class="st-crumbs" aria-label="פירורי לחם"><ol class="st-wrap"><li><a href="index.html">ראשי</a></li><li aria-current="page">יו״ר ומרצים</li></ol></nav>
 
-<!-- the people: one tile each. A tile with data-pop="p-KEY" opens that person's bio when _src/popups.json has p-KEY
-     (the bio itself is in _src/people.json); without it the tile stays plain. The session chairs: the client's program table -->
+<!-- the people: one tile each, from _src/people.json by key (a tile marker per person, its role after the bar); a person with a bio opens their card -->
 <section class="st-section" aria-labelledby="st-page-title">
  <div class="st-wrap">
   <!-- the page's h1, for screen readers and search: on screen the groups' titles lead (two lined titles would stack) -->
   <h1 class="visually-hidden" id="st-page-title">יו"ר ומרצים</h1>
   <h2 class="st-title">יו"ר הכנס</h2>
   <ul class="st-people">
-    <li><div class="st-slot st-tile"><img src="assets/shoker.jpg" alt="" width="112" height="112"><span class="st-tile-name">ד"ר משה שוקר</span><span class="st-tile-role">יו"ר יום הכנס</span><span class="st-tile-org">סמנכ"ל מו"פ רפאל</span></div></li>
-    <li><div class="st-slot st-tile is-pop"><img src="assets/Yaniv1.jpg" alt="" width="112" height="112"><span class="st-tile-name">ד"ר יניב מרדכי</span><span class="st-tile-role">יו"ר יום הסדנאות</span><span class="st-tile-org">אוניברסיטת ת"א</span>  <button class="st-slot-more" type="button" data-pop="p-yaniv" aria-haspopup="dialog" dir="rtl">לפרטים<span class="visually-hidden"> על Dr. Yaniv Mordecai</span></button>
+    <li><div class="st-slot st-tile is-pop"><img src="assets/shoker.jpg" alt="" width="112" height="112"><span class="st-tile-name">ד"ר משה שוקר</span><span class="st-tile-role">יו"ר יום הכנס</span><span class="st-tile-org">סמנכ"ל מו"פ רפאל</span>  <button class="st-slot-more" type="button" data-pop="p-shoker" aria-haspopup="dialog" dir="rtl">לפרטים<span class="visually-hidden"> על ד"ר משה שוקר</span></button>
+          </div></li>
+    <li><div class="st-slot st-tile is-pop"><img src="assets/Yaniv1.jpg" alt="" width="112" height="112"><span class="st-tile-name">ד"ר יניב מרדכי</span><span class="st-tile-role">יו"ר יום הסדנאות</span><span class="st-tile-org">אוניברסיטת ת"א</span>  <button class="st-slot-more" type="button" data-pop="p-yaniv" aria-haspopup="dialog" dir="rtl">לפרטים<span class="visually-hidden"> על ד"ר יניב מרדכי</span></button>
           </div></li>
   </ul>
 
@@ -76,29 +79,41 @@
           </div></li>
     <li><div class="st-slot st-tile is-pop"><img src="assets/orenh.jpg" alt="" width="112" height="112"><span class="st-tile-name">אורן הראל</span><span class="st-tile-role">יו"ר מושב 2.1</span><span class="st-tile-org">אלתא - תע"א</span>  <button class="st-slot-more" type="button" data-pop="p-orenh" aria-haspopup="dialog" dir="rtl">לפרטים<span class="visually-hidden"> על אורן הראל</span></button>
           </div></li>
-    <li><div class="st-slot st-tile"><img src="assets/ifat.png" alt="" width="112" height="112"><span class="st-tile-name">יפעת קוזובסקי</span><span class="st-tile-role">יו"ר מושב 1.2</span><span class="st-tile-org">אלביט מערכות</span></div></li>
-    <li><div class="st-slot st-tile"><img src="assets/OronRam.jpg" alt="" width="112" height="112"><span class="st-tile-name">ד"ר רם אורון</span><span class="st-tile-role">יו"ר מושב 2.2</span><span class="st-tile-org">נובה</span></div></li>
+    <li><div class="st-slot st-tile is-pop"><img src="assets/ifat.png" alt="" width="112" height="112"><span class="st-tile-name">יפעת קוזובסקי</span><span class="st-tile-role">יו"ר מושב 1.2</span><span class="st-tile-org">אלביט מערכות</span>  <button class="st-slot-more" type="button" data-pop="p-ifat" aria-haspopup="dialog" dir="rtl">לפרטים<span class="visually-hidden"> על יפעת קוזובסקי</span></button>
+          </div></li>
+    <li><div class="st-slot st-tile is-pop"><img src="assets/OronRam.jpg" alt="" width="112" height="112"><span class="st-tile-name">ד"ר רם אורון</span><span class="st-tile-role">יו"ר מושב 2.2</span><span class="st-tile-org">נובה</span>  <button class="st-slot-more" type="button" data-pop="p-ram" aria-haspopup="dialog" dir="rtl">לפרטים<span class="visually-hidden"> על ד"ר רם אורון</span></button>
+          </div></li>
     <li><div class="st-slot st-tile is-pop"><img src="assets/motil.png" alt="" width="112" height="112"><span class="st-tile-name">ד"ר מוטי ליבוביץ</span><span class="st-tile-role">יו"ר מושב 1.3</span><span class="st-tile-org">אוניברסיטת בן גוריון</span>  <button class="st-slot-more" type="button" data-pop="p-motil" aria-haspopup="dialog" dir="rtl">לפרטים<span class="visually-hidden"> על ד"ר מוטי ליבוביץ</span></button>
           </div></li>
-    <li><div class="st-slot st-tile"><img src="assets/michael_winokur.png" alt="" width="112" height="112"><span class="st-tile-name">פרופ' מיכאל וינוקור</span><span class="st-tile-role">יו"ר מושב 2.3</span><span class="st-tile-org">HIT</span></div></li>
+    <li><div class="st-slot st-tile is-pop"><img src="assets/michael_winokur.png" alt="" width="112" height="112"><span class="st-tile-name">פרופ' מיכאל וינוקור</span><span class="st-tile-role">יו"ר מושב 2.3</span><span class="st-tile-org">HIT</span>  <button class="st-slot-more" type="button" data-pop="p-winokur" aria-haspopup="dialog" dir="rtl">לפרטים<span class="visually-hidden"> על פרופ' מיכאל וינוקור</span></button>
+          </div></li>
   </ul>
 
   <!-- the tutorial speakers: their live page lists Dr. Mordecai and four placeholders (John Doe) until the tutorials are announced -->
   <h2 class="st-title">מרצי יום הסדנאות</h2>
   <ul class="st-people" dir="ltr" lang="en">
-    <li><div class="st-slot st-tile is-pop"><img src="assets/Yaniv1.jpg" alt="" width="112" height="112"><span class="st-tile-name">Dr. Yaniv Mordecai</span><span class="st-tile-org">Tel Aviv University &amp; Amazon</span>  <button class="st-slot-more" type="button" data-pop="p-yaniv" aria-haspopup="dialog" dir="rtl">לפרטים<span class="visually-hidden"> על Dr. Yaniv Mordecai</span></button>
+    <li><div class="st-slot st-tile is-pop"><img src="assets/Yaniv1.jpg" alt="" width="112" height="112"><span class="st-tile-name">Dr. Yaniv Mordecai</span><span class="st-tile-org">Tel Aviv University & Amazon</span>  <button class="st-slot-more" type="button" data-pop="p-yaniv" aria-haspopup="dialog" dir="rtl">לפרטים<span class="visually-hidden"> על ד"ר יניב מרדכי</span></button>
           </div></li>
-    <li><div class="st-slot st-tile"><img src="assets/incose_vip_person.png" alt="" width="112" height="112"><span class="st-tile-name">John Doe</span><span class="st-tile-org">Lecturer</span></div></li>
-    <li><div class="st-slot st-tile"><img src="assets/incose_vip_person.png" alt="" width="112" height="112"><span class="st-tile-name">John Doe</span><span class="st-tile-org">Lecturer</span></div></li>
-    <li><div class="st-slot st-tile"><img src="assets/incose_vip_person.png" alt="" width="112" height="112"><span class="st-tile-name">John Doe</span><span class="st-tile-org">Lecturer</span></div></li>
-    <li><div class="st-slot st-tile"><img src="assets/incose_vip_person.png" alt="" width="112" height="112"><span class="st-tile-name">John Doe</span><span class="st-tile-org">Lecturer</span></div></li>
+    <li><div class="st-slot st-tile is-pop"><img src="assets/incose_vip_person.png" alt="" width="112" height="112"><span class="st-tile-name">John Doe</span><span class="st-tile-org">Lecturer</span>  <button class="st-slot-more" type="button" data-pop="p-doe" aria-haspopup="dialog" dir="rtl">לפרטים<span class="visually-hidden"> על John Doe</span></button>
+          </div></li>
+    <li><div class="st-slot st-tile is-pop"><img src="assets/incose_vip_person.png" alt="" width="112" height="112"><span class="st-tile-name">John Doe</span><span class="st-tile-org">Lecturer</span>  <button class="st-slot-more" type="button" data-pop="p-doe" aria-haspopup="dialog" dir="rtl">לפרטים<span class="visually-hidden"> על John Doe</span></button>
+          </div></li>
+    <li><div class="st-slot st-tile is-pop"><img src="assets/incose_vip_person.png" alt="" width="112" height="112"><span class="st-tile-name">John Doe</span><span class="st-tile-org">Lecturer</span>  <button class="st-slot-more" type="button" data-pop="p-doe" aria-haspopup="dialog" dir="rtl">לפרטים<span class="visually-hidden"> על John Doe</span></button>
+          </div></li>
+    <li><div class="st-slot st-tile is-pop"><img src="assets/incose_vip_person.png" alt="" width="112" height="112"><span class="st-tile-name">John Doe</span><span class="st-tile-org">Lecturer</span>  <button class="st-slot-more" type="button" data-pop="p-doe" aria-haspopup="dialog" dir="rtl">לפרטים<span class="visually-hidden"> על John Doe</span></button>
+          </div></li>
   </ul>
  </div>
 </section>
+<template id="pop-p-shoker" data-title="ד&quot;ר משה שוקר" data-meta="סמנכ&quot;ל מו&quot;פ רפאל"><div class="st-person-solo"><img src="assets/shoker.jpg" alt="" width="96" height="96"><div class="st-bio"><p>לורם איפסום דולור סיט אמט, קונסקטורר אדיפיסינג אלית. סת אלמנקום ניסי נון ניבאה. דס איאקוליס וולופטה דיאם. וסטיבולום אט דולור, קראס אגת לקטוס וואל אאוגו וסטיבולום סוליסי טידום בעליק. קונדימנטום קורוס בליקרה, נונסטי קלובר בריקנה סטום, לפריקך תצטריק לרטי.</p></div></div></template>
 <template id="pop-p-yaniv" data-title="Dr. Yaniv Mordecai" data-meta="Tel Aviv University &amp; Amazon" data-dir="ltr"><div class="st-person-solo"><img src="assets/Yaniv1.jpg" alt="" width="96" height="96"><div class="st-bio"><p>Dr. Yaniv Mordecai is a senior teaching fellow at Tel-Aviv University, Tel-Aviv, Israel, a Senior Research Scientist at Amazon, Bellevue, Washington, USA, and a former Technion-MIT Post-Doctoral Fellow at MIT’s Engineering Systems Laboratory (2019-21). He holds a Teaching Certificate from MIT (2020), a Ph.D. in information systems engineering from Technion – Israel Institute of Technology, Israel (2016), and M.Sc. (2010, cum laude) and B.Sc. (2002) in industrial engineering & management from Tel-Aviv University, Israel. His research interests include model-based systems engineering, model analytics, cybernetics, interoperable systems, decision automation, operations research, and applications of artificial intelligence for geospatial optimization. Dr. Mordecai is a senior member of IEEE, member of INCOSE and INFORMS, and Board Member of the Israeli Society for Systems Engineering – INCOSE_IL. He won multiple international research awards and is a recognized international expert in modeling and simulation of complex systems.</p></div></div></template>
-<template id="pop-p-iritp" data-title="ד&quot;ר אירית פלד" data-meta="רפאל" data-dir="ltr"><div class="st-person-solo"><div class="st-bio"><h3>Education</h3><ul><li><b>2006-2010:</b> Ph.D. in Mechanical Engineering, Technion, Haifa. “Control of Flexible Systems with Elements Governed by the Wave Equation”</li><li><b>1990-1993:</b> M.Sc. in Mechanical Engineering, Technion, Haifa. “Internal Model Control Analysis Using Operator”</li><li><b>1986-1990:</b> B.Sc. in Mechanical Engineering, Technion, Haifa.</li></ul><h3>Professional experience</h3><ul><li><b>1994-Now:</b> Rafael, several Systems Engineering and Program Management positions.</li><li><b>1994:</b> Electrical Company, Research Department.</li></ul></div></div></template>
+<template id="pop-p-iritp" data-title="ד&quot;ר אירית פלד" data-meta="רפאל" data-dir="ltr"><div class="st-person-solo"><img src="assets/incose_vip_person.png" alt="" width="96" height="96"><div class="st-bio"><h3>Education</h3><ul><li><b>2006-2010:</b> Ph.D. in Mechanical Engineering, Technion, Haifa. “Control of Flexible Systems with Elements Governed by the Wave Equation”</li><li><b>1990-1993:</b> M.Sc. in Mechanical Engineering, Technion, Haifa. “Internal Model Control Analysis Using Operator”</li><li><b>1986-1990:</b> B.Sc. in Mechanical Engineering, Technion, Haifa.</li></ul><h3>Professional experience</h3><ul><li><b>1994-Now:</b> Rafael, several Systems Engineering and Program Management positions.</li><li><b>1994:</b> Electrical Company, Research Department.</li></ul></div></div></template>
 <template id="pop-p-orenh" data-title="אורן הראל" data-meta="אלתא - תע&quot;א"><div class="st-person-solo"><img src="assets/orenh.jpg" alt="" width="96" height="96"><div class="st-bio"><p>בעל תואר ראשון במתמטיקה ומדעי המחשב מאוניברסיטת בן-גוריון ולימודי תואר שני במדעי המחשב באוניברסיטת תל אביב. בעל ניסיון של 26 שנה בתעשייה האווירית ו 8 שנים בחברות הייטק.</p><p>שימש כמהנדס מערכת , ראש פרויקט וראש תחום בשתי חטיבות בתע"א. ניהול והכשרה של עשרות מהנדסי מערכת מתחומים שונים. שותף לפיתוח לפרויקטים פורצי דרך בחטיבה .</p><p>היום בתפקיד ראש מנהל הנדסת מערכת ואחריות על ניהול הידע בגוף אסטרטגיה וטכנולוגיות במטה חטיבת אלתא. כחלק מתפקידו - עוסק בקביעת מתודולוגיה אחידה בחטיבה, ארגון קורסי הכשרה, תמיכה בפרויקטי פיתוח ובהטמעת כלים לעבודת מהנדס המערכת.</p><p>חבר בהנהלת INCOSE-IL ומשמש כסגן נשיא.</p></div></div></template>
+<template id="pop-p-ifat" data-title="יפעת קוזובסקי" data-meta="אלביט מערכות"><div class="st-person-solo"><img src="assets/ifat.png" alt="" width="96" height="96"><div class="st-bio"><p>לורם איפסום דולור סיט אמט, קונסקטורר אדיפיסינג אלית. סת אלמנקום ניסי נון ניבאה. דס איאקוליס וולופטה דיאם. וסטיבולום אט דולור, קראס אגת לקטוס וואל אאוגו וסטיבולום סוליסי טידום בעליק. קונדימנטום קורוס בליקרה, נונסטי קלובר בריקנה סטום, לפריקך תצטריק לרטי.</p></div></div></template>
+<template id="pop-p-ram" data-title="ד&quot;ר רם אורון" data-meta="נובה"><div class="st-person-solo"><img src="assets/OronRam.jpg" alt="" width="96" height="96"><div class="st-bio"><p>לורם איפסום דולור סיט אמט, קונסקטורר אדיפיסינג אלית. סת אלמנקום ניסי נון ניבאה. דס איאקוליס וולופטה דיאם. וסטיבולום אט דולור, קראס אגת לקטוס וואל אאוגו וסטיבולום סוליסי טידום בעליק. קונדימנטום קורוס בליקרה, נונסטי קלובר בריקנה סטום, לפריקך תצטריק לרטי.</p></div></div></template>
 <template id="pop-p-motil" data-title="ד&quot;ר מוטי ליבוביץ" data-meta="אוניברסיטת בן גוריון"><div class="st-person-solo"><img src="assets/motil.png" alt="" width="96" height="96"><div class="st-bio"><p>ב-1980 תואר B.Sc. בהנדסת מכונות וב-1986 תואר מוסמך M.Sc. בהצטיינות בהנדסת מכונות מהטכניון. ב-1993 תואר PhD בהנדסת מכונות בארה"ב באוניברסיטת Delaware מכון לחומרים מרוכבים ‘Center for Composite Materials – University of Delaware (CCM – UD)’ . התמחותי הייתה, בין השאר, בתחומים של מבנים וחומרים חכמים ומסתגלים (Smart & Adaptive) ובנושאי בריאות מבנים (Structural Health Monitoring – SHM).</p><p>עבדתי ברפאל מערכות מתקדמות כ-30 שנה ומלאתי מגוון תפקידים הכוללים בין השאר מהנדס מערכת ראשי, ראש פרויקט, ראש מנהלה וראש מטה. לאחר מכן, עבדתי כ-10 שנים בקריה למחקר גרעיני בנגב (הקמ"ג) בתפקידים של משנה למנהל הקמ"ג, סמנכ"ל בכיר ור' תוכנית. כחלק מתפקידיי, פעלתי לגיבוש תפיסות ארגוניות ומתודולוגיות בנושאי ניהול פרויקטים והנדסת מערכת, להטמעה ולהכשרה רחבה של עובדים ומנהלים.</p><p>בהיבט האקדמי לקחתי חלק פעיל בהקמת התוכנית להנדסת מערכות באורט בראודה ושמשתי מרצה וחבר בתוכנית מספר שנים. החל מ-2019 יזמתי והקמתי באוניברסיטת בן גוריון בנגב, יחד עם פרופ' קובי בורטמן, את התוכנית להנדסת מערכות שקיבלה את אישורי המל"ג והנהלת האוניברסיטה. מאז ועד היום אני משמש באוניברסיטה כראש התוכנית להנדסת מערכות.</p></div></div></template>
+<template id="pop-p-winokur" data-title="פרופ' מיכאל וינוקור" data-meta="HIT"><div class="st-person-solo"><img src="assets/michael_winokur.png" alt="" width="96" height="96"><div class="st-bio"><p>לורם איפסום דולור סיט אמט, קונסקטורר אדיפיסינג אלית. סת אלמנקום ניסי נון ניבאה. דס איאקוליס וולופטה דיאם. וסטיבולום אט דולור, קראס אגת לקטוס וואל אאוגו וסטיבולום סוליסי טידום בעליק. קונדימנטום קורוס בליקרה, נונסטי קלובר בריקנה סטום, לפריקך תצטריק לרטי.</p></div></div></template>
+<template id="pop-p-doe" data-title="John Doe" data-meta="Lecturer" data-dir="ltr"><div class="st-person-solo"><img src="assets/incose_vip_person.png" alt="" width="96" height="96"><div class="st-bio"><p>לורם איפסום דולור סיט אמט, קונסקטורר אדיפיסינג אלית. סת אלמנקום ניסי נון ניבאה. דס איאקוליס וולופטה דיאם. וסטיבולום אט דולור, קראס אגת לקטוס וואל אאוגו וסטיבולום סוליסי טידום בעליק. קונדימנטום קורוס בליקרה, נונסטי קלובר בריקנה סטום, לפריקך תצטריק לרטי.</p></div></div></template>
 </main>
 <!-- their logo files: assets/, the same folder and names as on their server -->
 <section class="st-section st-sponsors">
@@ -146,16 +161,18 @@
       <li><a href="tel:+972525805001" dir="ltr">052-580-5001</a></li>
       <li><a href="https://www.incoseil.org/incoseil2027/previous">כנסים קודמים</a></li>
     </ul>
-    <a class="st-foot-btn" href="https://incoseil.org">לאתר האיגוד</a>
+    <a class="st-foot-btn" href="https://incoseil.org" target="_blank" rel="noopener">לאתר האיגוד<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></svg><span class="visually-hidden">(נפתח בחלון חדש)</span></a>
   </div>
 </footer>
 <!-- the popup: one dialog for the whole site; a button with data-pop="<a template's id>" fills it from that template (st-js/st-site.js) -->
 <dialog class="st-pop" id="st-pop" aria-labelledby="st-pop-title">
   <div class="st-pop-in">
     <div class="st-pop-head">
+      <!-- back to the popup this one was opened from (a lecture opened from its session's popup); hidden otherwise -->
+      <button class="st-pop-back" type="button" hidden><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg><span></span></button>
       <h2 id="st-pop-title"></h2>
       <ul class="st-pop-meta"></ul>
-      <button class="st-pop-x" type="button" aria-label="סגירה"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+      <button class="st-pop-x" type="button" aria-label="סגירה" title="סגירה"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
     </div>
     <div class="st-pop-body" tabindex="0"></div>
     <div class="st-pop-foot"><button class="st-pop-close" type="button">סגירה</button></div>

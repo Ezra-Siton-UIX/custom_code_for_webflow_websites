@@ -25,6 +25,8 @@
 <nav class="navbar navbar-expand-xl sticky-top st-nav" data-bs-theme="dark" aria-label="תפריט ראשי">
   <div class="container-fluid st-wrap">
     <a class="navbar-brand st-nav-logo" href="index.html"><img src="st-images/incose_il_2027_conf_logo.svg" alt="הכנס הבינלאומי INCOSE IL 2027, לדף הראשי" width="200" height="33"></a>
+    <!-- under 1200px: the registration in the bar too, beside the menu button (the open menu keeps its own) -->
+    <a class="btn st-nav-cta st-nav-cta-bar" href="register.html" data-nav="register" aria-current="page">הרשמה לכנס</a>
     <button class="navbar-toggler st-nav-btn" type="button" data-bs-toggle="collapse" data-bs-target="#st-nav-panel" aria-controls="st-nav-panel" aria-expanded="false" aria-label="תפריט"><span class="navbar-toggler-icon"></span></button>
     <div class="collapse navbar-collapse st-nav-panel" id="st-nav-panel">
       <ul class="navbar-nav st-nav-links">
@@ -47,15 +49,16 @@
      the home banner's SVG), the line and the dates as text, the shape -->
 <header class="st-banner">
   <div class="st-wrap st-banner-in">
-    <img class="st-banner-logo" src="st-images/incose_logo_heb_WHITE.svg" alt="INCOSE IL, האיגוד הישראלי להנדסת מערכות" width="151" height="60">
-    <img class="st-banner-title" src="st-images/st-banner-title.svg" alt="הכנס הבינלאומי INCOSE IL 2027" width="380" height="84">
+    <img class="st-banner-logo" src="st-images/incose_logo_heb_WHITE.svg" alt="INCOSE IL, האיגוד הישראלי להנדסת מערכות" width="151" height="60" loading="eager" fetchpriority="high">
+    <img class="st-banner-title" src="st-images/st-banner-title.svg" alt="הכנס הבינלאומי INCOSE IL 2027" width="380" height="84" loading="eager" fetchpriority="high">
     <div class="st-banner-text">
       <p class="st-banner-line"><strong>שילוב הנדסת מערכות וניהול פרויקטים</strong>מזיהוי הצורך ועד למימוש הערך למשתמש</p>
       <p class="st-banner-when"><time datetime="2027-01-12">12-13 בינואר 2027</time><span aria-hidden="true">•</span>מלון דניאל, הרצליה</p>
     </div>
-    <img class="st-banner-shape" src="st-images/incose_shape.png" alt="" width="1631" height="1619">
+    <picture class="st-pic"><source type="image/avif" srcset="st-images/incose_shape.avif"><img class="st-banner-shape" src="st-images/incose_shape.webp" alt="" width="960" height="953" loading="eager" fetchpriority="high"></picture>
   </div>
 </header>
+<nav class="st-crumbs" aria-label="פירורי לחם"><ol class="st-wrap"><li><a href="index.html">ראשי</a></li><li aria-current="page">הרשמה לכנס</li></ol></nav>
 <!-- the registration: THEIR registration module, copied as it is (every id, name, class, onclick and hidden field: their scripts hang on them).
      Only the look is ours, from st.css (.st-register). It works on their server only: its scripts are at their site's root (/js/...),
      and it sends to /regPost.php and checks membership at /iltam_check_mem.php there. The config below is what their PHP wrote (prices,
@@ -414,16 +417,18 @@ a.reg-btn:hover { color:#f3f3f3;}
       <li><a href="tel:+972525805001" dir="ltr">052-580-5001</a></li>
       <li><a href="https://www.incoseil.org/incoseil2027/previous">כנסים קודמים</a></li>
     </ul>
-    <a class="st-foot-btn" href="https://incoseil.org">לאתר האיגוד</a>
+    <a class="st-foot-btn" href="https://incoseil.org" target="_blank" rel="noopener">לאתר האיגוד<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></svg><span class="visually-hidden">(נפתח בחלון חדש)</span></a>
   </div>
 </footer>
 <!-- the popup: one dialog for the whole site; a button with data-pop="<a template's id>" fills it from that template (st-js/st-site.js) -->
 <dialog class="st-pop" id="st-pop" aria-labelledby="st-pop-title">
   <div class="st-pop-in">
     <div class="st-pop-head">
+      <!-- back to the popup this one was opened from (a lecture opened from its session's popup); hidden otherwise -->
+      <button class="st-pop-back" type="button" hidden><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg><span></span></button>
       <h2 id="st-pop-title"></h2>
       <ul class="st-pop-meta"></ul>
-      <button class="st-pop-x" type="button" aria-label="סגירה"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+      <button class="st-pop-x" type="button" aria-label="סגירה" title="סגירה"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
     </div>
     <div class="st-pop-body" tabindex="0"></div>
     <div class="st-pop-foot"><button class="st-pop-close" type="button">סגירה</button></div>

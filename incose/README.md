@@ -18,85 +18,158 @@ node serve.cjs         → the preview: http://localhost:5050
 
 **Never edit the built pages** (`index.html`, `day1.html`, …): the next build overwrites them. Edit `_src/`, then build.
 
-The build also reports which program cubes and people tiles have no popup content yet, for example:
+The build reports each page and its popups, and which cubes have nothing to show yet, for example:
 
 ```
-day1.html  popups: posters, s11, s21, s13  | no content yet in popups.json: opening, s12, s22, s23, panel
+day2.html  (4 popups)  | no content yet: d2-h1, d2-h2, d2-h3, d2-h4, d2-h5
 ```
 
 **Uploading:** copy the contents of `_php/` into `activity_page/incoseil2027/` on their server. `assets/` is not in it on purpose: that folder already exists on the server (the local `assets/` is only a copy, so the preview shows the pictures).
 
-## Where things are
+**No Node on the computer?** Edit the JSON on GitHub, in the browser. The repository's Pages workflow can run `node incose/build.cjs` before it publishes, so a commit rebuilds the site by itself. An AI agent (Claude Code) always has Node, because it runs on it.
 
-| What | Where |
+## One source of truth
+
+**Every detail is written in one place.** A person's name, photo or organisation lives only in `people.json`. A session's title, time or chair lives only in `program.json`. Pages and the program refer to people by key, and the build writes them out. If you fix something in one place, it changes everywhere.
+
+| What | Its one place |
 |---|---|
-| Each page | `_src/pages/*.html`. Its first line is `{"title", "description", "nav"}`: the page's SEO title and description, and the menu item it marks |
+| **Every person:** name, organisation, photo, bio (and `name_en` / `org_en` for the English places) | **`_src/people.json`** |
+| **Both days' programs:** rows, sessions, chairs, lectures, the panel, and their popups | **`_src/program.json`** |
+| Each page's frame and its texts | `_src/pages/*.html`. Its first line is `{"title", "description", "nav", "crumb"}`: the SEO title and description, the menu item it marks, and its name in the breadcrumbs |
 | The menu | `_src/partials/nav.html` |
 | The inner pages' banner | `_src/partials/banner.html` |
 | The logos and the calendar section (every page) | `_src/partials/footer.html` |
 | The footer, the popup and the scripts | `_src/partials/end.html` |
 | The `<head>` | `_src/partials/head.html` |
-| **Popup content** | **`_src/popups.json`** |
-| **People** (photo, name, organisation, bio) | **`_src/people.json`** |
 | All the CSS | `st-css/st.css` (one file) |
 | All our JS | `st-js/st-site.js` (the popup) |
-| Our pictures | `st-images/` |
-| The font (Google Sans, Hebrew and Latin) | `st-fonts/` |
-| The favicon (theirs) | `favicon.ico` |
+| Our pictures / the font / the favicon | `st-images/` / `st-fonts/` / `favicon.ico` |
 | Their pictures (the server's `assets/`) | `assets/` (a copy for the preview) |
-| Their old pages, for reference | `_source/` |
-| Old pictures and sources of our renders | `_not-used/` |
+| Their old pages, old pictures | `_source/`, `_not-used/` (not in git) |
 
-A page places a shared piece with a marker: `<!-- @head -->`, `<!-- @nav -->`, `<!-- @banner -->`, `<!-- @footer -->`, `<!-- @end -->`. A shared piece is written once, so a fix to it reaches every page.
+**Markers in a page.** The build replaces each one:
 
-## What is in the page file, and what is in JSON
-
-| Content | Lives in |
+| Marker | Becomes |
 |---|---|
-| The program's times, titles, chairs (the cubes) | the page file (`_src/pages/day1.html`, `day2.html`) |
-| The home's texts, the tutorials day's text | the page file |
-| The speakers and committees tiles | the page file |
-| **What a popup shows** (its title, labels, text, person) | **`_src/popups.json`** |
-| **A person's bio and photo** | **`_src/people.json`**: written once, used by every popup that shows that person |
+| `<!-- @head -->` `<!-- @nav -->` `<!-- @banner -->` `<!-- @footer -->` `<!-- @end -->` | the shared pieces |
+| `<!-- @program day1 -->` | that day's program table, with all its popups (from `program.json`) |
+| `<!-- @tile ram \| יו"ר מושב 2.2 -->` | a person's tile: photo, name, the role written after the bar (optional), organisation. With a bio, the tile opens the person's card |
+| `<!-- @figure shoker \| יו"ר יום הכנס -->` | a person's signature figure (the home's chairs, the tutorials day) |
+| `@tile-en`, `@figure-en` | the same, with the person's English name and organisation |
 
-### Adding content to a popup
-
-Every cube in the program, and every tile on the speakers page, already has a name: `data-pop="s12"`, `data-pop="p-ram"`. A cube opens a popup only when `_src/popups.json` has an entry with its name. Then the build adds the cube's "+ לפרטים" button (it covers the whole cube) and the popup. Without an entry, the cube stays plain. **To link a cube, add an entry and build; the page itself doesn't change.**
-
-An entry in `_src/popups.json`:
+## A person (`people.json`)
 
 ```json
-"s12": {
-  "title": "אתגרי הבשלה מערכתית בשילוב משתמשי קצה",
-  "meta": ["מושב 1.2", "12:20-13:35", "יפעת קוזובסקי"],
-  "text": ["The session's description, one string per paragraph."],
-  "person": "ifat",
-  "role": "יו״ר המושב"
-}
+"ram": { "name": "ד\"ר רם אורון", "org": "נובה", "img": "assets/OronRam.jpg", "bio": "<p>…</p>" }
 ```
 
-- `title`: the popup's heading.
-- `meta`: the labels under it, in this order: the session, the time, the person.
-- `text`: the running text (a lecture's abstract), one string per paragraph. Optional.
-- `person` and `role`: a key in `people.json`, shown as a card under the text, with the role as its label. Optional.
-- `"dir": "ltr"`: for an entry written in English.
+- **With a `bio`:** the person opens their card wherever they appear: a tile, a chair's line, a lecture's speaker, a panelist.
+- **Without a `bio`:** they show, but don't open (most committee members today).
+- **`"sample": true`:** the bio is lorem ipsum, waiting for the real one.
+- **`"dir": "ltr"`:** an English bio. If the person also has `name_en`, their popup is entirely in English.
 
-A popup about a person alone (a speakers tile) is just `"p-ram": { "person": "ram" }`. Its title is then the person's name, and the body is the photo and the bio.
+## The program (`program.json`)
 
-An entry in `_src/people.json`:
+Each day has `rows`. A row is either one cube across the whole row, or a row of sessions, one per track:
 
 ```json
-"ifat": {
-  "name": "יפעת קוזובסקי",
-  "org": "אלביט מערכות",
-  "img": "assets/ifat.png",
-  "bio": "<p>First paragraph.</p><p>Second.</p>"
-}
+{ "time": "12:20-13:35", "part": "מושב צהרים", "sessions": [
+  { "id": "s12", "num": "1.2", "title": "…", "chair": "ifat",
+    "lectures": [
+      { "title": "…", "speaker": "sample", "text": ["The abstract, one string per paragraph."] },
+      { "title": "…", "clickable": false }
+    ] },
+  { "id": "s22", "num": "2.2", "title": "…", "chair": "ram", "lectures": [ … ] } ] }
 ```
 
-Add `"dir": "ltr"` for a bio in English.
+- **A session:**
+  - `id`: its name, unique.
+  - `num`: its number.
+  - `title`: may hold a `<span class="st-nw">ה-AI</span>`, which keeps the phrase from breaking.
+  - `chair`: a person's key.
+  - `lectures`: its lectures. Their numbers (1.2.1, 1.2.2…), names and every popup label are worked out by the build.
+- **A lecture:**
+  - `title`;
+  - `speaker`: a person's key;
+  - `text`: its abstract, a list of paragraphs;
+  - `"clickable": false`: it doesn't open (e.g. no lecturer yet). A lecture with no `text` and no `speaker` doesn't open either. Example: 2.3.3.
+- **A single cube:** `kind` gives its look:
+  - `"break"`: a short break, dashed;
+  - `"neutral"`: a meal or a gathering;
+  - `"plenary"`: white with a mint frame;
+  - `"session"`: tinted, used on the one-track day.
+- **What a single cube can hold:**
+  - `title`;
+  - `list`: lines of [bold, the rest];
+  - `text`: one short line in the cube, or a list of paragraphs for its popup;
+  - `summary`: the cube's short line when `text` is the popup's;
+  - `lead`: `{ "person", "label", "as" }`, the "בהובלת …" line;
+  - `speaker` and `role`;
+  - `note`: plain text, e.g. a placeholder;
+  - `id`: its popup, when it has `text` or a `speaker`;
+  - `pop`: a shared popup from the day's `popups` (the two poster rows share one);
+  - `back`: its name on the "חזרה ל…" button.
+- **The panel** (the last row of day 1):
+  - `questions`: its numbered questions, in the popup;
+  - `panelists`: people's keys. Each panelist is a card that opens their card, three in a row (one under another on a phone).
+- **A day:** `tracks` (the column heads) for two tracks; `"dir": "ltr", "lang": "en"` for an English day (day 2).
 
-A new cube in a page is a `div.st-slot` with a `data-pop` name: `<div class="st-slot" data-pop="s14">…</div>`. **No `div` inside a cube**: the build finds the cube's end at its first `</div>`.
+### What opens
+
+**One model for every program cube,** so adding lectures later changes nothing else:
+
+- **The parent:** only a cube's **title** opens its popup. It is always underlined in its track's colour, fully on hover. The rest of the cube doesn't react, so nobody thinks the whole card opens.
+- **The children:** a **lecture** (or a panelist) is a whole card that opens. It has an arrow at its far end, its title underlined, and a frame in its track's colour on hover.
+- **The people's lines:** a chair's line ("יו״ר מושב: …") or a lead's line ("בהובלת …") opens that person's card.
+- **A session's popup:**
+  - its lectures first, then its chair;
+  - a lecture there switches the popup to the lecture (with a short fade), and a green "חזרה למושב …" button returns;
+  - a panelist in the panel's popup works the same way ("חזרה לפאנל המומחים").
+- **A person's tile** opens as a whole tile, with "+ לפרטים".
+- **A cube with nothing to show** (a coffee break) doesn't open.
+
+### The colours
+
+- **A track's colour:** each track sets `--st-accent` and `--st-accent-ink` on its cubes (track 1: mint and teal; track 2: the logo's blue). The underlines and numbers inherit them.
+- **The popup's colour:** the popup takes the colour of the track it was opened from. `st-site.js` sets `data-track="2"`, and the `--st-pop-*` variables switch to blue. A switch inside the popup keeps it.
+- **Three kinds of cube:**
+  - **sessions** are tinted by track;
+  - **meals and breaks** share one pale warm tint (`--st-neutral-bg`, from the banner's yellow), and short breaks are also dashed;
+  - **plenaries** are white with a mint frame.
+
+### The sample content
+
+- **Sessions:** all six (1.1–2.3) hold three samples each ("הרצאה מקוננת למושב לדוגמא", the `sample` person, lorem ipsum).
+- **The panel:** lorem ipsum questions and six sample panelists.
+- **People:** Shoker, Kozovsky, Oron, Winokur and the tutorials day's "John Doe" have lorem ipsum bios (`"sample": true`).
+
+Replace each with the real content, keeping the same shape.
+
+## Right to left (RTL), and adding English
+
+**The site is Hebrew, written right to left:** `<html lang="he" dir="rtl">` on every page, and Bootstrap's RTL build (`bootstrap.rtl.min.css`). Everything flows from the right: the menu starts at the right, the program's time column is on the right, lists have their dots on the right.
+
+**The CSS doesn't care about direction.** It uses logical properties (`padding-inline-start`, `margin-inline`, `inset-inline-end`, `text-align: start`), never `left` or `right`, so a block flips by itself when its direction changes. The few physical values left are symmetric or decorative: the wave fading out at both sides, the dots in two corners, the "+" on the calendar page. **Keep it that way:** write `inline-start` / `inline-end`, not `left` / `right`.
+
+**English inside the Hebrew site** (as on the tutorials day): give the element `dir="ltr" lang="en"`. It then reads left to right, with its dots and alignment on the left, and no extra CSS. In the code:
+
+- **The tutorials day:** the program table (`<table … dir="ltr" lang="en">`) and its text (`<section … dir="ltr" lang="en">`).
+- **An English day's popups:** a day with `"dir": "ltr", "lang": "en"` in `program.json` (day 2) writes its table and its popups left to right.
+- **A bio in English:** `"dir": "ltr"` in its `people.json` entry.
+- **A short English phrase inside a Hebrew sentence:** wrap it so the line doesn't scramble, e.g. `<span class="st-nw">ב-Microsoft Teams</span>` (it also keeps the phrase on one line), or `<bdi>…</bdi>`.
+
+**A whole English version.** Today there is none: their old "English" link led back to the Hebrew home.
+
+- **The pages:** a set of pages with `<html lang="en" dir="ltr">`, for example in `_src/pages/en/`.
+- **Bootstrap:** its regular, left-to-right build (`bootstrap.min.css`) instead of the RTL one. This needs a second `head` partial, or a switch in `build.cjs`.
+- **`st.css`:** stays as it is, because of the logical properties.
+- **The texts the site itself writes,** which are Hebrew today:
+  - the menu (`nav.html`);
+  - the banner's line (`banner.html`);
+  - the footer and the popup's "סגירה" (`end.html`);
+  - the "לפרטים" button the build adds to a cube (`build.cjs`);
+  - the skip link (`head.html`).
 
 ## The rules
 
