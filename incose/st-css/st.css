@@ -192,7 +192,7 @@ a:focus-visible, button:focus-visible { outline: 3px solid var(--st-mint); outli
 .st-nav-logo { padding: 0; }
 .st-nav-logo img { display: block; width: 200px; height: auto; }
 @media (max-width: 767px) {
-  .st-nav-logo img { width: 150px; }
+  .st-nav-logo img { width: 140px; }
   .st-nav-btn { padding: 4px 8px; }
   .st-nav-btn .navbar-toggler-icon { width: 1.3em; height: 1.3em; }
 }
@@ -224,7 +224,7 @@ a:focus-visible, button:focus-visible { outline: 3px solid var(--st-mint); outli
   .st-nav-end { flex-direction: column; align-items: stretch; gap: 0; }
   .st-nav-cta { margin-top: 12px; }
   /* the registration in the bar too, beside the menu button (and still in the open menu) */
-  .st-nav-cta-bar { display: inline-flex; margin: 0; margin-inline-start: auto; margin-inline-end: 8px; padding: 6px 12px; font-size: 13px; }   /* small: the bar is tight on a phone */
+  .st-nav-cta-bar { display: inline-flex; margin: 0; margin-inline-start: auto; margin-inline-end: 8px; padding: 5px 10px; font-size: 12px; }   /* small: the bar is tight on a phone (the open menu has the big one) */
   /* one row: the logo, the registration, the menu button; the logo gives way if the screen is narrow */
   .st-nav > .st-wrap { flex-wrap: nowrap; }
   .st-nav-logo { flex: 0 1 auto; min-width: 0; margin-inline-end: 8px; }
