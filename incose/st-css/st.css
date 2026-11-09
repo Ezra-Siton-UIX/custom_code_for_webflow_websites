@@ -329,7 +329,7 @@ a:focus-visible, button:focus-visible { outline: 3px solid var(--st-mint); outli
 /* the popup's colours: green, or the logo's blue when it was opened from track 2 (st-site.js sets data-track) */
 .st-pop { --st-pop-tint: var(--st-tint); --st-pop-ink: var(--st-teal); --st-pop-title: var(--st-ink); --st-pop-strong: var(--st-green); --st-pop-strong-hover: var(--st-teal); }
 .st-pop[data-track="2"] { --st-accent: var(--st-blue); --st-accent-ink: var(--st-blue); --st-pop-tint: var(--st-t2-bg); --st-pop-ink: var(--st-blue); --st-pop-title: var(--st-blue-deep); --st-pop-strong: var(--st-blue); --st-pop-strong-hover: var(--st-blue-deep); }
-.st-pop[data-track="3"] { --st-accent: var(--st-purple); --st-accent-ink: var(--st-purple); --st-pop-tint: var(--st-t3-bg); --st-pop-ink: var(--st-purple); --st-pop-title: var(--st-purple-deep); --st-pop-strong: var(--st-purple); --st-pop-strong-hover: var(--st-purple-deep); }
+.st-pop[data-track="3"] { --st-accent: var(--st-purple); --st-accent-ink: var(--st-purple); --st-pop-tint: var(--st-t3-bg); --st-pop-ink: var(--st-purple); --st-pop-title: var(--st-purple-deep); --st-pop-badge: var(--st-purple); }   /* its buttons (סגירה, back, X) stay the brand green */
 .st-pop::backdrop { background: color-mix(in srgb, var(--st-deep) 62%, transparent); -webkit-backdrop-filter: blur(3px); backdrop-filter: blur(3px); }
 .st-pop[open] { animation: st-pop-in .22s ease-out; }
 @keyframes st-pop-in { from { opacity: 0; transform: translateY(12px) scale(.98); } }
@@ -661,5 +661,5 @@ body.st-menu-open::before { content: ""; position: fixed; inset: 0; z-index: 40;
 .st-register #sec2 { cursor: auto !important; }   /* their script sets a pointer on the whole section (inline, a leftover link); the hand is only on what picks */
 .st-register .act-item.act-item-reg > br { display: none; }   /* their line break under the title, on top of its gap */
 /* a popup's day badge ("יום הסדנאות"): a bold pill above its title, in the popup's strong colour */
-.st-pop-badge { display: inline-block; margin: 0 0 10px; padding: 4px 14px; border-radius: var(--st-pill); background: var(--st-pop-strong); color: #fff; font-size: 14px; font-weight: 700; line-height: 1.5; }
+.st-pop-badge { display: inline-block; margin: 0 0 10px; padding: 4px 14px; border-radius: var(--st-pill); background: var(--st-pop-badge, var(--st-pop-strong)); color: #fff; font-size: 14px; font-weight: 700; line-height: 1.5; }
 .st-pop-badge[hidden] { display: none; }
