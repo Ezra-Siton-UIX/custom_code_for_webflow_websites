@@ -115,7 +115,10 @@ body { min-height: 100vh; margin: 0; font-family: var(--st-font); color: var(--s
 .st-prose h1, .st-prose .st-prose-title { margin: 0 0 24px; font-size: clamp(26px, 2.4vw, 34px); font-weight: 700; line-height: 1.25; color: var(--st-ink); }
 .st-prose h1::after, .st-prose .st-prose-title::after { content: ""; display: block; width: 64px; height: 4px; margin-top: 16px; border-radius: 2px; background: var(--st-mint); }
 .st-prose h1 span { color: var(--st-teal); }
-/* .st-prose-title: an article's title that is an h2 on its page (the tutorials day's text): the look of the prose h1 */   /* the name in teal (the mint itself is too light on white for text) */
+/* .st-prose-title: an article's title that is an h2 on its page (the tutorials day's text): the look of the prose h1 */
+/* its three levels: the event small in our green above, the name, then when and where lighter under it */
+.st-prose-kicker { display: block; margin-bottom: 6px; font-size: 15px; font-weight: 700; letter-spacing: .02em; color: var(--st-teal); }
+.st-prose-when { display: block; margin-top: 6px; font-size: 18px; font-weight: 500; color: var(--st-muted); }   /* the name in teal (the mint itself is too light on white for text) */
 .st-prose h2 { margin: 36px 0 12px; font-size: 20px; font-weight: 700; line-height: 1.3; color: var(--st-ink); }
 .st-prose p { margin: 0 0 16px; font-size: 17px; line-height: 1.75; }
 .st-prose .st-lead { font-size: 18px; font-weight: 600; line-height: 1.65; color: var(--st-ink); }
@@ -271,7 +274,7 @@ a:focus-visible, button:focus-visible { outline: 3px solid var(--st-mint); outli
 .st-time { display: block; font-size: 17px; font-weight: 700; color: var(--st-ink); white-space: nowrap; }
 .st-part { display: block; margin-top: 4px; font-size: 15px; font-weight: 600; color: var(--st-teal); }
 /* a cube: the cell is its frame; the slot inside fills it (a td height of 1px lets a child's 100% work) */
-/* three kinds of cube: a session (tinted, by track); the meals and breaks (one pale warm tint); a short break also has a dashed outline */
+/* three kinds of cube: a session (its track's colour); the meals and breaks (a pale sky tint); a plenary (white, a sky frame). Each has a solid 2px frame */
 .st-prog td { height: 1px; padding: 0; border: 2px solid var(--st-neutral-line); border-radius: var(--st-radius); vertical-align: top; background: var(--st-neutral-bg); }
 /* a track's cube copies its track's colours into --st-track*; every rule inside reads only those */
 .st-prog td.st-t1 { --st-track: var(--st-t1); --st-track-bg: var(--st-t1-bg); --st-track-line: var(--st-t1-line); }
@@ -281,7 +284,6 @@ a:focus-visible, button:focus-visible { outline: 3px solid var(--st-mint); outli
 /* a plenary is for everyone: white, framed in the sky blue (not a track's colour: the mint read as track 1) */
 .st-prog td:not(.st-t1, .st-t2, .st-t3, .st-plenary) { --st-accent: var(--st-sky); --st-accent-ink: var(--st-sky); }   /* meals and breaks: their underline and frame in the same blue */
 .st-prog td.st-plenary { --st-accent: var(--st-sky); --st-accent-ink: var(--st-sky); background: #fff; border: 2px solid var(--st-sky); }
-.st-prog td.st-break { border-style: dashed; }
 .st-slot { display: grid; align-content: center; justify-items: center; gap: 6px; width: 100%; height: 100%; box-sizing: border-box; padding: 16px 20px; border: 0; border-radius: calc(var(--st-radius) - 1px); background: none; color: inherit; font: inherit; text-align: center; }
 .st-break .st-slot { padding-block: 12px; }
 /* two sessions side by side start at the top, so their numbers, titles and chairs share a line (a cube alone stays centred) */

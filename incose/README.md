@@ -101,7 +101,7 @@ Each day has `rows`. A row is either one cube across the whole row, or a row of 
   - `text`: its abstract, a list of paragraphs;
   - `"clickable": false`: it doesn't open (e.g. no lecturer yet). A lecture with no `text` and no `speaker` doesn't open either. Example: 2.3.3.
 - **A single cube:** `kind` gives its look:
-  - `"break"`: a short break, dashed;
+  - `"break"`: a short break;
   - `"neutral"`: a meal or a gathering;
   - `"plenary"`: white, framed in the sky blue (for everyone);
   - `"session"`: in the day's track colour, used on the one-track day.
@@ -160,7 +160,7 @@ So, **to recolour a track**, change its four variables. **To add a track or a da
 
 **Three kinds of cube:**
 - **sessions:** their track's colour;
-- **meals and breaks:** a pale tint of the sky blue, short breaks dashed;
+- **meals and breaks:** a pale tint of the sky blue;
 - **plenaries** (for everyone): white, framed in the sky blue.
 
 Every cube has a 2px frame, so none reads as a hole in the table.
