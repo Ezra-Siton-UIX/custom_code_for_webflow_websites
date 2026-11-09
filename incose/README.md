@@ -141,7 +141,8 @@ Each day has `rows`. A row is either one cube across the whole row, or a row of 
 
 - **Sessions:** all six (1.1–2.3) hold three samples each ("הרצאה מקוננת למושב לדוגמא", the `sample` person, lorem ipsum).
 - **The panel:** lorem ipsum questions and six sample panelists.
-- **People:** Shoker, Kozovsky, Oron, Winokur and the tutorials day's "John Doe" have lorem ipsum bios (`"sample": true`).
+- **The tutorials day:** a flat day, one popup per row (no lectures inside). Its five tutorials (`TITLE 1`-`5`) have John Doe as lecturer and an English lorem ipsum abstract, marked `"sample": true`. The breaks don't open.
+- **People:** Shoker, Kozovsky, Oron, Winokur and the tutorials day's "John Doe" (in English) have lorem ipsum bios (`"sample": true`).
 
 Replace each with the real content, keeping the same shape.
 

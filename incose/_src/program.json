@@ -336,7 +336,13 @@
         "kind": "session",
         "id": "d2-h1",
         "title": "TITLE 1",
-        "note": "John Doe • Tutorial X"
+        "speaker": "doe",
+        "role": "Tutorial lecturer",
+        "text": [
+          "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+          "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+        ],
+        "sample": true
       },
       {
         "time": "10:00-10:15",
@@ -348,7 +354,13 @@
         "kind": "session",
         "id": "d2-h2",
         "title": "TITLE 2",
-        "note": "John Doe • Tutorial X"
+        "speaker": "doe",
+        "role": "Tutorial lecturer",
+        "text": [
+          "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+          "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+        ],
+        "sample": true
       },
       {
         "time": "11:45-12:45",
@@ -360,7 +372,13 @@
         "kind": "session",
         "id": "d2-h3",
         "title": "TITLE 3",
-        "note": "John Doe • Tutorial X"
+        "speaker": "doe",
+        "role": "Tutorial lecturer",
+        "text": [
+          "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+          "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+        ],
+        "sample": true
       },
       {
         "time": "14:15-14:30",
@@ -372,7 +390,13 @@
         "kind": "session",
         "id": "d2-h4",
         "title": "TITLE 4",
-        "note": "John Doe • Tutorial X"
+        "speaker": "doe",
+        "role": "Tutorial lecturer",
+        "text": [
+          "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+          "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+        ],
+        "sample": true
       },
       {
         "time": "16:00-16:15",
@@ -384,7 +408,13 @@
         "kind": "session",
         "id": "d2-h5",
         "title": "TITLE 5",
-        "note": "John Doe • Tutorial X"
+        "speaker": "doe",
+        "role": "Tutorial lecturer",
+        "text": [
+          "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+          "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+        ],
+        "sample": true
       },
       {
         "time": "17:00-17:15",
