@@ -135,8 +135,8 @@ Each day has `rows`. A row is either one cube across the whole row, or a row of 
 - **The popup's colour:** the popup takes the colour of the track it was opened from. `st-site.js` sets `data-track="2"`, and the `--st-pop-*` variables switch to blue. A switch inside the popup keeps it.
 - **Three kinds of cube:**
   - **sessions** are tinted by track;
-  - **meals and breaks** share one pale warm tint (`--st-neutral-bg`, from the banner's yellow), and short breaks are also dashed;
-  - **plenaries** are white with a mint frame.
+  - **meals and breaks** share one pale tint of the logo's bright blue (`--st-sky`, `--st-neutral-bg`), and short breaks are also dashed;
+  - **plenaries** (for everyone) are white with a frame in that blue: no track's colour.
 
 ### The sample content
 
