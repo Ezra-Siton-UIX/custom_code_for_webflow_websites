@@ -139,7 +139,7 @@ const renderProgram = (dayKey) => {
       person: s.chair, role: 'יו״ר המושב', back: `מושב ${s.num}`, ...(ids.length ? { lectures: ids } : {}) };
     return cube(s.id, [`<span class="st-slot-num">מושב ${s.num}</span>`, `<span class="st-slot-ttl">${s.title}</span>`, s.chair && line(s.chair, 'יו״ר מושב:')]);
   };
-  // a one-track day's sessions take its colour ("track" in program.json: 3 is the tutorials day's purple; 1 by default)
+  // a one-track day's sessions take its colour ("track" in program.json: 3 is the tutorials day's blue; 1 by default)
   const KIND = { break: 'st-break', plenary: 'st-plenary', neutral: '', session: `st-t${day.track || 1}` };
   const rows = day.rows.map((r) => {
     if (r.sessions) {

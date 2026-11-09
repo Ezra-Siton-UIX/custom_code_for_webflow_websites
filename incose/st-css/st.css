@@ -42,10 +42,10 @@ body { min-height: 100vh; margin: 0; font-family: var(--st-font); color: var(--s
   --st-t1-line: #cfe7de;
   --st-t2-bg: #eaf1f7;          /* track 2 cubes */
   --st-t2-line: #cfdfeb;
-  --st-purple: #6b3fc4;         /* the tutorials day (track 3): its own colour, so it reads as another day */
-  --st-purple-deep: #4c2a94;
-  --st-t3-bg: #f3effb;          /* the tutorials day's cubes */
-  --st-t3-line: #ddd3f3;
+  --st-t3: #0b6aa2;             /* the tutorials day (track 3): a deep blue of the sky family, its own day, the same language as its pale breaks */
+  --st-t3-deep: #08507a;
+  --st-t3-bg: color-mix(in srgb, var(--st-sky) 8%, #fff);
+  --st-t3-line: color-mix(in srgb, var(--st-sky) 25%, #fff);
   --st-yellow: #dee69d;         /* the dates on the banner */
   --st-sky: #0b86c8;            /* the logo's bright blue: the program's rows for everyone (a plenary's frame; the breaks' tint) */
   --st-neutral-bg: color-mix(in srgb, var(--st-sky) 6%, #fff);     /* the program's meals and breaks: a pale tint of the sky blue */
@@ -294,8 +294,8 @@ a:focus-visible, button:focus-visible { outline: 3px solid var(--st-mint); outli
 .st-slot.is-pop .st-slot-head:focus-visible { outline: none; }
 /* each track's accent: what is inside its cubes (numbers, underlines, frames, arrows) inherits it */
 .st-prog td.st-t2 { --st-accent: var(--st-blue); --st-accent-ink: var(--st-blue); }
-/* the tutorials day: the whole table in purple (its cubes, frames, underlines) */
-.st-prog.st-day-t3 { --st-accent: var(--st-purple); --st-accent-ink: var(--st-purple); }
+/* the tutorials day: the whole table in its blue (its cubes, frames, underlines) */
+.st-prog.st-day-t3 { --st-accent: var(--st-t3); --st-accent-ink: var(--st-t3); }
 .st-prog td.st-t3 { background: var(--st-t3-bg); border-color: var(--st-t3-line); }
 .st-slot-num { font-size: 14px; font-weight: 600; color: var(--st-accent-ink); }
 .st-slot-ttl { font-size: 18px; font-weight: 700; line-height: 1.4; color: var(--st-ink); }
@@ -334,7 +334,7 @@ a:focus-visible, button:focus-visible { outline: 3px solid var(--st-mint); outli
 /* the popup's colours: green, or the logo's blue when it was opened from track 2 (st-site.js sets data-track) */
 .st-pop { --st-pop-tint: var(--st-tint); --st-pop-ink: var(--st-teal); --st-pop-title: var(--st-ink); --st-pop-strong: var(--st-green); --st-pop-strong-hover: var(--st-teal); }
 .st-pop[data-track="2"] { --st-accent: var(--st-blue); --st-accent-ink: var(--st-blue); --st-pop-tint: var(--st-t2-bg); --st-pop-ink: var(--st-blue); --st-pop-title: var(--st-blue-deep); --st-pop-strong: var(--st-blue); --st-pop-strong-hover: var(--st-blue-deep); }
-.st-pop[data-track="3"] { --st-accent: var(--st-purple); --st-accent-ink: var(--st-purple); --st-pop-tint: var(--st-t3-bg); --st-pop-ink: var(--st-purple); --st-pop-title: var(--st-purple-deep); --st-pop-badge: var(--st-purple); }   /* its buttons (סגירה, back, X) stay the brand green */
+.st-pop[data-track="3"] { --st-accent: var(--st-t3); --st-accent-ink: var(--st-t3); --st-pop-tint: var(--st-t3-bg); --st-pop-ink: var(--st-t3); --st-pop-title: var(--st-t3-deep); --st-pop-badge: var(--st-t3); }   /* its buttons (סגירה, back, X) stay the brand green */
 .st-pop::backdrop { background: color-mix(in srgb, var(--st-deep) 62%, transparent); -webkit-backdrop-filter: blur(3px); backdrop-filter: blur(3px); }
 .st-pop[open] { animation: st-pop-in .22s ease-out; }
 @keyframes st-pop-in { from { opacity: 0; transform: translateY(12px) scale(.98); } }
@@ -672,7 +672,7 @@ body.st-menu-open::before { content: ""; position: fixed; inset: 0; z-index: 40;
    To drop it, delete this block (git tag before-negative-cubes is the state before it) ---------- */
 .st-prog td.st-t1 { --st-strong: var(--st-teal); }
 .st-prog td.st-t2 { --st-strong: var(--st-blue); }
-.st-prog td.st-t3 { --st-strong: var(--st-purple); }
+.st-prog td.st-t3 { --st-strong: var(--st-t3); }
 .st-prog thead .st-t1 { background: var(--st-teal); }   /* the track 1 head in the cubes' green */
 .st-prog td:is(.st-t1, .st-t2, .st-t3) { --st-accent: #fff; --st-accent-ink: #fff; background: var(--st-strong); border-color: var(--st-strong); color: #fff; }
 .st-prog td:is(.st-t1, .st-t2, .st-t3) :is(.st-slot-ttl, .st-slot-chair, .st-slot-text) { color: #fff; }

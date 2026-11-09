@@ -131,7 +131,7 @@ Each day has `rows`. A row is either one cube across the whole row, or a row of 
 ### The colours
 
 - **A track's colour:** each track sets `--st-accent` and `--st-accent-ink` on its cubes (track 1: mint and teal; track 2: the logo's blue). The underlines and numbers inherit them.
-- **A day's colour:** a one-track day can have its own (`"track": 3` in `program.json`: the tutorials day's purple, `--st-purple`). Its table gets `.st-day-t3`, its cubes and frames take the purple through `--st-accent`, and its popups open with `data-track="3"`. Day 1 keeps the mint and the blue.
+- **A day's colour:** a one-track day can have its own (`"track": 3` in `program.json`: the tutorials day's deep blue, `--st-t3`). Its table gets `.st-day-t3`, its cubes and frames take that blue through `--st-accent`, and its popups open with `data-track="3"`. Day 1 keeps the mint and the blue.
 - **The popup's colour:** the popup takes the colour of the track it was opened from. `st-site.js` sets `data-track="2"`, and the `--st-pop-*` variables switch to blue. A switch inside the popup keeps it.
 - **Three kinds of cube:**
   - **sessions** are tinted by track;
