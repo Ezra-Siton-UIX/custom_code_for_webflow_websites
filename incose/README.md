@@ -214,7 +214,7 @@ Replace each with the real content, keeping the same shape.
    - `data-badge` → the day's pill above the title (a day's `"badge"` in `program.json`).
 3. **The openers** are buttons with `data-pop="<name>"`, also written by the build: a cube's head, a lecture card, a panelist, a person's tile (`.st-slot-more`).
 4. **One `<dialog id="st-pop">` for the whole site** (`_src/partials/end.html`): the head (the back button, the badge, the `<h2>`, the pills, the X), the body, the foot ("סגירה").
-5. **`st-js/st-site.js`** (about 60 lines) listens for a click on any `[data-pop]`. It finds `#pop-<name>`, copies its `data-*` into the head and its content into the body, sets `dir`, and opens the dialog (`showModal()`).
+5. **`st-js/st-site.js`** (its popup part, about 60 lines) listens for a click on any `[data-pop]`. It finds `#pop-<name>`, copies its `data-*` into the head and its content into the body, sets `dir`, and opens the dialog (`showModal()`).
    - **A `[data-pop]` inside the open popup** (a lecture in its session) switches the content instead of opening a second popup. It keeps a trail, shows "חזרה ל{data-back}", and fades the change.
    - **The colour** comes from the opener: inside `.st-t2` the popup gets `data-track="2"`, and the `--st-pop-*` variables turn blue.
    - **Closing:** the X, "סגירה", a click on the backdrop, or Esc.
