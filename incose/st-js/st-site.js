@@ -1,5 +1,8 @@
 /* INCOSE IL 2027: the popup, and the registration's reveal (the menu is Bootstrap's own collapse, nothing here) */
 (() => {
+  // a touch listener on the page, so iPhone Safari shows the CSS :active (press) state
+  document.addEventListener('touchstart', () => {}, { passive: true });
+
   // the registration: their scripts rewrite it while the page loads; it is shown once they are done
   const register = document.querySelector('.st-register');
   if (register) window.addEventListener('load', () => register.classList.add('is-ready'));
